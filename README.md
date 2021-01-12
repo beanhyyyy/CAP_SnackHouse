@@ -1,169 +1,239 @@
-<img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
+# [Material Dashboard React](https://demos.creative-tim.com/material-dashboard-react/#/dashboard) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fcreativetimofficial.github.io%2Fmaterial-dashboard-react&text=Material%20Dashboard%20React%20-%20Free%20Bootstrap%20Admin%20Template&original_referer=https%3A%2F%2Fdemos.creative-tim.com%2Fmaterial-dashboard-react%2F%3F_ga%3D2.10428917.198078103.1532329372-1803433978.1528781151&via=creativetim&hashtags=react%2Cmaterial-ui)
 
-<br />
 
-<div align="center"><strong>Start your next react project in seconds</strong></div>
-<div align="center">A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</div>
 
-<br />
+![version](https://img.shields.io/badge/version-1.9.0-blue.svg) ![license](https://img.shields.io/badge/license-MIT-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/material-dashboard-react.svg?maxAge=2592000)]() [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/material-dashboard-react.svg?maxAge=2592000)]() [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim/material-dashboard?utm_source=share-link&utm_medium=link&utm_campaign=share-link) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
-<div align="center">
-  <!-- Dependency Status -->
-  <a href="https://david-dm.org/react-boilerplate/react-boilerplate">
-    <img src="https://david-dm.org/react-boilerplate/react-boilerplate.svg" alt="Dependency Status" />
-  </a>
-  <!-- devDependency Status -->
-  <a href="https://david-dm.org/react-boilerplate/react-boilerplate#info=devDependencies">
-    <img src="https://david-dm.org/react-boilerplate/react-boilerplate/dev-status.svg" alt="devDependency Status" />
-  </a>
-  <!-- Build Status -->
-  <a href="https://travis-ci.org/react-boilerplate/react-boilerplate">
-    <img src="https://travis-ci.org/react-boilerplate/react-boilerplate.svg" alt="Build Status" />
-  </a>
-  <!-- Test Coverage -->
-  <a href="https://coveralls.io/r/react-boilerplate/react-boilerplate">
-    <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate/badge.svg" alt="Test Coverage" />
-  </a>
-  <a href="https://spectrum.chat/react-boilerplate">
-  <img alt="Chat with us on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
-</a>
+![Product Gif](src/assets/github/md-react.gif)
 
-</div>
-<div align="center">
-    <!-- Backers -->
-  <a href="#backers">
-    <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
-  </a>
-      <!-- Sponsors -->
-  <a href="#sponsors">
-    <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
-  </a>
-  <a href="http://thinkmill.com.au/?utm_source=github&utm_medium=badge&utm_campaign=react-boilerplate">
-    <img alt="Supported by Thinkmill" src="https://thinkmill.github.io/badge/heart.svg" />
-  </a>
-</div>
+Material Dashboard React is a free Material-UI Admin with a fresh, new design inspired by Google's Material Design. We are very excited to introduce our take on the material concepts through an easy to use and beautiful set of components. Material Dashboard React was built over the popular Material-UI framework.
 
-<br />
+Material Dashboard React makes use of light, surface and movement. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left sidebar and the content is on the right inside the main panel.
 
-<div align="center">
-  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/people">team of developers</a>.</sub>
-</div>
+Material Dashboard React comes with 5 color filter choices for both the sidebar and the card headers (blue, green, orange, red and purple) and an option to have a background image on the sidebar.
 
-## Features
+Material Dashboard React was created using [create-react-app](https://github.com/facebook/create-react-app) and it uses a framework built by our friend [Olivier - Material-UI v3.1.0](https://github.com/mui-org/material-ui), who did an amazing job creating the backbone for the material effects, animations, ripples and transitions. Big thanks to his team for the effort and forward thinking they put into it.
 
-<dl>
-  <dt>Quick scaffolding</dt>
-  <dd>Create components, containers, routes, selectors and sagas - and their tests - right from the CLI!</dd>
+Special thanks go to:
++ [React-chartist](https://github.com/fraserxu/react-chartist) for the wonderful charts.
 
-  <dt>Instant feedback</dt>
-  <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
+We are very excited to share this dashboard with you and we look forward to hearing your feedback!
 
-  <dt>Predictable state management</dt>
-  <dd>Unidirectional data flow allows for change logging and time travel debugging.</dd>
+You can find the Github Repo here.
 
-  <dt>Next generation JavaScript</dt>
-  <dd>Use template strings, object destructuring, arrow functions, JSX syntax and more.</dd>
+## Table of Contents
 
-  <dt>Next generation CSS</dt>
-  <dd>Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.</dd>
+* [Versions](#versions)
+* [Demo](#demo)
+* [Quick Start](#quick-start)
+* [Documentation](#documentation)
+* [File Structure](#file-structure)
+* [Browser Support](#browser-support)
+* [Resources](#resources)
+* [Reporting Issues](#reporting-issues)
+* [Technical Support or Questions](#technical-support-or-questions)
+* [Licensing](#licensing)
+* [Useful Links](#useful-links)
 
-  <dt>Industry-standard routing</dt>
-  <dd>It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.</dd>
 
-  <dt>Industry-standard i18n internationalization support</dt>
-  <dd>Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.</dd>
+## Versions
 
-  <dt>Offline-first</dt>
-  <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
+[<img src="src/assets/github/html.png" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard)
+[<img src="src/assets/github/react.svg" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-react)
+[<img src="src/assets/github/vuejs.png" width="60" height="60" />](https://www.creative-tim.com/product/vue-material-dashboard)
+[<img src="src/assets/github/angular.png" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-angular2)
 
-  <dt>Static code analysis</dt>
-  <dd>Focus on writing new features without worrying about formatting or code quality. With the right editor setup, your code will automatically be formatted and linted as you work.</dd>
 
-  <dt>SEO</dt>
-  <dd>We support SEO (document head tags management) for search engines that support indexing of JavaScript content. (eg. Google)</dd>
-</dl>
+| HTML | React | Vue | Angular |
+| --- | --- | --- | --- |
+| [![Material Dashboard HTML](src/assets/github/opt_md_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard) | [![Material Dashboard React](src/assets/github/opt_mdr_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-react) | [![Vue Material Dashboard ](src/assets/github/opt_md_vue_thumbnail.jpg)](https://www.creative-tim.com/product/vue-material-dashboard) | [![Material Dashboard Angular](src/assets/github/opt_md_angular_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-angular2)
 
-But wait... there's more!
+## Demo
 
-- _The best test setup:_ Automatically guarantee code quality and non-breaking
-  changes. (Seen a react app with 100% test coverage before?)
-- _Native web app:_ Your app's new home? The home screen of your users' phones.
-- _The fastest fonts:_ Say goodbye to vacant text.
-- _Stay fast_: Profile your app's performance from the comfort of your command
-  line!
-- _Catch problems:_ AppVeyor and TravisCI setups included by default, so your
-  tests get run automatically on Windows and Unix.
+| Dashboard | User Profile | Tables | Maps | Notification |
+| --- | --- | --- | --- | --- |
+| [![Start page](src/assets/github/dashboard.png)](https://demos.creative-tim.com/material-dashboard-react/#/dashboard) | [![User profile page](src/assets/github/user_profile.png)](https://demos.creative-tim.com/material-dashboard-react/#/user) | [![Tables page ](src/assets/github/tables.png)](https://demos.creative-tim.com/material-dashboard-react/#/table) | [![Maps Page](src/assets/github/maps.png)](https://demos.creative-tim.com/material-dashboard-react/#/maps) | [![Notification page](src/assets/github/notification.png)](https://demos.creative-tim.com/material-dashboard-react/#/notifications)
 
-There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
+[View More](https://demos.creative-tim.com/material-dashboard-react/#/dashboard).
 
-<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver</i></sub>
 
 ## Quick start
 
-1.  Make sure that you have Node.js v8.15.1 and npm v5 or above installed.
-2.  Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git <YOUR_PROJECT_NAME>`
-3.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.<br />
-4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
-    _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
-5.  Run `npm run clean` to delete the example app.
+Quick start options:
 
-Now you're ready to rumble!
+- `npm i material-dashboard-react`
+- Clone the repo: `git clone https://github.com/creativetimofficial/material-dashboard-react.git`.
+- [Download from Github](https://github.com/creativetimofficial/material-dashboard-react/archive/master.zip).
+- [Download from Creative Tim](https://www.creative-tim.com/product/material-dashboard-react).
 
-> Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
 
 ## Documentation
-
-- [**The Hitchhiker's Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
-- [Overview](docs/general): A short overview of the included tools
-- [**Commands**](docs/general/commands.md): Getting the most out of this boilerplate
-- [Testing](docs/testing): How to work with the built-in test harness
-- [Styling](docs/css): How to work with the CSS tooling
-- [Your app](docs/js): Supercharging your app with Routing, Redux, simple
-  asynchronicity helpers, etc.
-- [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
-
-## Contributors
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://mxstbr.com"><img src="https://avatars0.githubusercontent.com/u/7525670?v=4" width="80px;" alt="Max Stoiber"/><br /><sub><b>Max Stoiber</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=mxstbr" title="Code">💻</a> <a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=mxstbr" title="Documentation">📖</a> <a href="#ideas-mxstbr" title="Ideas, Planning, & Feedback">🤔</a> <a href="#review-mxstbr" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=mxstbr" title="Tests">⚠️</a></td><td align="center"><a href="https://julien.engineering/"><img src="https://avatars2.githubusercontent.com/u/8948127?v=4" width="80px;" alt="Julien Benchetrit"/><br /><sub><b>Julien Benchetrit</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=julienben" title="Code">💻</a> <a href="#question-julienben" title="Answering Questions">💬</a> <a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=julienben" title="Documentation">📖</a> <a href="#review-julienben" title="Reviewed Pull Requests">👀</a> <a href="#maintenance-julienben" title="Maintenance">🚧</a></td><td align="center"><a href="http://sarafederi.co"><img src="https://avatars1.githubusercontent.com/u/15176096?v=4" width="80px;" alt="Sara Federico"/><br /><sub><b>Sara Federico</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=gretzky" title="Code">💻</a> <a href="#review-gretzky" title="Reviewed Pull Requests">👀</a> <a href="#question-gretzky" title="Answering Questions">💬</a> <a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=gretzky" title="Documentation">📖</a> <a href="#maintenance-gretzky" title="Maintenance">🚧</a></td><td align="center"><a href="https://justingreenberg.com"><img src="https://avatars1.githubusercontent.com/u/1539088?v=4" width="80px;" alt="Justin Greenberg"/><br /><sub><b>Justin Greenberg</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=justingreenberg" title="Code">💻</a> <a href="#review-justingreenberg" title="Reviewed Pull Requests">👀</a></td><td align="center"><a href="https://github.com/jwinn"><img src="https://avatars3.githubusercontent.com/u/891726?v=4" width="80px;" alt="Jon Winn"/><br /><sub><b>Jon Winn</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=jwinn" title="Code">💻</a> <a href="#review-jwinn" title="Reviewed Pull Requests">👀</a></td><td align="center"><a href="https://meester-johan.info/"><img src="https://avatars2.githubusercontent.com/u/474743?v=4" width="80px;" alt="Johan Meester"/><br /><sub><b>Johan Meester</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=Mensae" title="Code">💻</a> <a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=Mensae" title="Tests">⚠️</a> <a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=Mensae" title="Documentation">📖</a></td><td align="center"><a href="https://github.com/Dattaya"><img src="https://avatars3.githubusercontent.com/u/387256?v=4" width="80px;" alt="Yaroslav Kiliba"/><br /><sub><b>Yaroslav Kiliba</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=Dattaya" title="Code">💻</a></td><td align="center"><a href="https://github.com/gihrig"><img src="https://avatars2.githubusercontent.com/u/1481063?v=4" width="80px;" alt="Glen Ihrig"/><br /><sub><b>Glen Ihrig</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=gihrig" title="Code">💻</a></td></tr><tr><td align="center"><a href="https://github.com/somus"><img src="https://avatars3.githubusercontent.com/u/1802828?v=4" width="80px;" alt="Somasundaram Ayyappan"/><br /><sub><b>Somasundaram Ayyappan</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=somus" title="Code">💻</a></td><td align="center"><a href="https://www.codedsignal.co.uk/"><img src="https://avatars0.githubusercontent.com/u/21795?v=4" width="80px;" alt="Oliver Turner"/><br /><sub><b>Oliver Turner</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=oliverturner" title="Code">💻</a></td><td align="center"><a href="https://github.com/samit4me"><img src="https://avatars3.githubusercontent.com/u/3248531?v=4" width="80px;" alt="Samuel Sharpe"/><br /><sub><b>Samuel Sharpe</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=samit4me" title="Code">💻</a></td><td align="center"><a href="https://karandikarmihir.github.io/"><img src="https://avatars3.githubusercontent.com/u/17466938?v=4" width="80px;" alt="Mihir Karandikar"/><br /><sub><b>Mihir Karandikar</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=KarandikarMihir" title="Code">💻</a></td><td align="center"><a href="http://www.vverma.net"><img src="https://avatars2.githubusercontent.com/u/627846?v=4" width="80px;" alt="Vaibhav Verma"/><br /><sub><b>Vaibhav Verma</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=v" title="Code">💻</a></td><td align="center"><a href="https://imagineclarity.com"><img src="https://avatars1.githubusercontent.com/u/4217871?v=4" width="80px;" alt="Sébastien Dubois"/><br /><sub><b>Sébastien Dubois</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=sedubois" title="Code">💻</a></td><td align="center"><a href="https://www.chaintng.com"><img src="https://avatars2.githubusercontent.com/u/2979072?v=4" width="80px;" alt="Chainarong Tangsurakit"/><br /><sub><b>Chainarong Tangsurakit</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=chaintng" title="Code">💻</a></td><td align="center"><a href="https://amilajack.com"><img src="https://avatars1.githubusercontent.com/u/6374832?v=4" width="80px;" alt="Amila Welihinda"/><br /><sub><b>Amila Welihinda</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate/commits?author=amilajack" title="Code">💻</a></td></tr></table>
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+The documentation for the Material Dashboard React is hosted at our [website](https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial).
 
 
-## Supporters
+## File Structure
 
-This project would not be possible without the support of these amazing folks. [**Become a sponsor**](https://opencollective.com/react-boilerplate) to get your company in front of thousands of engaged react developers and help us out!
+Within the download you'll find the following directories and files:
 
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/9/avatar.svg"></a>
+```
+material-dashboard-react
+.
+├── CHANGELOG.md
+├── ISSUE_TEMPLATE.md
+├── LICENSE.md
+├── README.md
+├── bower.json
+├── gulpfile.js
+├── jsconfig.json
+├── package.json
+├── documentation
+│   ├── assets
+│   │   ├── css
+│   │   ├── img
+│   │   │   └── faces
+│   │   └── js
+│   └── tutorial-components.html
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+└── src
+    ├── index.js
+    ├── logo.svg
+    ├── routes.js
+    ├── assets
+    │   ├── css
+    │   │   └── material-dashboard-react.css
+    │   ├── github
+    │   │   ├── md-react.gif
+    │   │   └── react.svg
+    │   ├── img
+    │   │   └── faces
+    │   └── jss
+    │       ├── material-dashboard-react
+    │       │   ├── components
+    │       │   ├── layouts
+    │       │   └── views
+    │       └── material-dashboard-react.js
+    ├── components
+    │   ├── Card
+    │   │   ├── Card.js
+    │   │   ├── CardAvatar.js
+    │   │   ├── CardBody.js
+    │   │   ├── CardFooter.js
+    │   │   ├── CardHeader.js
+    │   │   └── CardIcon.js
+    │   ├── CustomButtons
+    │   │   └── Button.js
+    │   ├── CustomInput
+    │   │   └── CustomInput.js
+    │   ├── CustomTabs
+    │   │   └── CustomTabs.js
+    │   ├── FixedPlugin
+    │   │   └── FixedPlugin.js
+    │   ├── Footer
+    │   │   └── Footer.js
+    │   ├── Grid
+    │   │   ├── GridContainer.js
+    │   │   └── GridItem.js
+    │   ├── Navbars
+    │   │   ├── AdminNavbarLinks.js
+    │   │   ├── Navbar.js
+    │   │   └── RTLNavbarLinks.js
+    │   ├── Sidebar
+    │   │   └── Sidebar.js
+    │   ├── Snackbar
+    │   │   ├── Snackbar.js
+    │   │   └── SnackbarContent.js
+    │   ├── Table
+    │   │   └── Table.js
+    │   ├── Tasks
+    │   │   └── Tasks.js
+    │   └── Typography
+    │       ├── Danger.js
+    │       ├── Info.js
+    │       ├── Muted.js
+    │       ├── Primary.js
+    │       ├── Quote.js
+    │       ├── Success.js
+    │       └── Warning.js
+    ├── layouts
+    │   ├── Admin.js
+    │   └── RTL.js
+    ├── variables
+    │   ├── charts.js
+    │   └── general.js
+    └── views
+        ├── Dashboard
+        │   └── Dashboard.js
+        ├── Icons
+        │   └── Icons.js
+        ├── Maps
+        │   └── Maps.js
+        ├── Notifications
+        │   └── Notifications.js
+        ├── RTLPage
+        │   └── RTLPage.js
+        ├── TableList
+        │   └── TableList.js
+        ├── Typography
+        │   └── Typography.js
+        ├── UpgradeToPro
+        │   └── UpgradeToPro.js
+        └── UserProfile
+            └── UserProfile.js
+```
 
----
+## Browser Support
 
-<a href="https://opencollective.com/react-boilerplate/backer/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/0/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/1/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/2/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/3/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/4/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/5/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/6/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/7/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/8/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/9/avatar.svg"></a>
+At present, we officially aim to support the last two versions of the following browsers:
 
-## License
+<img src="src/assets/github/chrome.png" width="64" height="64"> <img src="src/assets/github/firefox.png" width="64" height="64"> <img src="src/assets/github/edge.png" width="64" height="64"> <img src="src/assets/github/safari.png" width="64" height="64"> <img src="src/assets/github/opera.png" width="64" height="64">
 
-This project is licensed under the MIT license, Copyright (c) 2019 Maximilian
-Stoiber. For more information see `LICENSE.md`.
+
+## Resources
+- Demo: https://demos.creative-tim.com/material-dashboard-react
+- Download Page: https://www.creative-tim.com/product/material-dashboard-react
+- Documentation: https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial
+- License Agreement: https://www.creative-tim.com/license
+- Support: https://www.creative-tim.com/contact-us
+- Issues: [Github Issues Page](https://github.com/creativetimofficial/material-dashboard-react/issues)
+- [Material Kit React - For Front End Development](https://www.creative-tim.com/product/material-kit-react?ref=github-mdr-free)
+
+## Reporting Issues
+We use GitHub Issues as the official bug tracker for the Material Dashboard React. Here are some advices for our users that want to report an issue:
+
+1. Make sure that you are using the latest version of the Material Dashboard React. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/).
+2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
+3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
+
+## Technical Support or Questions
+
+If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us) instead of opening an issue.
+
+## Licensing
+
+- Copyright 2020 Creative Tim (https://www.creative-tim.com)
+- Licensed under MIT (https://github.com/creativetimofficial/material-dashboard-react/blob/master/LICENSE.md)
+
+## Useful Links
+
+More products from Creative Tim: <https://www.creative-tim.com/products>
+
+Tutorials: <https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w>
+
+Freebies: <https://www.creative-tim.com/products>
+
+Affiliate Program (earn money): <https://www.creative-tim.com/affiliates/new>
+
+Social Media:
+
+Twitter: <https://twitter.com/CreativeTim>
+
+Facebook: <https://www.facebook.com/CreativeTim>
+
+Dribbble: <https://dribbble.com/creativetim>
+
+Google+: <https://plus.google.com/+CreativetimPage>
+
+Instagram: <https://instagram.com/creativetimofficial>
