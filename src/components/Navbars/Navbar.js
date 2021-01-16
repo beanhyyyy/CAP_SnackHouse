@@ -12,9 +12,9 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import AdminNavbarLinks from "./AdminNavbarLinks.js";
 import RTLNavbarLinks from "./RTLNavbarLinks.js";
-import Button from "components/CustomButtons/Button.js";
+import Button from "../../components/CustomButtons/Button.js";
 
-import styles from "assets/jss/material-dashboard-react/components/headerStyle.js";
+import styles from "../../assets/jss/material-dashboard-react/components/headerStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -41,6 +41,9 @@ export default function Header(props) {
           {/* Here we create navbar brand, based on route name */}
           <Button color="transparent" href="#" className={classes.title}>
             {makeBrand()}
+          </Button>
+          <Button color="transparent" href="/Login" className={classes.title}>
+            Log out
           </Button>
         </div>
         <Hidden smDown implementation="css">
