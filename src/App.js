@@ -6,6 +6,7 @@ import Login from "./views/Login"
 import PrivateRoute from "./views/PrivateRoute"
 import ForgotPassword from "./views/ForgotPassword"
 import UpdateProfile from "./views/UpdateProfile"
+import Report from "./views/Report"
 
 import Admin from "./layouts/Admin";
 
@@ -21,6 +22,7 @@ function App() {
               <Route path="/forgot-password" component={ForgotPassword} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/admin" component={Admin} />
+              <PrivateRoute path="/report" component={Report} />
             </Switch>
           </AuthProvider>
         </Router>
