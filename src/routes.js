@@ -30,6 +30,8 @@ import Typography from "./views/Typography/Typography.js";
 import Icons from "./views/Icons/Icons.js";
 import NotificationsPage from "./views/Notifications/Notifications.js";
 import UpgradeToPro from "./views/UpgradeToPro/UpgradeToPro.js";
+import Account from "./views/Account";
+
 // core components/views for RTL layout
 
 const dashboardRoutes = [
@@ -55,6 +57,14 @@ const dashboardRoutes = [
     rtlName: "قائمة الجدول",
     icon: "content_paste",
     component: TableList,
+    layout: "/admin"
+  },
+  {
+    path: "/account",
+    name: "Account",
+    rtlName: "قائمة الجدول",
+    icon: "content_paste",
+    component: Account,
     layout: "/admin"
   },
   {

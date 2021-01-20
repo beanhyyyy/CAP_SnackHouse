@@ -73,7 +73,7 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    console.log(error);
+        
     try {
       setError("")
       setErrorCode("")
