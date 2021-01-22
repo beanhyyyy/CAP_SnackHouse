@@ -10,7 +10,6 @@ import Report from "./views/Report"
 
 import Admin from "./layouts/Admin";
 
-
 function App() {
 
   return (
@@ -23,6 +22,7 @@ function App() {
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/admin" component={Admin} />
               <PrivateRoute path="/report" component={Report} />
+
             </Switch>
           </AuthProvider>
         </Router>

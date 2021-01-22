@@ -18,7 +18,7 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
+import AddCircle from "@material-ui/icons/AddCircle";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
@@ -30,9 +30,11 @@ import Typography from "./views/Typography/Typography.js";
 import Icons from "./views/Icons/Icons.js";
 import NotificationsPage from "./views/Notifications/Notifications.js";
 import UpgradeToPro from "./views/UpgradeToPro/UpgradeToPro.js";
-import Account from "./views/Account";
 
+import Account from "./views/Account";
+import CreateMaterial from "./views/CreateMaterial"; // buoc 3
 // core components/views for RTL layout
+// MENU
 
 const dashboardRoutes = [
   {
@@ -69,9 +71,9 @@ const dashboardRoutes = [
   },
   {
     path: "/typography",
-    name: "Typography",
+    name: "123",
     rtlName: "طباعة",
-    icon: LibraryBooks,
+    icon: AddCircle,
     component: Typography,
     layout: "/admin"
   },
@@ -98,7 +100,15 @@ const dashboardRoutes = [
     icon: Unarchive,
     component: UpgradeToPro,
     layout: "/admin"
-  }
+  },
+  {
+    path: "/createMaterial", // URL 1
+    name: "Upgrade To PRO",
+    rtlName: "التطور للاحترافية",
+    icon: Unarchive,
+    component: CreateMaterial, // Component 2  
+    layout: "/admin"
+  },
 ];
 
 export default dashboardRoutes;
