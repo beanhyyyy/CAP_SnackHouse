@@ -66,7 +66,7 @@ export default function Login() {
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
-  const [errorCode, setErrorCode] = useState("")
+  // const [errorCode, setErrorCode] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
@@ -76,19 +76,19 @@ export default function Login() {
         
     try {
       setError("")
-      setErrorCode("")
+      // setErrorCode("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
       if (emailRef.current.value === "admin@gmail.com") {
         history.push("/admin")
       } else {
-        history.push("/report")
+        history.push("/update-profile")
       }
     } catch (error) {
       setError("Failed to log in")
-      var errorCode = error.code;
+      // var errorCode = error.code;
       var errorMessage = error.message;
-      setErrorCode("Error Code : \n" + errorCode)
+      // setErrorCode("Error Code : \n" + errorCode)
       setErrorMessage("Description Error : \n" + errorMessage)
     }
     setLoading(false)
@@ -134,15 +134,15 @@ export default function Login() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Trang Đăng Nhập
           </Typography>
             <Form className={classes.form} noValidate onSubmit={handleSubmit}>
               {error &&
                 <Alert severity="error">
                   <AlertTitle>Error</AlertTitle>
                   {error} — <strong>check it out!</strong>
-                  <br />
-                  {errorCode}
+                  {/* <br /> */}
+                  {/* {errorCode} */}
                   <br />
                   {errorMessage}
                 </Alert>
@@ -153,7 +153,7 @@ export default function Login() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Tài khoản công ty"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -166,7 +166,7 @@ export default function Login() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Mật khẩu"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -174,7 +174,7 @@ export default function Login() {
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                label="Ghi nhớ mật khẩu"
               />
               <Button
                 type="submit"
@@ -184,19 +184,19 @@ export default function Login() {
                 className={classes.submit}
                 disabled={loading}
               >
-                Sign In
+                Đăng nhập
               </Button>
               <Grid container>
                 <Grid item xs>
                   <Link to="/forgot-password" variant="body2">
-                    Forgot password?
+                    Quên mật khẩu?
                 </Link>
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                   <Link to="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
-                </Grid>
+                </Grid> */}
               </Grid>
               <Box mt={5}>
                 <Copyright />

@@ -52,7 +52,7 @@ export default function ForgotPassword() {
   const emailRef = useRef()
   const { resetPassword } = useAuth()
   const [error, setError] = useState("")
-  const [errorCode, setErrorCode] = useState("")
+  // const [errorCode, setErrorCode] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
@@ -62,15 +62,15 @@ export default function ForgotPassword() {
 
     try {
       setMessage("")
-      setError("")
+      // setError("")
       setLoading(true)
       await resetPassword(emailRef.current.value)
       setMessage("Check your inbox for further instructions")
     } catch {
       setError("Failed to reset password")
-      var errorCode = error.code;
+      // var errorCode = error.code;
       var errorMessage = error.message;
-      setErrorCode("Error Code : \n" + errorCode)
+      // setErrorCode("Error Code : \n" + errorCode)
       setErrorMessage("Description Error : \n" + errorMessage)
     }
 
@@ -118,8 +118,8 @@ export default function ForgotPassword() {
               <Alert severity="error">
                 <AlertTitle>Error</AlertTitle>
                 {error} — <strong>check it out!</strong>
-                <br />
-                {errorCode}
+                {/* <br /> */}
+                {/* {errorCode} */}
                 <br />
                 {errorMessage}
               </Alert>
@@ -157,9 +157,9 @@ export default function ForgotPassword() {
                   Already have an account? Sign in
               </Link>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 Need an account? <Link to="/signup">Sign Up</Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </form>
         </div>

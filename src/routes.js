@@ -21,7 +21,7 @@ import Person from "@material-ui/icons/Person";
 import AddCircle from "@material-ui/icons/AddCircle";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import Notifications from "@material-ui/icons/Notifications";
-import Unarchive from "@material-ui/icons/Unarchive";
+// import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views for Admin layout
 import DashboardPage from "./views/Dashboard/Dashboard.js";
 import UserProfile from "./views/UserProfile/UserProfile.js";
@@ -29,17 +29,18 @@ import TableList from "./views/TableList/TableList.js";
 import Typography from "./views/Typography/Typography.js";
 import Icons from "./views/Icons/Icons.js";
 import NotificationsPage from "./views/Notifications/Notifications.js";
-import UpgradeToPro from "./views/UpgradeToPro/UpgradeToPro.js";
+// import UpgradeToPro from "./views/UpgradeToPro/UpgradeToPro.js";
 
 import Account from "./views/Account";
-import CreateMaterial from "./views/CreateMaterial"; // buoc 3
+import CreateAccount from "./views/CreateAccount";
+// import CreateMaterial from "./views/CreateMaterial"; // buoc 3
 // core components/views for RTL layout
 // MENU
 
 const dashboardRoutes = [
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Thống kê",
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
@@ -47,7 +48,7 @@ const dashboardRoutes = [
   },
   {
     path: "/user",
-    name: "User Profile",
+    name: "Thông tin tài khoản",
     rtlName: "ملف تعريفي للمستخدم",
     icon: Person,
     component: UserProfile,
@@ -55,7 +56,7 @@ const dashboardRoutes = [
   },
   {
     path: "/table",
-    name: "Table List",
+    name: "Kho",
     rtlName: "قائمة الجدول",
     icon: "content_paste",
     component: TableList,
@@ -63,15 +64,23 @@ const dashboardRoutes = [
   },
   {
     path: "/account",
-    name: "Account",
+    name: "Tài khoản",
     rtlName: "قائمة الجدول",
     icon: "content_paste",
     component: Account,
     layout: "/admin"
   },
   {
+    path: "/createAccount",
+    name: "Tạo tài khoản",
+    rtlName: "قائمة الجدول",
+    icon: "content_paste",
+    component: CreateAccount,
+    layout: "/admin"
+  },
+  {
     path: "/typography",
-    name: "123",
+    name: "Nguyên liệu",
     rtlName: "طباعة",
     icon: AddCircle,
     component: Typography,
@@ -79,7 +88,7 @@ const dashboardRoutes = [
   },
   {
     path: "/icons",
-    name: "Icons",
+    name: "Chi nhánh",
     rtlName: "الرموز",
     icon: BubbleChart,
     component: Icons,
@@ -87,28 +96,28 @@ const dashboardRoutes = [
   },
   {
     path: "/notifications",
-    name: "Notifications",
+    name: "Báo cáo",
     rtlName: "إخطارات",
     icon: Notifications,
     component: NotificationsPage,
     layout: "/admin"
   },
-  {
-    path: "/upgrade-to-pro",
-    name: "Upgrade To PRO",
-    rtlName: "التطور للاحترافية",
-    icon: Unarchive,
-    component: UpgradeToPro,
-    layout: "/admin"
-  },
-  {
-    path: "/createMaterial", // URL 1
-    name: "Upgrade To PRO",
-    rtlName: "التطور للاحترافية",
-    icon: Unarchive,
-    component: CreateMaterial, // Component 2  
-    layout: "/admin"
-  },
+  // {
+  //   path: "/upgrade-to-pro",
+  //   name: "Upgrade To PRO",
+  //   rtlName: "التطور للاحترافية",
+  //   icon: Unarchive,
+  //   component: UpgradeToPro,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/createMaterial", // URL 1
+  //   name: "Upgrade To PRO",
+  //   rtlName: "التطور للاحترافية",
+  //   icon: Unarchive,
+  //   component: CreateMaterial, // Component 2  
+  //   layout: "/admin"
+  // },
 ];
 
 export default dashboardRoutes;

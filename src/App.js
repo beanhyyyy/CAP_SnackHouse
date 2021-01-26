@@ -1,5 +1,5 @@
 import React from "react"
-import Signup from "./views/Signup"
+// import Signup from "./views/Signup"
 import { AuthProvider } from "./contexts/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Login from "./views/Login"
@@ -16,7 +16,7 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-              <Route path="/signup" component={Signup} />
+              {/* <Route path="/signup" component={Signup} /> */}
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
