@@ -16,14 +16,12 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-              {/* <Route path="/signup" component={Signup} /> */}
-              <Route path="/" component={Login} />
+              <Route exact path="/" component={Login} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/admin" component={Admin} />
               <PrivateRoute path="/report" component={Report} />
-
             </Switch>
           </AuthProvider>
         </Router>
