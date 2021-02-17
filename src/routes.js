@@ -21,12 +21,13 @@ import Person from "@material-ui/icons/Person";
 import AddCircle from "@material-ui/icons/AddCircle";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import Notifications from "@material-ui/icons/Notifications";
+import Store from "@material-ui/icons/Store";
 // import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views for Admin layout
 import DashboardPage from "./views/Dashboard/Dashboard.js";
 import UserProfile from "./views/UserProfile/UserProfile.js";
 import TableList from "./views/TableList/TableList.js";
-import Typography from "./views/Typography/Typography.js";
+import Material from "./views/Material/index.js";
 import Icons from "./views/Icons/Icons.js";
 import NotificationsPage from "./views/Notifications/Notifications.js";
 // import UpgradeToPro from "./views/UpgradeToPro/UpgradeToPro.js";
@@ -74,16 +75,16 @@ const dashboardRoutes = [
     path: "/createAccount",
     name: "Tạo tài khoản",
     rtlName: "قائمة الجدول",
-    icon: "content_paste",
+    icon: AddCircle,
     component: CreateAccount,
     layout: "/admin"
   },
   {
-    path: "/typography",
+    path: "/material",
     name: "Nguyên liệu",
     rtlName: "طباعة",
-    icon: AddCircle,
-    component: Typography,
+    icon: Store,
+    component: Material,
     layout: "/admin"
   },
   {

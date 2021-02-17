@@ -19,6 +19,7 @@ export default function FixedPlugin(props) {
   const handleClick = () => {
     props.handleFixedClick();
   };
+
   return (
     <div
       className={classnames("fixed-plugin", {
@@ -48,17 +49,6 @@ export default function FixedPlugin(props) {
                 />
                 <span
                   className={
-                    props.bgColor === "blue"
-                      ? "badge filter badge-blue active"
-                      : "badge filter badge-blue"
-                  }
-                  data-color="blue"
-                  onClick={() => {
-                    props.handleColorClick("blue");
-                  }}
-                />
-                <span
-                  className={
                     props.bgColor === "green"
                       ? "badge filter badge-green active"
                       : "badge filter badge-green"
@@ -66,6 +56,17 @@ export default function FixedPlugin(props) {
                   data-color="green"
                   onClick={() => {
                     props.handleColorClick("green");
+                  }}
+                />
+                <span
+                  className={
+                    props.bgColor === "blue"
+                      ? "badge filter badge-blue active"
+                      : "badge filter badge-blue"
+                  }
+                  data-color="blue"
+                  onClick={() => {
+                    props.handleColorClick("blue");
                   }}
                 />
                 <span
@@ -139,7 +140,7 @@ export default function FixedPlugin(props) {
             </a>
           </li>
 
-          <li className="button-container">
+          {/* <li className="button-container">
             <div className="button-container">
               <Button
                 color="success"
@@ -173,7 +174,7 @@ export default function FixedPlugin(props) {
               Documentation
             </Button>
           </li>
-          <li className="adjustments-line" />
+          <li className="adjustments-line" /> */}
         </ul>
       </div>
     </div>
