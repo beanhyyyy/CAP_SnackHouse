@@ -59,7 +59,7 @@ export default function Material() {
   };
   const dataTab = [
     {
-      count: '123',
+      count: '1233',
     },
     {
       count: '456',
