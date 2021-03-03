@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "snackhouse-af7ac"
+    "default": "snackhouse-af7ac",
+    "staging": "snackhouse-af7ac"
   }
 }
