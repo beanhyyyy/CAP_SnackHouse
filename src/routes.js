@@ -24,8 +24,8 @@ import Notifications from "@material-ui/icons/Notifications";
 // import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views for Admin layout
 import DashboardPage from "./views/Dashboard/Dashboard.js";
-import UserProfile from "./views/UserProfile/UserProfile.js";
-import TableList from "./views/TableList/TableList.js";
+// import UserProfile from "./views/UserProfile/UserProfile.js";
+// import TableList from "./views/TableList/TableList.js";
 import Typography from "./views/Typography/Typography.js";
 import Icons from "./views/Icons/Icons.js";
 import NotificationsPage from "./views/Notifications/Notifications.js";
@@ -33,6 +33,8 @@ import NotificationsPage from "./views/Notifications/Notifications.js";
 
 import Account from "./views/Account";
 import CreateAccount from "./views/CreateAccount";
+import PageAccount from "./containers/PageAccount/index.js";
+import PageWarehouse from "./containers/PageWarehouse/index.js";
 // import CreateMaterial from "./views/CreateMaterial"; // buoc 3
 // core components/views for RTL layout
 // MENU
@@ -44,23 +46,23 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/user",
-    name: "Thông tin tài khoản",
+    name: "Tài khoản",
     rtlName: "ملف تعريفي للمستخدم",
     icon: Person,
-    component: UserProfile,
-    layout: "/admin"
+    component: PageAccount,
+    layout: "/admin",
   },
   {
     path: "/table",
     name: "Kho",
     rtlName: "قائمة الجدول",
     icon: "content_paste",
-    component: TableList,
-    layout: "/admin"
+    component: PageWarehouse,
+    layout: "/admin",
   },
   {
     path: "/account",
@@ -68,7 +70,7 @@ const dashboardRoutes = [
     rtlName: "قائمة الجدول",
     icon: "content_paste",
     component: Account,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/createAccount",
@@ -76,7 +78,7 @@ const dashboardRoutes = [
     rtlName: "قائمة الجدول",
     icon: "content_paste",
     component: CreateAccount,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/typography",
@@ -84,7 +86,7 @@ const dashboardRoutes = [
     rtlName: "طباعة",
     icon: AddCircle,
     component: Typography,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/icons",
@@ -92,7 +94,7 @@ const dashboardRoutes = [
     rtlName: "الرموز",
     icon: BubbleChart,
     component: Icons,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/notifications",
@@ -100,7 +102,7 @@ const dashboardRoutes = [
     rtlName: "إخطارات",
     icon: Notifications,
     component: NotificationsPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   // {
   //   path: "/upgrade-to-pro",
@@ -115,7 +117,7 @@ const dashboardRoutes = [
   //   name: "Upgrade To PRO",
   //   rtlName: "التطور للاحترافية",
   //   icon: Unarchive,
-  //   component: CreateMaterial, // Component 2  
+  //   component: CreateMaterial, // Component 2
   //   layout: "/admin"
   // },
 ];
