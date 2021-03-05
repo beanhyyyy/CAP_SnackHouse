@@ -24,15 +24,15 @@ import Notifications from "@material-ui/icons/Notifications";
 // import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views for Admin layout
 import DashboardPage from "./views/Dashboard/Dashboard.js";
-import UserProfile from "./views/UserProfile/UserProfile.js";
-import TableList from "./views/TableList/TableList.js";
-import Typography from "./views/Typography/Typography.js";
-import Icons from "./views/Icons/Icons.js";
-import NotificationsPage from "./views/Notifications/Notifications.js";
-// import UpgradeToPro from "./views/UpgradeToPro/UpgradeToPro.js";
+// import UserProfile from "./views/UserProfile/UserProfile.js";
+// import TableList from "./views/TableList/TableList.js";
 
-import Account from "./views/Account";
-import CreateAccount from "./views/CreateAccount";
+import PageAccount from "./containers/PageAccount/index.js";
+import PageWarehouse from "./containers/PageWarehouse/index.js";
+import PageOrder from "./containers/PageOrder/index.js";
+import PageInventoryReport from "./containers/PageInventoryReport/index.js";
+import PageSalePoint from "./containers/PageSalePoint/index.js";
+import PageMaterial from "./containers/PageMaterial/index.js";
 // import CreateMaterial from "./views/CreateMaterial"; // buoc 3
 // core components/views for RTL layout
 // MENU
@@ -44,80 +44,56 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/user",
-    name: "Thông tin tài khoản",
+    name: "Tài khoản",
     rtlName: "ملف تعريفي للمستخدم",
     icon: Person,
-    component: UserProfile,
-    layout: "/admin"
+    component: PageAccount,
+    layout: "/admin",
+  },
+  {
+    path: "/order",
+    name: "Đơn hàng",
+    rtlName: "ملف تعريفي للمستخدم",
+    icon: Person,
+    component: PageOrder,
+    layout: "/admin",
+  },
+  {
+    path: "/material",
+    name: "Nguyên liệu",
+    rtlName: "طباعة",
+    icon: AddCircle,
+    component: PageMaterial,
+    layout: "/admin",
   },
   {
     path: "/table",
     name: "Kho",
     rtlName: "قائمة الجدول",
     icon: "content_paste",
-    component: TableList,
-    layout: "/admin"
-  },
-  {
-    path: "/account",
-    name: "Tài khoản",
-    rtlName: "قائمة الجدول",
-    icon: "content_paste",
-    component: Account,
-    layout: "/admin"
-  },
-  {
-    path: "/createAccount",
-    name: "Tạo tài khoản",
-    rtlName: "قائمة الجدول",
-    icon: "content_paste",
-    component: CreateAccount,
-    layout: "/admin"
-  },
-  {
-    path: "/typography",
-    name: "Nguyên liệu",
-    rtlName: "طباعة",
-    icon: AddCircle,
-    component: Typography,
-    layout: "/admin"
+    component: PageWarehouse,
+    layout: "/admin",
   },
   {
     path: "/icons",
-    name: "Chi nhánh",
+    name: "Điểm bán",
     rtlName: "الرموز",
     icon: BubbleChart,
-    component: Icons,
-    layout: "/admin"
+    component: PageSalePoint,
+    layout: "/admin",
   },
   {
-    path: "/notifications",
-    name: "Báo cáo",
+    path: "/InventoryReport",
+    name: "Báo cáo tồn kho",
     rtlName: "إخطارات",
     icon: Notifications,
-    component: NotificationsPage,
-    layout: "/admin"
+    component: PageInventoryReport,
+    layout: "/admin",
   },
-  // {
-  //   path: "/upgrade-to-pro",
-  //   name: "Upgrade To PRO",
-  //   rtlName: "التطور للاحترافية",
-  //   icon: Unarchive,
-  //   component: UpgradeToPro,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/createMaterial", // URL 1
-  //   name: "Upgrade To PRO",
-  //   rtlName: "التطور للاحترافية",
-  //   icon: Unarchive,
-  //   component: CreateMaterial, // Component 2  
-  //   layout: "/admin"
-  // },
 ];
 
 export default dashboardRoutes;
