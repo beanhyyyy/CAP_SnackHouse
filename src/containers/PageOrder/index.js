@@ -5,6 +5,7 @@ import TabPanel from "../../components/TabPanel";
 import SectionTemplate from "../../components/templates/SectionTemplate";
 import CardShadow from "../../components/Card/CardShadow";
 import Order from "./Order";
+import OrderStatus from "./OrderStatus";
 
 const mainTabs = [
   {
@@ -15,7 +16,7 @@ const mainTabs = [
   {
     key: 2,
     label: "Trạng thái đơn hàng",
-    content: Order,
+    content: OrderStatus,
   },
 ];
 

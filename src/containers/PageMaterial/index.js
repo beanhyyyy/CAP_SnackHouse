@@ -4,17 +4,18 @@ import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
+import Ingredient from "./Ingredient";
 
 const mainTabs = [
   {
     key: 1,
     label: "Nguyên liệu",
-    content: "Ấ",
+    content: Ingredient,
   },
   {
     key: 2,
     label: "Tạo mới nguyên liệu",
-    content: "Ấ",
+    content: Ingredient,
   },
 ];
 
@@ -46,7 +47,7 @@ function PageMaterial() {
           const key = index;
           return (
             <TabPanel key={key} value={value} index={index}>
-              {tab.content}
+              <tab.content />
             </TabPanel>
           );
         })}

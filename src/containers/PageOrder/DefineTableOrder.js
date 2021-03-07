@@ -27,7 +27,7 @@ const BoxStatusFinish = withStyles(
       justifyContent: "center",
       alignItems: "center",
       padding: theme.spacing(1),
-      width: theme.spacing(10),
+      width: 100,
       backgroundColor: colorGreen,
     },
   }),
@@ -43,7 +43,7 @@ const BoxStatusWaiting = withStyles(
       justifyContent: "center",
       alignItems: "center",
       padding: theme.spacing(1),
-      width: theme.spacing(8),
+      width: 100,
       backgroundColor: colorLime,
     },
   }),
@@ -168,6 +168,90 @@ export const columnsOrder = [
   },
   {
     id: "c8",
+    label: "Chức năng",
+    format: (value) => (
+      <Grid container>
+        <Grid item>
+          <IconButton>
+            <RemoveRedEyeIcon />
+          </IconButton>
+        </Grid>
+        <Grid item>
+          <IconButton>
+            <EditIcon />
+          </IconButton>
+        </Grid>
+        <Grid item>
+          <IconButton>
+            <DeleteIcon />
+          </IconButton>
+        </Grid>
+      </Grid>
+    ),
+  },
+];
+export const rowsOrderStatus = [
+  createData(
+    {
+      id: "RTS-SADSA",
+    },
+    { nameStatus: "Hoàn thành giao dịch" },
+    { date: "1/1/1111" },
+    { status: "waiting" }
+  ),
+  createData(
+    {
+      id: "RTS-SADSA",
+    },
+    { nameStatus: "Hoàn thành giao dịch" },
+    { date: "1/1/1111" },
+    { status: "finish" }
+  ),
+];
+export const columnsOrderStatus = [
+  {
+    id: "c1",
+    label: "Mã trạng thái",
+    // styles: {
+    //   width: 320,
+    // },
+    format: (value) => <>{value.id}</>,
+  },
+  {
+    id: "c2",
+    label: "Tên trạng thái",
+    // styles: {
+    //   width: 320,
+    // },
+    format: (value) => (
+      <>
+        <Typography>{value.nameStatus}</Typography>
+      </>
+    ),
+  },
+  {
+    id: "c3",
+    label: "Ngày tạo",
+    format: (value) => <>{value.date}</>,
+  },
+
+  {
+    id: "c4",
+    label: "Trạng thái",
+    format: (value) => (
+      <>
+        {value.status === "finish" && (
+          <BoxStatusFinish>Hoàn thành</BoxStatusFinish>
+        )}
+        {value.status === "waiting" && (
+          <BoxStatusWaiting>Đang chờ</BoxStatusWaiting>
+        )}
+        {value.status === "cancel" && <BoxStatusCancel>Hủy</BoxStatusCancel>}
+      </>
+    ),
+  },
+  {
+    id: "c5",
     label: "Chức năng",
     format: (value) => (
       <Grid container>
