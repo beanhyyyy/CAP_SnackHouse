@@ -2,11 +2,17 @@ import React from "react";
 import TabsIndicatorCenter from "../../components/TabsIndicatorCenter";
 import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
-import { Box } from "@material-ui/core";
+import CardShadow from "../../components/Card/CardShadow";
+import SectionTemplate from "../../components/templates/SectionTemplate";
 
 const mainTabs = [
   {
     key: 1,
+    label: "Nguyên liệu",
+    content: "Ấ",
+  },
+  {
+    key: 2,
     label: "Tạo mới nguyên liệu",
     content: "Ấ",
   },
@@ -19,20 +25,23 @@ function PageMaterial() {
     setValue(newValue);
   };
   return (
-    <div>
-      <TabsIndicatorCenter
-        value={value}
-        onChange={handleChange}
-        aria-label="tour info tabs"
-        variant="scrollable"
-        scrollButtons="auto"
-      >
-        {mainTabs.map((tab, index) => {
-          const key = index;
-          return <TabIndicatorCenter key={key} label={tab.label} />;
-        })}
-      </TabsIndicatorCenter>
-      <Box>
+    <SectionTemplate>
+      <CardShadow>
+        <TabsIndicatorCenter
+          value={value}
+          onChange={handleChange}
+          aria-label="tour info tabs"
+          variant="scrollable"
+          scrollButtons="auto"
+        >
+          {mainTabs.map((tab, index) => {
+            const key = index;
+            return <TabIndicatorCenter key={key} label={tab.label} />;
+          })}
+        </TabsIndicatorCenter>
+      </CardShadow>
+
+      <CardShadow>
         {mainTabs.map((tab, index) => {
           const key = index;
           return (
@@ -41,8 +50,8 @@ function PageMaterial() {
             </TabPanel>
           );
         })}
-      </Box>
-    </div>
+      </CardShadow>
+    </SectionTemplate>
   );
 }
 

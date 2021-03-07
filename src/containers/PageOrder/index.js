@@ -2,18 +2,20 @@ import React from "react";
 import TabsIndicatorCenter from "../../components/TabsIndicatorCenter";
 import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
-import { Box } from "@material-ui/core";
+import SectionTemplate from "../../components/templates/SectionTemplate";
+import CardShadow from "../../components/Card/CardShadow";
+import Order from "./Order";
 
 const mainTabs = [
   {
     key: 1,
     label: "Đơn hàng",
-    content: "Ấ",
+    content: Order,
   },
   {
     key: 2,
     label: "Trạng thái đơn hàng",
-    content: "content",
+    content: Order,
   },
 ];
 
@@ -24,30 +26,34 @@ function PageOrder() {
     setValue(newValue);
   };
   return (
-    <div>
-      <TabsIndicatorCenter
-        value={value}
-        onChange={handleChange}
-        aria-label="tour info tabs"
-        variant="scrollable"
-        scrollButtons="auto"
-      >
-        {mainTabs.map((tab, index) => {
-          const key = index;
-          return <TabIndicatorCenter key={key} label={tab.label} />;
-        })}
-      </TabsIndicatorCenter>
-      <Box>
+    <SectionTemplate>
+      <CardShadow>
+        <TabsIndicatorCenter
+          value={value}
+          onChange={handleChange}
+          aria-label="tour info tabs"
+          variant="scrollable"
+          scrollButtons="auto"
+        >
+          {mainTabs.map((tab, index) => {
+            const key = index;
+            return (
+              <TabIndicatorCenter disableRipple key={key} label={tab.label} />
+            );
+          })}
+        </TabsIndicatorCenter>
+      </CardShadow>
+      <CardShadow>
         {mainTabs.map((tab, index) => {
           const key = index;
           return (
             <TabPanel key={key} value={value} index={index}>
-              {tab.content}
+              <tab.content />
             </TabPanel>
           );
         })}
-      </Box>
-    </div>
+      </CardShadow>
+    </SectionTemplate>
   );
 }
 
