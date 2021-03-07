@@ -7,20 +7,20 @@ const TabsIndicatorCenter = withStyles(
     root: {
       minHeight: theme.spacing(4),
     },
-    // indicator: {
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   backgroundColor: "transparent",
-    //   height: 3,
-    //   "& > span": {
-    //     maxWidth: 50,
-    //     width: "100%",
-    //     backgroundColor: theme.palette.primary.main,
-    //   },
-    // },
+    indicator: {
+      display: "flex",
+      justifyContent: "center",
+      backgroundColor: "transparent",
+      height: 3,
+      "& > span": {
+        maxWidth: 50,
+        width: "100%",
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
   }),
   {
-    name: "AtomTabsIndicatorCenter",
+    name: "TabsIndicatorCenter",
   }
-)((props) => <Tabs {...props} tabindicatorprops={{ children: <span /> }} />);
+)((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
 export default TabsIndicatorCenter;

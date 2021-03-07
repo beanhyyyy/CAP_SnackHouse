@@ -1,42 +1,28 @@
 import React from "react";
 import { Tab, withStyles } from "@material-ui/core";
 
-// const useStyle = makeStyles((theme) => ({
-//   indicator: {
-//     display: "flex",
-//     justifyContent: "center",
-//     backgroundColor: "transparent",
-//     height: 3,
-//     "& > span": {
-//       maxWidth: 50,
-//       width: "100%",
-//       backgroundColor: theme.palette.primary.main,
-//     },
-//   },
-// }));
-/* tabs có indicator căn giữa */
+/* tab item có indicator custom căn giữa */
 const TabIndicatorCenter = withStyles(
   (theme) => ({
     root: {
+      textTransform: "none",
+      fontWeight: theme.typography.fontWeightRegular,
+      fontSize: theme.typography.subtitle1.fontSize,
+      marginRight: theme.spacing(6),
+      minWidth: 0,
       minHeight: theme.spacing(4),
+      paddingRight: 0,
+      paddingLeft: 0,
+      "&:focus": {
+        opacity: 1,
+      },
     },
-    // indicator: {
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   backgroundColor: "transparent",
-    //   height: 3,
-    //   "& > span": {
-    //     maxWidth: 50,
-    //     width: "100%",
-    //     backgroundColor: theme.palette.primary.main,
-    //   },
-    // },
+    selected: {
+      fontWeight: theme.typography.fontWeightMedium,
+    },
   }),
   {
-    name: "AtomTabsIndicatorCenter",
+    name: "TabIndicatorCenter",
   }
-)((props) => {
-  // const classes = useStyle();
-  return <Tab {...props} tabindicatorprops={{ children: <span /> }} />;
-});
+)((props) => <Tab disableRipple {...props} />);
 export default TabIndicatorCenter;

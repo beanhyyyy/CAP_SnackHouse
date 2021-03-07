@@ -50,9 +50,7 @@ function PageAccount() {
         >
           {mainTabs.map((tab, index) => {
             const key = index;
-            return (
-              <TabIndicatorCenter disableRipple key={key} label={tab.label} />
-            );
+            return <TabIndicatorCenter key={key} label={tab.label} />;
           })}
         </TabsIndicatorCenter>
       </CardShadow>
