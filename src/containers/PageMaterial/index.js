@@ -5,6 +5,7 @@ import TabPanel from "../../components/TabPanel";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
 import Ingredient from "./Ingredient";
+import CreateIngredient from "./CreateIngredient";
 
 const mainTabs = [
   {
@@ -15,7 +16,7 @@ const mainTabs = [
   {
     key: 2,
     label: "Tạo mới nguyên liệu",
-    content: Ingredient,
+    content: CreateIngredient,
   },
 ];
 
