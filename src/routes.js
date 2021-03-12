@@ -71,7 +71,7 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/table",
+    path: "/PageWarehouse",
     name: "Kho",
     rtlName: "قائمة الجدول",
     icon: "content_paste",
@@ -79,7 +79,7 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/icons",
+    path: "/PageSalePoint",
     name: "Điểm bán",
     rtlName: "الرموز",
     icon: BubbleChart,

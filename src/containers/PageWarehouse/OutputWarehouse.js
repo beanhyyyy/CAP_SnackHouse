@@ -1,22 +1,17 @@
-import {
-  Box,
-  Grid,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@material-ui/core";
-import { CheckBox } from "@material-ui/icons";
-import { Autocomplete } from "@material-ui/lab";
+import { Box, Grid, InputAdornment, TextField } from "@material-ui/core";
 import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
-
+import { Autocomplete } from "@material-ui/lab";
 import ResponsiveTable from "../../components/ResponsiveTable";
-import { rowsMaterial, columnsMaterial } from "./DefineTableMaterial";
+import {
+  columnsOutputWarehouse,
+  rowsOutputWarehouse,
+} from "./DefineTableWarehouse";
 
-function Ingredient() {
+function OutputWarehouse() {
   return (
     <div>
-      <Box mb={2}>
+      <Box>
         <Grid container spacing={3}>
           <Grid item lg={6} md={6} sm={12} xs={12}>
             <TextField
@@ -66,20 +61,17 @@ function Ingredient() {
           </Grid>
         </Grid>
       </Box>
-      <Typography variant="h6">Danh sách nguyên liệu</Typography>
       <Box mt={2}>
         <ResponsiveTable
-          rows={rowsMaterial}
-          columns={columnsMaterial}
+          rows={rowsOutputWarehouse}
+          columns={columnsOutputWarehouse}
           countResults
           showNumberOrder
-          CheckboxAllComponent={CheckBox}
-          CheckboxItemComponent={CheckBox}
         />
       </Box>
     </div>
   );
 }
 
-export default Ingredient;
+export default OutputWarehouse;
 const options = [{ title: "Chọn" }];

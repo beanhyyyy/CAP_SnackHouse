@@ -25,7 +25,7 @@ function CreateIngredient() {
   };
   return (
     <div>
-      <Typography>Tạo mới nguyên vật liệu</Typography>
+      <Typography variant="h6">Tạo mới nguyên vật liệu</Typography>
       <Box mt={2}>
         <Grid container spacing={2}>
           <Grid item md={3} sm={4} xs={12}>

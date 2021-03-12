@@ -63,7 +63,9 @@ function Branch() {
           />
         </Grid>
       </Grid>
-      <Typography>Danh sách chi nhánh</Typography>
+      <Box mt={3}>
+        <Typography variant="h6">Danh sách chi nhánh</Typography>
+      </Box>
       <Box my={3}>
         <ResponsiveTable
           rows={rowsSalePoint}
