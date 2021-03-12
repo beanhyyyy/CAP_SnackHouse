@@ -2,37 +2,25 @@ import React from "react";
 import TabsIndicatorCenter from "../../components/TabsIndicatorCenter";
 import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
-import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-import Account from "./Account";
-import CreateAccount from "./CreateAccount";
-import Decentralization from "./Decentralization";
-import CreateAuthorization from "./CreateAuthorization";
+import CardShadow from "../../components/Card/CardShadow";
+import Order from "./Order";
+import OrderStatus from "./OrderStatus";
 
 const mainTabs = [
   {
     key: 1,
-    label: "Tài khoản",
-    content: Account,
+    label: "Đơn hàng",
+    content: Order,
   },
   {
     key: 2,
-    label: "Tạo tài khoản",
-    content: CreateAccount,
-  },
-  {
-    key: 3,
-    label: "Phân quyền",
-    content: Decentralization,
-  },
-  {
-    key: 4,
-    label: "Tạo phân quyền",
-    content: CreateAuthorization,
+    label: "Trạng thái đơn hàng",
+    content: OrderStatus,
   },
 ];
 
-function PageAccount() {
+function PageOrder() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -50,7 +38,9 @@ function PageAccount() {
         >
           {mainTabs.map((tab, index) => {
             const key = index;
-            return <TabIndicatorCenter key={key} label={tab.label} />;
+            return (
+              <TabIndicatorCenter disableRipple key={key} label={tab.label} />
+            );
           })}
         </TabsIndicatorCenter>
       </CardShadow>
@@ -68,4 +58,4 @@ function PageAccount() {
   );
 }
 
-export default PageAccount;
+export default PageOrder;

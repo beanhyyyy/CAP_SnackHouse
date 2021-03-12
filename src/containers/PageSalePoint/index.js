@@ -2,37 +2,24 @@ import React from "react";
 import TabsIndicatorCenter from "../../components/TabsIndicatorCenter";
 import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
+import Branch from "./Branch";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-import Account from "./Account";
-import CreateAccount from "./CreateAccount";
-import Decentralization from "./Decentralization";
-import CreateAuthorization from "./CreateAuthorization";
 
 const mainTabs = [
   {
     key: 1,
-    label: "Tài khoản",
-    content: Account,
+    label: "Khu vực",
+    content: Branch,
   },
   {
     key: 2,
-    label: "Tạo tài khoản",
-    content: CreateAccount,
-  },
-  {
-    key: 3,
-    label: "Phân quyền",
-    content: Decentralization,
-  },
-  {
-    key: 4,
-    label: "Tạo phân quyền",
-    content: CreateAuthorization,
+    label: "Chi nhánh",
+    content: Branch,
   },
 ];
 
-function PageAccount() {
+function PageSalePoint() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -68,4 +55,4 @@ function PageAccount() {
   );
 }
 
-export default PageAccount;
+export default PageSalePoint;

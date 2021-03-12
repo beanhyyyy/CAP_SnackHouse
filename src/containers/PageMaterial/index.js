@@ -4,35 +4,23 @@ import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-import Account from "./Account";
-import CreateAccount from "./CreateAccount";
-import Decentralization from "./Decentralization";
-import CreateAuthorization from "./CreateAuthorization";
+import Ingredient from "./Ingredient";
+import CreateIngredient from "./CreateIngredient";
 
 const mainTabs = [
   {
     key: 1,
-    label: "Tài khoản",
-    content: Account,
+    label: "Nguyên liệu",
+    content: Ingredient,
   },
   {
     key: 2,
-    label: "Tạo tài khoản",
-    content: CreateAccount,
-  },
-  {
-    key: 3,
-    label: "Phân quyền",
-    content: Decentralization,
-  },
-  {
-    key: 4,
-    label: "Tạo phân quyền",
-    content: CreateAuthorization,
+    label: "Tạo mới nguyên liệu",
+    content: CreateIngredient,
   },
 ];
 
-function PageAccount() {
+function PageMaterial() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -54,6 +42,7 @@ function PageAccount() {
           })}
         </TabsIndicatorCenter>
       </CardShadow>
+
       <CardShadow>
         {mainTabs.map((tab, index) => {
           const key = index;
@@ -68,4 +57,4 @@ function PageAccount() {
   );
 }
 
-export default PageAccount;
+export default PageMaterial;

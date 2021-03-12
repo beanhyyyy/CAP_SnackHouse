@@ -20,7 +20,7 @@ const TabsIndicatorCenter = withStyles(
     },
   }),
   {
-    name: "AtomTabsIndicatorCenter",
+    name: "TabsIndicatorCenter",
   }
 )((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
 export default TabsIndicatorCenter;
