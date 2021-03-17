@@ -65,9 +65,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 //   }),
 //   { name: "BoxStatusOffline" }
 // )(Box);
-
-function createData(c1, c2, c3, c4, c5, c6, c7, c8) {
-  return { c1, c2, c3, c4, c5, c6, c7, c8 };
+  
+function createData(c1, c2, c3, c4, c5) {
+  return { c1, c2, c3, c4, c5 };
 }
 export const rowsMaterial = [
   createData(
@@ -76,14 +76,10 @@ export const rowsMaterial = [
     },
     { name: "name" },
     { id: "SHCT2" },
-    { type: "Nguyên vật liệu" },
-    { branch: "0 chi nhánh" },
-    {
-      unit: "Kg",
-    },
-    { price: 10000 }
+    { type: "Nguyên vật liệu" }, 
   ),
 ];
+
 export const columnsMaterial = [
   {
     id: "c1",
@@ -117,21 +113,6 @@ export const columnsMaterial = [
   },
   {
     id: "c5",
-    label: "Chi nhánh",
-    format: (value) => <>{value.branch}</>,
-  },
-  {
-    id: "c6",
-    label: "Đơn vị tính",
-    format: (value) => <>{value.unit}</>,
-  },
-  {
-    id: "c7",
-    label: "Giá nhập",
-    format: (value) => <>{value.price}</>,
-  },
-  {
-    id: "c8",
     label: "Chức năng",
     format: (value) => (
       <Grid container>

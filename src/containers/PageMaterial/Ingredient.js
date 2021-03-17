@@ -7,13 +7,29 @@ import {
 } from "@material-ui/core";
 import { CheckBox } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
-import React from "react";
+import React, {useState , useEffect} from "react";
 import SearchIcon from "@material-ui/icons/Search";
 
 import ResponsiveTable from "../../components/ResponsiveTable";
 import { rowsMaterial, columnsMaterial } from "./DefineTableMaterial";
 
+import firebaseDB from '../../firebase';
+
 function Ingredient() {
+
+  // View
+  const [data, setData ] = useState({});
+
+  useEffect(() => {
+    firebaseDB.database().ref().child('Material').on('value', snapshot => {
+      if(snapshot.val() != null)
+        setData({
+          ...snapshot.val()
+        })
+    })
+  }, [])
+  
+
   return (
     <div>
       <Box mb={2}>
@@ -77,6 +93,19 @@ function Ingredient() {
           CheckboxItemComponent={CheckBox}
         />
       </Box>
+
+      {
+       Object.keys(data).map((id, index) => {
+        const key = index
+        return(
+          <React.Fragment key={key}>
+            {data[id].name}
+            {data[id].code}
+            {data[id].category}
+          </React.Fragment>
+        );
+      })
+      }
     </div>
   );
 }

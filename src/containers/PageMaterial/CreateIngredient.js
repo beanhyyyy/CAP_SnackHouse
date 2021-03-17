@@ -10,12 +10,17 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import AddIcon from "@material-ui/icons/Add";
 import { Autocomplete } from "@material-ui/lab";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
+
+import firebaseDB from '../../firebase';
+
 function CreateIngredient() {
+  
+
   const [state, setState] = React.useState({
     checkedB: true,
   });
@@ -23,6 +28,33 @@ function CreateIngredient() {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
+  // Create
+  const addTest = obj => {
+    firebaseDB.database().ref().child('Material').push(
+      obj,
+      err => {
+        if(err){
+          console.log(err)
+        }
+      }
+    )
+  }
+
+  const initialFieldValues = {
+    test : '',
+  }
+
+  var [values, setValues] = useState(initialFieldValues);
+  
+  const handleInputChange = event => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  }
+
+  const handleSubmit = e => {
+    addTest(values);
+  }
+
   return (
     <div>
       <Typography variant="h6">Tạo mới nguyên vật liệu</Typography>
@@ -51,6 +83,9 @@ function CreateIngredient() {
                   size="small"
                   fullWidth
                   variant="outlined"
+                  name="name"
+                  value={values.name}
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item lg={4} sm={6} xs={12}>
@@ -60,43 +95,19 @@ function CreateIngredient() {
                   size="small"
                   fullWidth
                   variant="outlined"
-                />
-              </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
-                <Autocomplete
-                  options={option}
-                  getOptionLabel={(option) => option.title}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Danh mục"
-                      variant="outlined"
-                      size="small"
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
-                <Autocomplete
-                  options={option1}
-                  getOptionLabel={(option) => option.title}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Đơn vị tính"
-                      variant="outlined"
-                      size="small"
-                    />
-                  )}
+                  name="code"
+                  value={values.code}
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item lg={4} sm={6} xs={12}>
                 <TextField
-                  label="Nhập giá sản phẩm"
-                  defaultValue={0}
-                  size="small"
-                  fullWidth
+                  label="Danh mục"
                   variant="outlined"
+                  size="small"
+                  name="category"
+                  value={values.category}
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -123,6 +134,7 @@ function CreateIngredient() {
                 variant="outlined"
                 color="primary"
                 startIcon={<CheckIcon />}
+                onClick={handleSubmit}
               >
                 Submit
               </Button>
