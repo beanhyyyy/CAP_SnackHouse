@@ -1,34 +1,48 @@
 import {
   Box,
   Grid,
+  IconButton,
   InputAdornment,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   TextField,
   Typography,
 } from "@material-ui/core";
 import { CheckBox } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
-import React, {useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 
 import ResponsiveTable from "../../components/ResponsiveTable";
 import { rowsMaterial, columnsMaterial } from "./DefineTableMaterial";
 
-import firebaseDB from '../../firebase';
+import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+import firebaseDB from "../../firebase";
 
 function Ingredient() {
-
   // View
-  const [data, setData ] = useState({});
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    firebaseDB.database().ref().child('Material').on('value', snapshot => {
-      if(snapshot.val() != null)
-        setData({
-          ...snapshot.val()
-        })
-    })
-  }, [])
-  
+    firebaseDB
+      .database()
+      .ref()
+      .child("Material")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setData({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
 
   return (
     <div>
@@ -83,7 +97,7 @@ function Ingredient() {
         </Grid>
       </Box>
       <Typography variant="h6">Danh sách nguyên liệu</Typography>
-      <Box mt={2}>
+      {/* <Box mt={2}>
         <ResponsiveTable
           rows={rowsMaterial}
           columns={columnsMaterial}
@@ -92,20 +106,61 @@ function Ingredient() {
           CheckboxAllComponent={CheckBox}
           CheckboxItemComponent={CheckBox}
         />
-      </Box>
+      </Box> */}
 
-      {
-       Object.keys(data).map((id, index) => {
-        const key = index
-        return(
-          <React.Fragment key={key}>
-            {data[id].name}
-            {data[id].code}
-            {data[id].category}
-          </React.Fragment>
-        );
-      })
-      }
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>STT</TableCell>
+              <TableCell>Hình ảnh </TableCell>
+              <TableCell align="right">Tên</TableCell>
+              <TableCell align="right">Mã </TableCell>
+              <TableCell align="right">Danh mục </TableCell>
+              <TableCell align="right">Chức năng</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Object.keys(data).map((id, index) => {
+              const key = index;
+              return (
+                <TableRow key={key}>
+                  <TableCell component="th" scope="row">
+                    {key}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {data[id].image}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="right">
+                    {data[id].name}
+                  </TableCell>
+                  <TableCell align="right">{data[id].code}</TableCell>
+                  <TableCell align="right">{data[id].category}</TableCell>
+                  <TableCell>
+                    <Grid container justify="flex-end">
+                      <Grid item>
+                        <IconButton>
+                          <RemoveRedEyeIcon />
+                        </IconButton>
+                      </Grid>
+                      <Grid item>
+                        <IconButton>
+                          <EditIcon />
+                        </IconButton>
+                      </Grid>
+                      <Grid item>
+                        <IconButton>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }

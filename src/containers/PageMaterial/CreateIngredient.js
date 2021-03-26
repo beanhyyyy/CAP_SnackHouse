@@ -17,9 +17,11 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 
 import firebaseDB from '../../firebase';
+import { useHistory } from "react-router";
 
 function CreateIngredient() {
-  
+  let history = useHistory();
+
 
   const [state, setState] = React.useState({
     checkedB: true,
@@ -36,13 +38,16 @@ function CreateIngredient() {
       err => {
         if(err){
           console.log(err)
+        } else {
+          alert('Success')
+          history.go('/admin/material')
         }
       }
     )
   }
 
   const initialFieldValues = {
-    test : '',
+    image : 'Image',
   }
 
   var [values, setValues] = useState(initialFieldValues);
@@ -106,6 +111,7 @@ function CreateIngredient() {
                   variant="outlined"
                   size="small"
                   name="category"
+                  fullWidth
                   value={values.category}
                   onChange={handleInputChange}
                 />
