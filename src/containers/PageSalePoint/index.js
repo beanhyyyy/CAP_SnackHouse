@@ -2,20 +2,21 @@ import React from "react";
 import TabsIndicatorCenter from "../../components/TabsIndicatorCenter";
 import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
-import Branch from "./Branch";
+import Ingredient from "./Ingredient";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
+import createIngredient from './CreateIngredient';
 
 const mainTabs = [
   {
-    key: 1,
-    label: "Khu vực",
-    content: Branch,
-  },
-  {
     key: 2,
     label: "Chi nhánh",
-    content: Branch,
+    content: Ingredient,
+  },
+  {
+    key: 3,
+    label: "Thêm chi nhánh",
+    content: createIngredient,
   },
 ];
 
