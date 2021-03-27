@@ -112,11 +112,13 @@ function InputWarehouse() {
           <TableHead>
             <TableRow>
               <TableCell>STT</TableCell>
-              <TableCell>Hình ảnh </TableCell>
-              <TableCell align="right">Tên</TableCell>
-              <TableCell align="right">Mã </TableCell>
-              <TableCell align="right">Danh mục </TableCell>
-              <TableCell align="right">Chức năng</TableCell>
+              <TableCell>Hình ảnh</TableCell>
+              <TableCell align="right">Mã kho</TableCell>
+              <TableCell align="right">Tên kho</TableCell>
+              <TableCell align="right">Chi nhánh</TableCell>
+              <TableCell align="right">Địa chỉ</TableCell>
+              <TableCell align="right">Người tạo</TableCell>    
+              <TableCell align="right">Chức năng</TableCell>      	
             </TableRow>
           </TableHead>
           <TableBody>
@@ -131,10 +133,12 @@ function InputWarehouse() {
                     {data[id].image}
                   </TableCell>
                   <TableCell component="th" scope="row" align="right">
-                    {data[id].name}
+                    {data[id].codeWarehouse}
                   </TableCell>
-                  <TableCell align="right">{data[id].code}</TableCell>
-                  <TableCell align="right">{data[id].category}</TableCell>
+                  <TableCell align="right">{data[id].nameWarehouse}</TableCell>
+                  <TableCell align="right">{data[id].namePoint}</TableCell>
+                  <TableCell align="right">{data[id].address}</TableCell>
+                  <TableCell align="right">{data[id].nameCreate}</TableCell>
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
