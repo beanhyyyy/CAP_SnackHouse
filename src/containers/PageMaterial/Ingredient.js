@@ -107,7 +107,6 @@ function Ingredient() {
           CheckboxItemComponent={CheckBox}
         />
       </Box> */}
-
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>

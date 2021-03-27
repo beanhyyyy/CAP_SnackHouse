@@ -1,5 +1,19 @@
-import { Box, Grid, InputAdornment, TextField } from "@material-ui/core";
-import React from "react";
+import {
+  Box,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
 import ResponsiveTable from "../../components/ResponsiveTable";
@@ -8,7 +22,30 @@ import {
   rowsInputWarehouse,
 } from "./DefineTableWarehouse";
 
+import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+import firebaseDB from "../../firebase";
+
 function InputWarehouse() {
+  // View
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Warehouse")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setData({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
+
   return (
     <div>
       <Box>
@@ -69,6 +106,62 @@ function InputWarehouse() {
           showNumberOrder
         />
       </Box>
+      <Box my={3}>Test</Box>
+
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>STT</TableCell>
+              <TableCell>Hình ảnh </TableCell>
+              <TableCell align="right">Tên</TableCell>
+              <TableCell align="right">Mã </TableCell>
+              <TableCell align="right">Danh mục </TableCell>
+              <TableCell align="right">Chức năng</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Object.keys(data).map((id, index) => {
+              const key = index;
+              return (
+                <TableRow key={key}>
+                  <TableCell component="th" scope="row">
+                    {key}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {data[id].image}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="right">
+                    {data[id].name}
+                  </TableCell>
+                  <TableCell align="right">{data[id].code}</TableCell>
+                  <TableCell align="right">{data[id].category}</TableCell>
+                  <TableCell>
+                    <Grid container justify="flex-end">
+                      <Grid item>
+                        <IconButton>
+                          <RemoveRedEyeIcon />
+                        </IconButton>
+                      </Grid>
+                      <Grid item>
+                        <IconButton>
+                          <EditIcon />
+                        </IconButton>
+                      </Grid>
+                      <Grid item>
+                        <IconButton>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+   
     </div>
   );
 }
