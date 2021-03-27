@@ -11,7 +11,6 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";

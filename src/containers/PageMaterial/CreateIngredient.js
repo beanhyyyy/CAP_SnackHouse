@@ -10,9 +10,8 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import AddIcon from "@material-ui/icons/Add";
-import { Autocomplete } from "@material-ui/lab";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -161,6 +160,3 @@ function CreateIngredient() {
 }
 
 export default CreateIngredient;
-
-const option = [{ title: "Chọn danh mục" }];
-const option1 = [{ title: "Chọn đơn vị" }];

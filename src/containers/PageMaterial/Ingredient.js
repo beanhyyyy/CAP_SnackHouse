@@ -13,13 +13,9 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { CheckBox } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
-
-import ResponsiveTable from "../../components/ResponsiveTable";
-import { rowsMaterial, columnsMaterial } from "./DefineTableMaterial";
 
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import EditIcon from "@material-ui/icons/Edit";

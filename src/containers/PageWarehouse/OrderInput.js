@@ -1,15 +1,13 @@
 import {
   Box,
   Grid,
-  IconButton,
   InputAdornment,
   TextField,
   Typography,
   Button,
   CardContent,
 } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
-import AddIcon from "@material-ui/icons/Add";
+import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
 
@@ -254,6 +252,3 @@ function OrderInput() {
 
 export default OrderInput;
 const options = [{ title: "Chọn" }];
-const option1 = [{ title: "Tên điểm bán" }];
-const material = [{ title: "Nguyên liệu 1" }];
-const amount = [{ title: "1" }];
