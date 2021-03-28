@@ -7,7 +7,7 @@ import {
   Button,
   CardContent,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
 
@@ -35,9 +35,24 @@ function OrderInput() {
       });
   };
 
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Material")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setData({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
   const initialFieldValues = {
     image: "Image",
-    status: 'input'
+    status: "input",
   };
 
   var [values, setValues] = useState(initialFieldValues);
@@ -54,7 +69,7 @@ function OrderInput() {
     <div>
       <Box mb={3}>
         <Grid container spacing={3}>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          <Grid item lg={4} md={4} sm={12} xs={12}>
             <TextField
               id="input-with-icon-textfield"
               variant="outlined"
@@ -70,7 +85,7 @@ function OrderInput() {
               }}
             />
           </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          <Grid item lg={3} md={3} sm={4} xs={4}>
             <Autocomplete
               options={options}
               getOptionLabel={(option) => option.title}
@@ -85,7 +100,7 @@ function OrderInput() {
               )}
             />
           </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          <Grid item lg={3} md={3} sm={4} xs={4}>
             <Autocomplete
               options={options}
               getOptionLabel={(option) => option.title}
@@ -106,98 +121,71 @@ function OrderInput() {
         <Typography variant="h6">Tạo phiếu nhập</Typography>
         <CardContent>
           <Grid container spacing={2} justify="center">
-          <Grid item xs={12}>
+            <Grid item xs={12}>
               <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={4}>
                   <TextField
-                    label="Mã kho	"
-                    placeholder="Nhập tên ... "
+                    label="Mã kho"
                     size="small"
                     fullWidth
                     variant="outlined"
                     name="codeWarehouse"
-                    value={values.codeWarehouse}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    label="Tên kho	"
-                    placeholder="Nhập tên ... "
-                    size="small"
-                    fullWidth
-                    variant="outlined"
-                    name="nameWarehouse"
-                    value={values.nameWarehouse}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-            {/* --------------------- */}
-            <Grid item xs={12}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    label="Điểm bán"
-                    placeholder="Nhập tên ... "
-                    size="small"
-                    fullWidth
-                    variant="outlined"
-                    name="namePoint"
-                    value={values.namePoint}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    label="Địa chỉ"
-                    placeholder="Nhập tên ... "
-                    size="small"
-                    fullWidth
-                    variant="outlined"
-                    name="address"
-                    value={values.address}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-            {/* --------------------- */}
-            <Grid item xs={12}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={8}>
-                  <TextField
-                    label="Tên nguyên liệu"
-                    placeholder="Nhập tên ... "
-                    size="small"
-                    fullWidth
-                    variant="outlined"
-                    name="nameMaterial"
-                    value={values.nameMaterial}
-                    onChange={handleInputChange}
+                    value="MK 1"
+                    disabled
                   />
                 </Grid>
                 <Grid item xs={12} md={4}>
                   <TextField
-                    label="Số lượng"
-                    placeholder="Nhập tên ... "
+                    label="Tên kho"
                     size="small"
                     fullWidth
                     variant="outlined"
-                    name="amount"
-                    value={values.amount}
-                    onChange={handleInputChange}
+                    name="nameWarehouse"
+                    value="Kho HCM"
+                    disabled
                   />
                 </Grid>
               </Grid>
             </Grid>
             {/* --------------------- */}
             <Grid item xs={12}>
+              {Object.keys(data).map((id, index) => {
+                const key = index;
+                return (
+                  <Grid container spacing={2} key={key}>
+                    <Grid item xs={12} md={8}>
+                      <TextField
+                        size="small"
+                        fullWidth
+                        variant="outlined"
+                        name="nameMaterial"
+                        value={data[id].name}
+                        disabled
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    {/* <Grid item xs={12} md={4}>
+                      <TextField
+                        label="Số lượng"
+                        placeholder="Nhập tên ... "
+                        size="small"
+                        fullWidth
+                        variant="outlined"
+                        name="amount"
+                        value={values.amount}
+                        onChange={handleInputChange}
+                      />
+                    </Grid> */}
+                  </Grid>
+                );
+              })}
+            </Grid>
+            {/* --------------------- */}
+            <Grid item xs={12}>
               <Grid container spacing={2}>
                 <Grid item xs={12} md={8}>
                   <TextField
-                    label="Người tạo"
+                    label="Người tạo phiếu nhập kho"
                     placeholder="Nhập tên ... "
                     size="small"
                     fullWidth
@@ -207,20 +195,23 @@ function OrderInput() {
                     onChange={handleInputChange}
                   />
                 </Grid>
-                <Grid item xs={12} md={4}>
+                {/* <Grid item xs={12} md={4}>
                   <TextField
-                    label="Ngày tạo"
-                    placeholder="Nhập tên ... "
+                    id="date"
+                    label="Ngày tạo phiếu nhập kho"
+                    type="date"
                     size="small"
                     fullWidth
                     variant="outlined"
-                    name="dateCreate"
-                    value={values.dateCreate}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    value={`values.dateCreate`}
                     onChange={handleInputChange}
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
-            </Grid>       
+            </Grid>
             {/* --------------------- */}
             <Grid item xs={12}>
               <Grid container spacing={2} justify="flex-end">

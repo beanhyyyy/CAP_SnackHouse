@@ -2,16 +2,12 @@ import {
   Avatar,
   Box,
   CardHeader,
-  Grid,
-  IconButton,
   Typography,
   withStyles,
 } from "@material-ui/core";
 import React from "react";
 import green from "@material-ui/core/colors/green";
-import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 
 const colorGreen = green[50];
 //Custom components
@@ -25,7 +21,7 @@ const BoxStatusActive = withStyles(
       justifyContent: "center",
       alignItems: "center",
       padding: theme.spacing(1),
-      width: theme.spacing(7),
+      width: theme.spacing(9),
       backgroundColor: colorGreen,
     },
   }),
@@ -41,47 +37,49 @@ const BoxStatusOffline = withStyles(
       justifyContent: "center",
       alignItems: "center",
       padding: theme.spacing(1),
-      width: theme.spacing(7),
+      width: theme.spacing(9),
       backgroundColor: theme.palette.grey[60],
     },
   }),
   { name: "BoxStatusOffline" }
 )(Box);
 
-function createData(c1, c2, c3, c4, c5, c6, c7) {
-  return { c1, c2, c3, c4, c5, c6, c7 };
+function createData(c1, c2, c3, c4) {
+  return { c1, c2, c3, c4 };
 }
 export const rowsAccount = [
   createData(
     {
-      name: "username",
-      id: "1",
-      email: "1@email.com",
+      name: "Admin",
+      email: "admin@gmail.com",
     },
-    { date: "September 20, 2019", TimeAgo: "2 day ago" },
-    { position: "Accounting" },
-    { status: "Active" },
-    { type: 0, status: "Chưa xác minh" }
+    { password: "123456q" },
+    { position: "Admin" },
+    { status: "Active" }
   ),
   createData(
     {
-      name: "Đây là Tên doanh nghiệp",
-      id: "1",
-      email: "1@email.com",
+      name: "Warehouser",
+      email: "wahouser@gmail.com",
     },
-    { date: "September 20, 2019", TimeAgo: "2 day ago" },
-    { position: "Accounting" },
-    { status: "Offline" },
-    { type: 0, status: "Chưa xác minh" }
+    { password: "123456q" },
+    { position: "Warehouser" },
+    { status: "Active" }
+  ),
+  createData(
+    {
+      name: "Member",
+      email: "member@gmail.com",
+    },
+    { password: "password" },
+    { position: "Member" },
+    { status: "Active" }
   ),
 ];
 export const columnsAccount = [
   {
     id: "c1",
-    label: "Tên người dùng",
-    // styles: {
-    //   width: 320,
-    // },
+    label: "Tên tài khoản",
     format: (value) => (
       <>
         <CardHeader
@@ -94,16 +92,10 @@ export const columnsAccount = [
   },
   {
     id: "c2",
-    label: "Lần đăng nhập cuối",
-    // styles: {
-    //   width: 320,
-    // },
+    label: "Mật khẩu",
     format: (value) => (
       <>
-        <Typography>{value.date}</Typography>
-        <Typography variant="body2" color="textSecondary">
-          {value.TimeAgo}
-        </Typography>
+        <Typography>{value.password}</Typography>
       </>
     ),
   },
@@ -123,29 +115,6 @@ export const columnsAccount = [
           <BoxStatusOffline>Offline</BoxStatusOffline>
         )}
       </>
-    ),
-  },
-  {
-    id: "c5",
-    label: "Chức năng",
-    format: (value) => (
-      <Grid container spacing={2}>
-        <Grid item>
-          <IconButton>
-            <RemoveRedEyeIcon />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton>
-            <EditIcon />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Grid>
-      </Grid>
     ),
   },
 ];

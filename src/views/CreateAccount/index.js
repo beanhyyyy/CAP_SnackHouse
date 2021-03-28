@@ -13,22 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 
 import { Alert, AlertTitle } from '@material-ui/lab';
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link to="#" color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -72,7 +58,8 @@ export default function CreateAccount() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-      history.push("/admin/createAccount")
+      alert('Success')
+      history.go("/admin/user")
     } catch (error) {
       setError("Failed to sign up")
       // var errorCode = error.code;
@@ -86,39 +73,12 @@ export default function CreateAccount() {
   const classes = useStyles();
   return (
     <>
-      {/* <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
-            </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="password" ref={passwordConfirmRef} required />
-            </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
-              Sign Up
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Already have an account? <Link to="/login">Log In</Link>
-      </div> */}
-
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          {/* <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
-          </Avatar>
+          </Avatar> */}
           <Typography component="h1" variant="h5">
             Tạo tài khoản
         </Typography>
@@ -166,12 +126,6 @@ export default function CreateAccount() {
                 inputRef={passwordConfirmRef}
               />
             </Grid>
-            {/* <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive information via email."
-              />
-            </Grid> */}
             <Button
               type="submit"
               variant="contained"
@@ -182,18 +136,8 @@ export default function CreateAccount() {
             >
               Tạo tài khoản
               </Button>
-            {/* <Grid container justify="flex-end">
-              <Grid item>
-                <Link to="/Login" href="#" variant="body2">
-                  Quay về trang Login
-              </Link>
-              </Grid>
-            </Grid> */}
           </form>
         </div>
-        <Box mt={5}>
-          {/* <Copyright /> */}
-        </Box>
       </Container>
     </>
   )

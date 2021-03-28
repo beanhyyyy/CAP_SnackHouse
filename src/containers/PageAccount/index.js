@@ -5,9 +5,8 @@ import TabPanel from "../../components/TabPanel";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
 import Account from "./Account";
-import CreateAccount from "./CreateAccount";
+import CreateAccount from "../../views/CreateAccount";
 import Decentralization from "./Decentralization";
-import CreateAuthorization from "./CreateAuthorization";
 
 const mainTabs = [
   {
@@ -24,11 +23,6 @@ const mainTabs = [
     key: 3,
     label: "Phân quyền",
     content: Decentralization,
-  },
-  {
-    key: 4,
-    label: "Tạo phân quyền",
-    content: CreateAuthorization,
   },
 ];
 
