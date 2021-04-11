@@ -2,21 +2,22 @@ import React from "react";
 import TabsIndicatorCenter from "../../components/TabsIndicatorCenter";
 import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
-import Ingredient from "./Ingredient";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-import createIngredient from './CreateIngredient';
+
+import CreatePoint from './CreatePoint';
+import TablePoint from './TablePoint';
 
 const mainTabs = [
   {
     key: 2,
     label: "Chi nhánh",
-    content: Ingredient,
+    content: TablePoint,
   },
   {
     key: 3,
     label: "Thêm chi nhánh",
-    content: createIngredient,
+    content: CreatePoint,
   },
 ];
 

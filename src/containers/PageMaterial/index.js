@@ -4,19 +4,19 @@ import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-import Ingredient from "./Ingredient";
-import CreateIngredient from "./CreateIngredient";
+import TableMaterial from "./TableMaterial";
+import CreateMaterial from "./CreateMaterial";
 
 const mainTabs = [
   {
     key: 1,
     label: "Nguyên liệu",
-    content: Ingredient,
+    content: TableMaterial,
   },
   {
     key: 2,
     label: "Tạo mới nguyên liệu",
-    content: CreateIngredient,
+    content: CreateMaterial,
   },
 ];
 

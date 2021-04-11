@@ -3,13 +3,14 @@ import TabsIndicatorCenter from "../../components/TabsIndicatorCenter";
 import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
 import { Box } from "@material-ui/core";
-import Warehouse from "./Warehouse";
+import Warehouse from "./TableWarehouse";
 import InputWarehouse from "./InputWarehouse";
 import OutputWarehouse from "./OutputWarehouse";
 import OrderInput from "./OrderInput";
 import OrderOutput from "./OrderOutput";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
+import CreateWarehouse from "./CreateWarehouse";
 
 const mainTabs = [
   {
@@ -29,11 +30,16 @@ const mainTabs = [
   },
   {
     key: 4,
+    label: "Tạo kho",
+    content: CreateWarehouse,
+  },
+  {
+    key: 5,
     label: "Tạo phiếu nhập",
     content: OrderInput,
   },
   {
-    key: 5,
+    key: 6,
     label: "Tạo phiếu xuất",
     content: OrderOutput,
   },

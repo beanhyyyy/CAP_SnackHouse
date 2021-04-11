@@ -1,5 +1,6 @@
 import {
   Box,
+  CardMedia,
   Grid,
   IconButton,
   InputAdornment,
@@ -13,17 +14,17 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
+import { Autocomplete } from "@material-ui/lab";
+
+import firebaseDB from "../../firebase";
 
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import firebaseDB from "../../firebase";
-
-function Ingredient() {
+function Warehouse() {
   // View
   const [data, setData] = useState({});
 
@@ -31,7 +32,7 @@ function Ingredient() {
     firebaseDB
       .database()
       .ref()
-      .child("Point")
+      .child("Warehouse")
       .on("value", (snapshot) => {
         if (snapshot.val() != null)
           setData({
@@ -93,25 +94,18 @@ function Ingredient() {
         </Grid>
       </Box>
       <Typography variant="h6">Danh sách nguyên liệu</Typography>
-      {/* <Box mt={2}>
-        <ResponsiveTable
-          rows={rowsMaterial}
-          columns={columnsMaterial}
-          countResults
-          showNumberOrder
-          CheckboxAllComponent={CheckBox}
-          CheckboxItemComponent={CheckBox}
-        />
-      </Box> */}
+      <br />
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>STT</TableCell>
-              <TableCell>Hình ảnh </TableCell>
-              <TableCell align="right">Mã chi nhánh</TableCell>
-              <TableCell align="right">Tên chi nhánh</TableCell>
+              <TableCell>Hình ảnh</TableCell>
+              <TableCell align="right">Mã kho</TableCell>
+              <TableCell align="right">Tên kho</TableCell>
+              <TableCell align="right">Chi nhánh</TableCell>
               <TableCell align="right">Địa chỉ</TableCell>
+              <TableCell align="right">Người tạo</TableCell>
               <TableCell align="right">Chức năng</TableCell>
             </TableRow>
           </TableHead>
@@ -124,13 +118,21 @@ function Ingredient() {
                     {key}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {data[id].image}
+                    <CardMedia
+                      component="img"
+                      image={data[id].warehouseImage}
+                      style={{ width: "50px", height: "50px" }}
+                    />
                   </TableCell>
                   <TableCell component="th" scope="row" align="right">
-                    {data[id].codePoint}
+                    {data[id].warehouseId}
                   </TableCell>
-                  <TableCell align="right">{data[id].namePoint}</TableCell>
-                  <TableCell align="right">{data[id].addressPoint}</TableCell>
+                  <TableCell align="right">{data[id].warehouseName}</TableCell>
+                  <TableCell align="right">{data[id].pointName}</TableCell>
+                  <TableCell align="right">
+                    {data[id].warehouseAddress}
+                  </TableCell>
+                  <TableCell align="right">{data[id].createName}</TableCell>
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
@@ -160,5 +162,5 @@ function Ingredient() {
   );
 }
 
-export default Ingredient;
+export default Warehouse;
 const options = [{ title: "Chọn" }];

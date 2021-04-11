@@ -1,5 +1,6 @@
 import {
   Box,
+  CardMedia,
   Grid,
   IconButton,
   InputAdornment,
@@ -23,7 +24,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import firebaseDB from "../../firebase";
 
-function Ingredient() {
+export default function CreatePoint() {
   // View
   const [data, setData] = useState({});
 
@@ -31,7 +32,7 @@ function Ingredient() {
     firebaseDB
       .database()
       .ref()
-      .child("Material")
+      .child("Point")
       .on("value", (snapshot) => {
         if (snapshot.val() != null)
           setData({
@@ -93,6 +94,7 @@ function Ingredient() {
         </Grid>
       </Box>
       <Typography variant="h6">Danh sách nguyên liệu</Typography>
+      <br />
       {/* <Box mt={2}>
         <ResponsiveTable
           rows={rowsMaterial}
@@ -111,7 +113,7 @@ function Ingredient() {
               <TableCell>Hình ảnh </TableCell>
               <TableCell align="right">Tên</TableCell>
               <TableCell align="right">Mã </TableCell>
-              <TableCell align="right">Danh mục </TableCell>
+              <TableCell align="right">Địa chỉ</TableCell>
               <TableCell align="right">Chức năng</TableCell>
             </TableRow>
           </TableHead>
@@ -124,13 +126,17 @@ function Ingredient() {
                     {key}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {data[id].image}
+                    <CardMedia
+                      component="img"
+                      image={data[id].pointImage}
+                      style={{ width: "50px", height: "50px" }}
+                    />
                   </TableCell>
+                  <TableCell align="right">{data[id].pointId}</TableCell>
                   <TableCell component="th" scope="row" align="right">
-                    {data[id].name}
+                    {data[id].pointName}
                   </TableCell>
-                  <TableCell align="right">{data[id].code}</TableCell>
-                  <TableCell align="right">{data[id].category}</TableCell>
+                  <TableCell align="right">{data[id].pointAddress}</TableCell>
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
@@ -160,5 +166,4 @@ function Ingredient() {
   );
 }
 
-export default Ingredient;
 const options = [{ title: "Chọn" }];
