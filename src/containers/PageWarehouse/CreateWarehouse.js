@@ -9,7 +9,7 @@ import {
   IconButton,
   Card,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import firebaseDB from "../../firebase";
 import { useHistory } from "react-router";
@@ -21,6 +21,39 @@ import AddIcon from "@material-ui/icons/Add";
 export default function CreateWarehouse() {
   // router
   let history = useHistory();
+
+  // Data of Material
+  const [dataMaterial, setDataMaterial] = useState();
+
+  const [values, setValues] = useState({
+    warehouseImage: "",
+    warehouseMaterial: [],
+  });
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Material")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null) {
+          var test = [];
+          Object.keys(snapshot.val()).map((id) =>
+            test.push(snapshot.val()[id].materialName)
+          );
+        }
+        setDataMaterial(test);
+      });
+  }, []);
+
+  useEffect(() => {
+    var test2 = {
+      warehouseImage: "",
+      warehouseMaterial: dataMaterial,
+    };
+
+    setValues(test2);
+  }, [dataMaterial]);
 
   // Create
   const addTest = (obj) => {
@@ -38,12 +71,6 @@ export default function CreateWarehouse() {
       });
   };
 
-  const initialFieldValues = {
-    warehouseImage: '',
-  };
-
-  var [values, setValues] = useState(initialFieldValues);
-
   const handleInputChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
@@ -52,6 +79,7 @@ export default function CreateWarehouse() {
     addTest(values);
   };
 
+  console.log(values);
   return (
     <div>
       <Typography variant="h6">Tạo mới nguyên vật liệu</Typography>
@@ -74,7 +102,7 @@ export default function CreateWarehouse() {
               <Grid item xs={12}>
                 <Card variant="outlined">
                   <CardContent>
-                    {values.warehouseImage === '' ? (
+                    {values.warehouseImage === "" ? (
                       <>
                         <Box display="flex" justifyContent="center">
                           <Typography color="textSecondary">Image</Typography>
@@ -87,7 +115,10 @@ export default function CreateWarehouse() {
                       </>
                     ) : (
                       <CardContent>
-                        <CardMedia component="img" image={values.warehouseImage} />
+                        <CardMedia
+                          component="img"
+                          image={values.warehouseImage}
+                        />
                       </CardContent>
                     )}
                   </CardContent>
