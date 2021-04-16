@@ -6,8 +6,8 @@ import { Box } from "@material-ui/core";
 import Warehouse from "./TableWarehouse";
 import InputWarehouse from "./InputWarehouse";
 import OutputWarehouse from "./OutputWarehouse";
-import OrderInput from "./OrderInput";
-import OrderOutput from "./OrderOutput";
+import CreateInput from "./CreateInput";
+import CreateOutput from "./CreateOutput";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
 import CreateWarehouse from "./CreateWarehouse";
@@ -36,12 +36,12 @@ const mainTabs = [
   {
     key: 5,
     label: "Tạo phiếu nhập",
-    content: OrderInput,
+    content: CreateInput,
   },
   {
     key: 6,
     label: "Tạo phiếu xuất",
-    content: OrderOutput,
+    content: CreateOutput,
   },
 ];
 

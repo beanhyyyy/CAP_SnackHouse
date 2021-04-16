@@ -19,12 +19,12 @@ import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
 import AddIcon from "@material-ui/icons/Add";
 
-export default function CreateWarehouse() {
+function CreateInput() {
   // router
   let history = useHistory();
 
   // Data of Material
-  const [dataMaterialName, setDataMaterialName] = useState();
+  const [dataMaterial, setDataMaterial] = useState();
 
   const [values, setValues] = useState({
     warehouseImage: "",
@@ -46,21 +46,21 @@ export default function CreateWarehouse() {
         if (snapshot.val() != null) {
           var test = [];
           Object.keys(snapshot.val()).map((id) =>
-            test.push({[snapshot.val()[id].materialName] : ""})
+            test.push({ [snapshot.val()[id].materialName]: "" })
           );
         }
-        setDataMaterialName(test);
+        setDataMaterial(test);
       });
   }, []);
 
   useEffect(() => {
     var test2 = {
       warehouseImage: "",
-      warehouseMaterial: dataMaterialName,
+      warehouseMaterial: dataMaterial,
     };
 
     setValues(test2);
-  }, [dataMaterialName]);
+  }, [dataMaterial]);
 
   // Effect Point
   useEffect(() => {
@@ -116,7 +116,7 @@ export default function CreateWarehouse() {
 
   return (
     <div>
-      <Typography variant="h6">Tạo mới nguyên vật liệu</Typography>
+      <Typography variant="h6">Tạo phiếu nhập kho</Typography>
       <Box mt={2}>
         <Grid container spacing={2}>
           <Grid item md={3} sm={4} xs={12}>
@@ -257,3 +257,5 @@ export default function CreateWarehouse() {
     </div>
   );
 }
+
+export default CreateInput;

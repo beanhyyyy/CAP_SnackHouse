@@ -12,7 +12,7 @@ import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
 
-function OrderOutput() {
+function CreateOutput() {
   return (
     <div>
       <Box mb={3}>
@@ -144,12 +144,12 @@ function OrderOutput() {
                 </IconButton>
               </Box>
               <Box display="flex" justifyContent="flex-end">
-                <Button variant="outlined" color="secondary">
-                  Hủy
-                </Button>
-                &nbsp;&nbsp;&nbsp;
                 <Button variant="outlined" color="primary">
                   Xác nhận
+                </Button>
+                &nbsp;&nbsp;&nbsp;
+                <Button variant="outlined" color="secondary">
+                  Hủy
                 </Button>
               </Box>
             </Grid>
@@ -160,7 +160,7 @@ function OrderOutput() {
   );
 }
 
-export default OrderOutput;
+export default CreateOutput;
 const options = [{ title: "Chọn" }];
 const option1 = [{ title: "Tên điểm bán" }];
 const material = [{ title: "Nguyên liệu 1" }];
