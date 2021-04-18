@@ -116,7 +116,7 @@ export default function CreateWarehouse() {
 
   return (
     <div>
-      <Typography variant="h6">Tạo mới nguyên vật liệu</Typography>
+      <Typography variant="h6">Tạo kho</Typography>
       <Box mt={2}>
         <Grid container spacing={2}>
           <Grid item md={3} sm={4} xs={12}>

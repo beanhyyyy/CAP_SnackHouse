@@ -9,6 +9,7 @@ import {
   IconButton,
   Card,
   MenuItem,
+  Divider,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
@@ -23,17 +24,19 @@ function CreateInput() {
   // router
   let history = useHistory();
 
+  const [values, setValues] = useState({dateCreate: new Date().toString()});
+
   // Data of Material
   const [dataMaterial, setDataMaterial] = useState();
 
-  const [values, setValues] = useState({
-    warehouseImage: "",
-    warehouseMaterial: [],
-  });
+  // Data of Warehouse
+  const [dataImage, setDataImage] = useState("");
+  const [dataId, setDataId] = useState("");
+  const [dataName, setDataName] = useState("");
+  const [dataAddress, setDataAddress] = useState("");
 
   // Data of Point
   const [dataPoint, setDataPoint] = useState();
-
   const [point, setPoint] = React.useState();
 
   // Material
@@ -53,14 +56,38 @@ function CreateInput() {
       });
   }, []);
 
+  // Effect Warehouse
   useEffect(() => {
-    var test2 = {
-      warehouseImage: "",
-      warehouseMaterial: dataMaterial,
-    };
+    firebaseDB
+      .database()
+      .ref()
+      .child("Warehouse")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null) {
+          var arrayImage = [];
+          var arrayId = [];
+          var arrayName = [];
+          var arrayAddress = [];
 
-    setValues(test2);
-  }, [dataMaterial]);
+          Object.keys(snapshot.val()).map((id) =>
+            arrayImage.push(snapshot.val()[id].warehouseImage)
+          );
+          Object.keys(snapshot.val()).map((id) =>
+            arrayId.push(snapshot.val()[id].warehouseId)
+          );
+          Object.keys(snapshot.val()).map((id) =>
+            arrayName.push(snapshot.val()[id].warehouseName)
+          );
+          Object.keys(snapshot.val()).map((id) =>
+            arrayAddress.push(snapshot.val()[id].warehouseAddress)
+          );
+        }
+        setDataImage(arrayImage);
+        setDataId(arrayId);
+        setDataName(arrayName);
+        setDataAddress(arrayAddress);
+      });
+  }, []);
 
   // Effect Point
   useEffect(() => {
@@ -79,16 +106,53 @@ function CreateInput() {
       });
   }, []);
 
+  // Update Data
   useEffect(() => {
     setValues({ ...values, namePoint: point });
   }, [point]);
+
+  useEffect(() => {
+    var obj = { warehouseId: dataId.toString() };
+    Object.assign(values, obj);
+  }, [dataId]);
+
+  useEffect(() => {
+    var obj = { warehouseName: dataName.toString() };
+    Object.assign(values, obj);
+  }, [dataName]);
+
+  useEffect(() => {
+    var obj = { warehouseImage: dataImage.toString() };
+    Object.assign(values, obj);
+  }, [dataImage]);
+
+  useEffect(() => {
+    var obj = { warehouseAddress: dataAddress.toString() };
+    Object.assign(values, obj);
+  }, [dataAddress]);
+
+  useEffect(() => {
+    var obj = { warehouseMaterial: dataMaterial };
+    Object.assign(values, obj);
+  }, [dataMaterial]);
+  
+  // Handle Select Point
+  const handleChangePoint = (event) => {
+    setPoint(event.target.value);
+  };
+
+  const handleInputChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
+
+  console.log(values);
 
   // Create
   const addTest = (obj) => {
     firebaseDB
       .database()
       .ref()
-      .child("Warehouse")
+      .child("WarehouseInput")
       .push(obj, (err) => {
         if (err) {
           console.log(err);
@@ -99,21 +163,12 @@ function CreateInput() {
       });
   };
 
-  const handleInputChange = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
-  };
 
+  // Submit
   const handleSubmit = (e) => {
     addTest(values);
   };
-
-  // Handle Select Point
-  const handleChangePoint = (event) => {
-    setPoint(event.target.value);
-  };
-
-  console.log(values);
-
+  
   return (
     <div>
       <Typography variant="h6">Tạo phiếu nhập kho</Typography>
@@ -124,35 +179,29 @@ function CreateInput() {
               <Grid item xs={12}>
                 <TextField
                   label="Image Link (JPG)"
-                  placeholder="Nhập đường dẫn ... "
                   size="small"
                   fullWidth
                   variant="outlined"
                   name="warehouseImage"
-                  value={values.warehouseImage}
-                  onChange={handleInputChange}
+                  value={dataImage}
+                  disabled
                 />
               </Grid>
               <Grid item xs={12}>
                 <Card variant="outlined">
                   <CardContent>
-                    {values.warehouseImage === "" ? (
+                    {dataImage === "" ? (
                       <>
                         <Box display="flex" justifyContent="center">
-                          <Typography color="textSecondary">Image</Typography>
-                        </Box>
-                        <Box display="flex" justifyContent="center">
-                          <IconButton color="primary" variant="outlined">
-                            <AddIcon />
-                          </IconButton>
+                          <Typography color="textSecondary">
+                            {" "}
+                            Not Image
+                          </Typography>
                         </Box>
                       </>
                     ) : (
                       <CardContent>
-                        <CardMedia
-                          component="img"
-                          image={values.warehouseImage}
-                        />
+                        <CardMedia component="img" image={dataImage} />
                       </CardContent>
                     )}
                   </CardContent>
@@ -169,9 +218,8 @@ function CreateInput() {
                   size="small"
                   fullWidth
                   variant="outlined"
-                  name="warehouseId"
-                  value={values.warehouseId}
-                  onChange={handleInputChange}
+                  value={dataId}
+                  disabled
                 />
               </Grid>
               <Grid item lg={4} sm={6} xs={12}>
@@ -182,29 +230,9 @@ function CreateInput() {
                   fullWidth
                   variant="outlined"
                   name="warehouseName"
-                  value={values.warehouseName}
-                  onChange={handleInputChange}
+                  value={dataName}
+                  disabled
                 />
-              </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  select
-                  label="Chi nhánh"
-                  placeholder="Nhập chi nhánh... "
-                  name="pointName"
-                  size="small"
-                  value={point}
-                  onChange={handleChangePoint}
-                >
-                  {dataPoint &&
-                    dataPoint.map((option) => (
-                      <MenuItem value={option} key={option}>
-                        {option}
-                      </MenuItem>
-                    ))}
-                </TextField>
               </Grid>
               <Grid item lg={4} sm={6} xs={12}>
                 <TextField
@@ -214,45 +242,100 @@ function CreateInput() {
                   size="small"
                   name="warehouseAddress"
                   fullWidth
-                  value={values.warehouseAddress}
-                  onChange={handleInputChange}
+                  value={dataAddress}
+                  disabled
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
-                <TextField
-                  label="Người tạo"
-                  placeholder="Nhập tên người tạo... "
-                  variant="outlined"
-                  size="small"
-                  name="createName"
-                  fullWidth
-                  value={values.createName}
-                  onChange={handleInputChange}
-                />
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
+              <Grid item xs={12}>
+                <CardContent>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h6">Thông tin</Typography>
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                      <TextField
+                        fullWidth
+                        variant="outlined"
+                        select
+                        label="Chi nhánh"
+                        placeholder="Nhập chi nhánh... "
+                        name="pointName"
+                        size="small"
+                        value={point}
+                        onChange={handleChangePoint}
+                      >
+                        {dataPoint &&
+                          dataPoint.map((option) => (
+                            <MenuItem value={option} key={option}>
+                              {option}
+                            </MenuItem>
+                          ))}
+                      </TextField>
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                      <TextField
+                        label="Người tạo"
+                        placeholder="Nhập tên người tạo... "
+                        variant="outlined"
+                        size="small"
+                        name="createName"
+                        fullWidth
+                        value={values.createName}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography variant="h6">Nguyên liệu</Typography>
+                    </Grid>
+
+                    {dataMaterial
+                      ? dataMaterial.map((item, index) => {
+                          const key = index;
+                          return (
+                            <React.Fragment key={key}>
+                              <Grid item xs={12} sm={6}>
+                                <TextField
+                                  label="Tên nguyên liệu"
+                                  size="small"
+                                  variant="outlined"
+                                  disabled
+                                  fullWidth
+                                  value={Object.keys(item)}
+                                />
+                              </Grid>
+                              <Grid item xs={12} sm={6}>
+                                <TextField
+                                  label="Số lượng"
+                                  size="small"
+                                  variant="outlined"
+                                  fullWidth
+                                  value={Object.values(item)}
+                                  name={`${Object.values(item)}`}
+                                />
+                              </Grid>
+                            </React.Fragment>
+                          );
+                        })
+                      : null}
+                  </Grid>
+                </CardContent>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Box display="flex" justifyContent="flex-end">
-              <Button
-                variant="outlined"
-                color="primary"
-                startIcon={<CheckIcon />}
-                onClick={handleSubmit}
-              >
-                Submit
-              </Button>
-              &nbsp;&nbsp;
-              <Button
-                color="secondary"
-                variant="outlined"
-                startIcon={<CloseIcon />}
-              >
-                Cancel
-              </Button>
-            </Box>
-          </Grid>
         </Grid>
+      </Box>
+      <Box mt={2}></Box>
+      <Box mt={2} display="flex" justifyContent="flex-end">
+        <Button variant="outlined" color="primary" startIcon={<CheckIcon />} onClick={handleSubmit}>
+          Submit
+        </Button>
+        &nbsp;&nbsp;
+        <Button color="secondary" variant="outlined" startIcon={<CloseIcon />}>
+          Cancel
+        </Button>
       </Box>
     </div>
   );

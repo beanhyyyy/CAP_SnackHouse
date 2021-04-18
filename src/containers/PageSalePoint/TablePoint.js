@@ -123,7 +123,7 @@ export default function CreatePoint() {
               return (
                 <TableRow key={key}>
                   <TableCell component="th" scope="row">
-                    {key}
+                  {key+1}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <CardMedia

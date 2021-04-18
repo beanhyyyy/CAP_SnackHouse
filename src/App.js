@@ -9,6 +9,7 @@ import UpdateProfile from "./views/UpdateProfile"
 import Report from "./views/Report"
 
 import Admin from "./layouts/Admin";
+import InputWarehouse from "./containers/PageWarehouse/InputWarehouse"
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/admin" component={Admin} />
               <PrivateRoute path="/report" component={Report} />
+              <PrivateRoute path="/admin/WarehouseInput" component={InputWarehouse} />
+
             </Switch>
           </AuthProvider>
         </Router>

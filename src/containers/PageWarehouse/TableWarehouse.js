@@ -93,7 +93,7 @@ function Warehouse() {
           </Grid>
         </Grid>
       </Box>
-      <Typography variant="h6">Danh sách nguyên liệu</Typography>
+      <Typography variant="h6">Danh sách kho</Typography>
       <br />
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
@@ -115,7 +115,7 @@ function Warehouse() {
               return (
                 <TableRow key={key}>
                   <TableCell component="th" scope="row">
-                    {key}
+                  {key+1}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <CardMedia

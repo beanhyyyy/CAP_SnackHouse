@@ -1,5 +1,6 @@
 import {
   Box,
+  CardMedia,
   Grid,
   IconButton,
   InputAdornment,
@@ -11,21 +12,17 @@ import {
   TableHead,
   TableRow,
   TextField,
+  Typography,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
-import ResponsiveTable from "../../components/ResponsiveTable";
-import {
-  columnsInputWarehouse,
-  rowsInputWarehouse,
-} from "./DefineTableWarehouse";
+
+import firebaseDB from "../../firebase";
 
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-
-import firebaseDB from "../../firebase";
 
 function InputWarehouse() {
   // View
@@ -35,7 +32,7 @@ function InputWarehouse() {
     firebaseDB
       .database()
       .ref()
-      .child("Warehouse")
+      .child("WarehouseInput")
       .on("value", (snapshot) => {
         if (snapshot.val() != null)
           setData({
@@ -44,10 +41,10 @@ function InputWarehouse() {
       });
   }, []);
 
-
+  console.log(data)
   return (
     <div>
-      <Box>
+      <Box mb={2}>
         <Grid container spacing={3}>
           <Grid item lg={6} md={6} sm={12} xs={12}>
             <TextField
@@ -97,28 +94,20 @@ function InputWarehouse() {
           </Grid>
         </Grid>
       </Box>
-      <Box mt={2}>
-        <ResponsiveTable
-          rows={rowsInputWarehouse}
-          columns={columnsInputWarehouse}
-          countResults
-          showNumberOrder
-        />
-      </Box>
-      <Box my={3}>Test</Box>
-
+      <Typography variant="h6">Danh sách phiếu nhập kho</Typography>
+      <br />
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>STT</TableCell>
-              <TableCell>Hình ảnh</TableCell>
+              <TableCell>Hình ảnh kho</TableCell>
               <TableCell align="right">Mã kho</TableCell>
               <TableCell align="right">Tên kho</TableCell>
               <TableCell align="right">Chi nhánh</TableCell>
-              <TableCell align="right">Địa chỉ</TableCell>
-              <TableCell align="right">Người tạo</TableCell>    
-              <TableCell align="right">Chức năng</TableCell>      	
+              <TableCell align="right">Ngày tạo	</TableCell>
+              <TableCell align="right">Người tạo</TableCell>
+              <TableCell align="right">Chức năng</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -127,18 +116,24 @@ function InputWarehouse() {
               return (
                 <TableRow key={key}>
                   <TableCell component="th" scope="row">
-                    {key}
+                    {key+1}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {data[id].image}
+                    <CardMedia
+                      component="img"
+                      image={data[id].warehouseImage}
+                      style={{ width: "50px", height: "50px" }}
+                    />
                   </TableCell>
                   <TableCell component="th" scope="row" align="right">
-                    {data[id].codeWarehouse}
+                    {data[id].warehouseId}
                   </TableCell>
-                  <TableCell align="right">{data[id].nameWarehouse}</TableCell>
+                  <TableCell align="right">{data[id].warehouseName}</TableCell>
                   <TableCell align="right">{data[id].namePoint}</TableCell>
-                  <TableCell align="right">{data[id].address}</TableCell>
-                  <TableCell align="right">{data[id].nameCreate}</TableCell>
+                  <TableCell align="right">
+                    {data[id].dateCreate}
+                  </TableCell>
+                  <TableCell align="right">{data[id].createName}</TableCell>
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
@@ -164,7 +159,6 @@ function InputWarehouse() {
           </TableBody>
         </Table>
       </TableContainer>
-   
     </div>
   );
 }
