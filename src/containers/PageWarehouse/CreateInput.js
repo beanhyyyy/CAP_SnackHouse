@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
   Grid,
@@ -6,7 +7,6 @@ import {
   Button,
   CardContent,
   CardMedia,
-  IconButton,
   Card,
   MenuItem,
   Divider,
@@ -18,7 +18,6 @@ import { useHistory } from "react-router";
 
 import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
-import AddIcon from "@material-ui/icons/Add";
 
 function CreateInput() {
   // router

@@ -80,7 +80,13 @@ export default function CreateWarehouse() {
   }, []);
 
   useEffect(() => {
+
+    
     setValues({ ...values, namePoint: point });
+
+
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [point]);
 
   // Create
