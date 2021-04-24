@@ -41,6 +41,20 @@ function OutputWarehouse() {
       });
   }, []);
 
+  const onDelete = (id) => {
+    firebaseDB
+      .database()
+      .ref()
+      .child(`WarehouseOutput/${id}`)
+      .remove((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          alert("Success");
+        }
+      });
+  };
+
   return (
     <div>
       <Box mb={2}>
@@ -104,7 +118,7 @@ function OutputWarehouse() {
               <TableCell align="right">Mã kho</TableCell>
               <TableCell align="right">Tên kho</TableCell>
               <TableCell align="right">Chi nhánh</TableCell>
-              <TableCell align="right">Ngày tạo	</TableCell>
+              <TableCell align="right">Ngày tạo </TableCell>
               <TableCell align="right">Người tạo</TableCell>
               <TableCell align="right">Chức năng</TableCell>
             </TableRow>
@@ -115,7 +129,7 @@ function OutputWarehouse() {
               return (
                 <TableRow key={key}>
                   <TableCell component="th" scope="row">
-                    {key+1}
+                    {key + 1}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <CardMedia
@@ -129,9 +143,7 @@ function OutputWarehouse() {
                   </TableCell>
                   <TableCell align="right">{data[id].warehouseName}</TableCell>
                   <TableCell align="right">{data[id].namePoint}</TableCell>
-                  <TableCell align="right">
-                    {data[id].dateCreate}
-                  </TableCell>
+                  <TableCell align="right">{data[id].dateCreate}</TableCell>
                   <TableCell align="right">{data[id].createName}</TableCell>
                   <TableCell>
                     <Grid container justify="flex-end">
@@ -147,7 +159,11 @@ function OutputWarehouse() {
                       </Grid>
                       <Grid item>
                         <IconButton>
-                          <DeleteIcon />
+                          <DeleteIcon
+                            onClick={() => {
+                              onDelete(id);
+                            }}
+                          />
                         </IconButton>
                       </Grid>
                     </Grid>

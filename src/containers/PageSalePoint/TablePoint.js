@@ -41,6 +41,20 @@ export default function CreatePoint() {
       });
   }, []);
 
+  const onDelete = (id) => {
+    firebaseDB
+      .database()
+      .ref()
+      .child(`Point/${id}`)
+      .remove((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          alert("Success");
+        }
+      });
+  };
+
   return (
     <div>
       <Box mb={2}>
@@ -123,7 +137,7 @@ export default function CreatePoint() {
               return (
                 <TableRow key={key}>
                   <TableCell component="th" scope="row">
-                  {key+1}
+                    {key + 1}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <CardMedia
@@ -151,7 +165,11 @@ export default function CreatePoint() {
                       </Grid>
                       <Grid item>
                         <IconButton>
-                          <DeleteIcon />
+                          <DeleteIcon
+                            onClick={() => {
+                              onDelete(id);
+                            }}
+                          />
                         </IconButton>
                       </Grid>
                     </Grid>

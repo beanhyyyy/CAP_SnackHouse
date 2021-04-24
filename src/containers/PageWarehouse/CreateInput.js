@@ -190,7 +190,6 @@ function CreateInput() {
         .child(`Warehouse/${dataIdObject}`)
         .set(
           obj,
-
           (err) => {
             if (err) {
               console.log(err);
@@ -201,6 +200,7 @@ function CreateInput() {
         );
     }
   };
+  
   // Submit
   const handleSubmit = (e) => {
     addOrEdit(values);

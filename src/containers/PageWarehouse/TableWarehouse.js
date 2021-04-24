@@ -41,6 +41,20 @@ function Warehouse() {
       });
   }, []);
 
+  const onDelete = (id) => {
+    firebaseDB
+      .database()
+      .ref()
+      .child(`Warehouse/${id}`)
+      .remove((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          alert("Success");
+        }
+      });
+  };
+
   return (
     <div>
       <Box mb={2}>
@@ -115,7 +129,7 @@ function Warehouse() {
               return (
                 <TableRow key={key}>
                   <TableCell component="th" scope="row">
-                  {key+1}
+                    {key + 1}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <CardMedia
@@ -147,7 +161,11 @@ function Warehouse() {
                       </Grid>
                       <Grid item>
                         <IconButton>
-                          <DeleteIcon />
+                          <DeleteIcon
+                            onClick={() => {
+                              onDelete(id);
+                            }}
+                          />
                         </IconButton>
                       </Grid>
                     </Grid>
