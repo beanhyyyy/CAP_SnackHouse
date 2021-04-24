@@ -46,7 +46,7 @@ export default function CreateWarehouse() {
         if (snapshot.val() != null) {
           var test = [];
           Object.keys(snapshot.val()).map((id) =>
-            test.push({[snapshot.val()[id].materialName] : ""})
+            test.push({[snapshot.val()[id].materialName] : 0})
           );
         }
         setDataMaterialName(test);

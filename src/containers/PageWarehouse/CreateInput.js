@@ -23,37 +23,39 @@ function CreateInput() {
   // router
   let history = useHistory();
 
-  const [values, setValues] = useState({dateCreate: new Date().toString()});
+  const [values, setValues] = useState({ dateCreate: new Date().toString() });
 
   // Data of Material
-  const [dataMaterial, setDataMaterial] = useState();
+  // const [dataMaterial, setDataMaterial] = useState();
 
   // Data of Warehouse
   const [dataImage, setDataImage] = useState("");
   const [dataId, setDataId] = useState("");
   const [dataName, setDataName] = useState("");
   const [dataAddress, setDataAddress] = useState("");
+  const [dataMaterial, setDataMaterial] = useState();
+  const [dataIdObject, setDataIdObject] = useState();
 
   // Data of Point
   const [dataPoint, setDataPoint] = useState();
   const [point, setPoint] = React.useState();
 
   // Material
-  useEffect(() => {
-    firebaseDB
-      .database()
-      .ref()
-      .child("Material")
-      .on("value", (snapshot) => {
-        if (snapshot.val() != null) {
-          var test = [];
-          Object.keys(snapshot.val()).map((id) =>
-            test.push({ [snapshot.val()[id].materialName]: "" })
-          );
-        }
-        setDataMaterial(test);
-      });
-  }, []);
+  // useEffect(() => {
+  //   firebaseDB
+  //     .database()
+  //     .ref()
+  //     .child("Material")
+  //     .on("value", (snapshot) => {
+  //       if (snapshot.val() != null) {
+  //         var test = [];
+  //         Object.keys(snapshot.val()).map((id) =>
+  //           test.push(snapshot.val()[id].materialName)
+  //         );
+  //       }
+  //       setDataMaterial(test);
+  //     });
+  // }, []);
 
   // Effect Warehouse
   useEffect(() => {
@@ -67,6 +69,7 @@ function CreateInput() {
           var arrayId = [];
           var arrayName = [];
           var arrayAddress = [];
+          var arrayMaterial;
 
           Object.keys(snapshot.val()).map((id) =>
             arrayImage.push(snapshot.val()[id].warehouseImage)
@@ -80,11 +83,17 @@ function CreateInput() {
           Object.keys(snapshot.val()).map((id) =>
             arrayAddress.push(snapshot.val()[id].warehouseAddress)
           );
+          Object.keys(snapshot.val()).map(
+            (id) => (arrayMaterial = snapshot.val()[id].warehouseMaterial)
+          );
+          setDataIdObject(Object.keys(snapshot.val()));
         }
+
         setDataImage(arrayImage);
         setDataId(arrayId);
         setDataName(arrayName);
         setDataAddress(arrayAddress);
+        setDataMaterial(arrayMaterial);
       });
   }, []);
 
@@ -131,10 +140,9 @@ function CreateInput() {
   }, [dataAddress]);
 
   useEffect(() => {
-    var obj = { warehouseMaterial: dataMaterial };
-    Object.assign(values, obj);
+    setValues({ ...values, warehouseMaterial: dataMaterial });
   }, [dataMaterial]);
-  
+
   // Handle Select Point
   const handleChangePoint = (event) => {
     setPoint(event.target.value);
@@ -156,18 +164,49 @@ function CreateInput() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
           history.go("/admin/PageWarehouse");
         }
       });
   };
 
+  console.log("iddddddddd", dataIdObject);
 
+  // dataMaterial &&
+  //   dataMaterial.map((item) => {
+      
+  //   });
+
+  const addOrEdit = (obj) => {
+    if (dataIdObject === "") {
+      firebaseDB.child("Warehouse").push(obj, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    } else {
+      firebaseDB
+        .database()
+        .ref()
+        .child(`Warehouse/${dataIdObject}`)
+        .set(
+          obj,
+
+          (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              alert("Success");
+            }
+          }
+        );
+    }
+  };
   // Submit
   const handleSubmit = (e) => {
+    addOrEdit(values);
     addTest(values);
   };
-  
+
   return (
     <div>
       <Typography variant="h6">Tạo phiếu nhập kho</Typography>
@@ -291,7 +330,7 @@ function CreateInput() {
                     </Grid>
 
                     {dataMaterial
-                      ? dataMaterial.map((item, index) => {
+                      ? dataMaterial.map((itemTest, index) => {
                           const key = index;
                           return (
                             <React.Fragment key={key}>
@@ -302,7 +341,7 @@ function CreateInput() {
                                   variant="outlined"
                                   disabled
                                   fullWidth
-                                  value={Object.keys(item)}
+                                  value={Object.keys(itemTest)}
                                 />
                               </Grid>
                               <Grid item xs={12} sm={6}>
@@ -311,8 +350,10 @@ function CreateInput() {
                                   size="small"
                                   variant="outlined"
                                   fullWidth
-                                  value={Object.values(item)}
-                                  name={`${Object.values(item)}`}
+                                  type="number"
+                                  name={Object.keys(itemTest)}
+                                  value={values.value}
+                                  onChange={handleInputChange}
                                 />
                               </Grid>
                             </React.Fragment>
@@ -328,7 +369,12 @@ function CreateInput() {
       </Box>
       <Box mt={2}></Box>
       <Box mt={2} display="flex" justifyContent="flex-end">
-        <Button variant="outlined" color="primary" startIcon={<CheckIcon />} onClick={handleSubmit}>
+        <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<CheckIcon />}
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
         &nbsp;&nbsp;
