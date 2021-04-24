@@ -351,8 +351,9 @@ function CreateInput() {
                                   fullWidth
                                   type="number"
                                   name={Object.keys(itemTest)}
-                                  value={values.value}
-                                  onChange={handleInputChange}
+                                  // value={values.value}
+                                  value={Object.values(itemTest)}
+                                  // onChange={handleInputChange}
                                 />
                               </Grid>
                             </React.Fragment>
