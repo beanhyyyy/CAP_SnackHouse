@@ -8,7 +8,6 @@ import {
   CardContent,
   CardMedia,
   Card,
-  MenuItem,
   Divider,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
@@ -37,8 +36,8 @@ function CreateInput() {
   const [dataIdObject, setDataIdObject] = useState();
 
   // Data of Point
-  const [dataPoint, setDataPoint] = useState();
-  const [point, setPoint] = React.useState();
+  // const [dataPoint, setDataPoint] = useState();
+  // const [point, setPoint] = React.useState();
 
   // Material
   // useEffect(() => {
@@ -98,26 +97,26 @@ function CreateInput() {
   }, []);
 
   // Effect Point
-  useEffect(() => {
-    firebaseDB
-      .database()
-      .ref()
-      .child("Point")
-      .on("value", (snapshot) => {
-        if (snapshot.val() != null) {
-          var test = [];
-          Object.keys(snapshot.val()).map((id) =>
-            test.push(snapshot.val()[id].pointName)
-          );
-        }
-        setDataPoint(test);
-      });
-  }, []);
+  // useEffect(() => {
+  //   firebaseDB
+  //     .database()
+  //     .ref()
+  //     .child("Point")
+  //     .on("value", (snapshot) => {
+  //       if (snapshot.val() != null) {
+  //         var test = [];
+  //         Object.keys(snapshot.val()).map((id) =>
+  //           test.push(snapshot.val()[id].pointName)
+  //         );
+  //       }
+  //       setDataPoint(test);
+  //     });
+  // }, []);
 
   // Update Data
-  useEffect(() => {
-    setValues({ ...values, namePoint: point });
-  }, [point]);
+  // useEffect(() => {
+  //   setValues({ ...values, namePoint: point });
+  // }, [point]);
 
   useEffect(() => {
     var obj = { warehouseId: dataId.toString() };
@@ -144,9 +143,9 @@ function CreateInput() {
   }, [dataMaterial]);
 
   // Handle Select Point
-  const handleChangePoint = (event) => {
-    setPoint(event.target.value);
-  };
+  // const handleChangePoint = (event) => {
+  //   setPoint(event.target.value);
+  // };
 
   const handleInputChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
@@ -200,7 +199,7 @@ function CreateInput() {
         );
     }
   };
-  
+
   // Submit
   const handleSubmit = (e) => {
     addOrEdit(values);
@@ -293,7 +292,7 @@ function CreateInput() {
                     <Grid item xs={12}>
                       <Typography variant="h6">Thông tin</Typography>
                     </Grid>
-                    <Grid item sm={6} xs={12}>
+                    {/* <Grid item sm={6} xs={12}>
                       <TextField
                         fullWidth
                         variant="outlined"
@@ -312,7 +311,7 @@ function CreateInput() {
                             </MenuItem>
                           ))}
                       </TextField>
-                    </Grid>
+                    </Grid> */}
                     <Grid item sm={6} xs={12}>
                       <TextField
                         label="Người tạo"
