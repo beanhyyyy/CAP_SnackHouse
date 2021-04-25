@@ -18,7 +18,6 @@ import { useHistory } from "react-router";
 
 import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
-import { Autocomplete } from "@material-ui/lab";
 
 function CreateOutput() {
   // router

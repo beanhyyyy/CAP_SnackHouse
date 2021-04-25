@@ -35,6 +35,7 @@ function CreateInput() {
   const [dataMaterial, setDataMaterial] = useState();
   const [dataIdObject, setDataIdObject] = useState();
 
+  // data nhap vao vô đây
   const [data, setData] = useState({});
   // Data of Point
   // const [dataPoint, setDataPoint] = useState();
@@ -56,7 +57,7 @@ function CreateInput() {
   //       setDataMaterial(test);
   //     });
   // }, []);
-
+  // console.log("dataMaterial", dataMaterial);
   // Effect Warehouse
   useEffect(() => {
     firebaseDB
@@ -88,36 +89,14 @@ function CreateInput() {
           setDataIdObject(Object.keys(snapshot.val()));
         }
 
-        setDataImage(arrayImage[0]);
-        setDataId(arrayId[0]);
-        setDataName(arrayName[0]);
-        setDataAddress(arrayAddress[0]);
+        setDataImage(arrayImage);
+        setDataId(arrayId);
+        setDataName(arrayName);
+        setDataAddress(arrayAddress);
         setDataMaterial(arrayMaterial);
-        // console.log("arrayImage", arrayImage);
+        // console.log("snapshot.val()", snapshot.val());
       });
   }, []);
-
-  // Effect Point
-  // useEffect(() => {
-  //   firebaseDB
-  //     .database()
-  //     .ref()
-  //     .child("Point")
-  //     .on("value", (snapshot) => {
-  //       if (snapshot.val() != null) {
-  //         var test = [];
-  //         Object.keys(snapshot.val()).map((id) =>
-  //           test.push(snapshot.val()[id].pointName)
-  //         );
-  //       }
-  //       setDataPoint(test);
-  //     });
-  // }, []);
-
-  // Update Data
-  // useEffect(() => {
-  //   setValues({ ...values, namePoint: point });
-  // }, [point]);
 
   useEffect(() => {
     var obj = { warehouseId: dataId.toString() };
@@ -139,22 +118,25 @@ function CreateInput() {
     Object.assign(values, obj);
   }, [dataAddress]);
 
+  const firstData =
+    dataMaterial &&
+    dataMaterial.reduce(function (result, item) {
+      var key = Object.keys(item)[0]; //first property: a, b, c
+      result[key] = item[key];
+      return result;
+    }, {});
+
   useEffect(() => {
-    const a = {};
-    setValues({ ...values, warehouseMaterial: dataMaterial });
+    setData(firstData);
   }, [dataMaterial]);
-
-  // Handle Select Point
-  // const handleChangePoint = (event) => {
-  //   setPoint(event.target.value);
-  // };
-
   const handleInputChange = (event) => {
-    data[event.target.name] = event.target.value;
-    console.log(data, "data");
-  };
+    const dataTagetValue = +event.target.value;
+    data[event.target.name] = firstData[event.target.name] + dataTagetValue;
 
-  console.log(values);
+    setData(data);
+    console.log(data, "data");
+    // setValues({ ...values, warehouseMaterial: dataMaterial });
+  };
 
   // Create
   const addTest = (obj) => {
@@ -170,13 +152,6 @@ function CreateInput() {
         }
       });
   };
-
-  console.log("iddddddddd", dataIdObject);
-
-  // dataMaterial &&
-  //   dataMaterial.map((item) => {
-
-  //   });
 
   const addOrEdit = (obj) => {
     if (dataIdObject === "") {
@@ -199,11 +174,20 @@ function CreateInput() {
         });
     }
   };
-
+  // console.log(values, "values");
   // Submit
   const handleSubmit = (e) => {
-    addOrEdit(values);
-    addTest(values);
+    const arr = [];
+    const keys = Object.keys(data);
+    const values = Object.values(data);
+    for (let i = 0; i < keys.length; i++) {
+      const obj = {};
+      obj[keys[i]] = values[i];
+      arr.push(obj);
+    }
+    console.log(arr);
+    addOrEdit(arr);
+    addTest(arr);
   };
 
   return (
@@ -238,7 +222,7 @@ function CreateInput() {
                       </>
                     ) : (
                       <CardContent>
-                        <CardMedia component="img" image={dataImage} />
+                        <CardMedia component="img" image={dataImage.toString} />
                       </CardContent>
                     )}
                   </CardContent>
@@ -345,6 +329,7 @@ function CreateInput() {
                               </Grid>
                               <Grid item xs={12} sm={6}>
                                 <TextField
+                                  id={index}
                                   label="Số lượng"
                                   size="small"
                                   variant="outlined"
