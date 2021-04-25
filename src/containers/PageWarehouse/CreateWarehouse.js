@@ -46,7 +46,7 @@ export default function CreateWarehouse() {
         if (snapshot.val() != null) {
           var test = [];
           Object.keys(snapshot.val()).map((id) =>
-            test.push({[snapshot.val()[id].materialName] : 0})
+            test.push({ [snapshot.val()[id].materialName]: 0 })
           );
         }
         setDataMaterialName(test);
@@ -80,13 +80,9 @@ export default function CreateWarehouse() {
   }, []);
 
   useEffect(() => {
-
-    
     setValues({ ...values, namePoint: point });
 
-
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [point]);
 
   // Create

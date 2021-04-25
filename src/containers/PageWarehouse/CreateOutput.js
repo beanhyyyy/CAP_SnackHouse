@@ -18,6 +18,7 @@ import { useHistory } from "react-router";
 
 import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
+import { Autocomplete } from "@material-ui/lab";
 
 function CreateOutput() {
   // router
@@ -152,7 +153,7 @@ function CreateOutput() {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  console.log(values);
+  // console.log(values);
 
   // Create
   const addTest = (obj) => {
@@ -169,11 +170,11 @@ function CreateOutput() {
       });
   };
 
-  console.log("iddddddddd", dataIdObject);
+  // console.log("iddddddddd", dataIdObject);
 
   // dataMaterial &&
   //   dataMaterial.map((item) => {
-      
+
   //   });
 
   const addOrEdit = (obj) => {

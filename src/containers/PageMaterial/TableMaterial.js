@@ -164,12 +164,12 @@ export default function TableMaterial() {
                         </IconButton>
                       </Grid>
                       <Grid item>
-                        <IconButton>
-                          <DeleteIcon
-                            onClick={() => {
-                              onDelete(id);
-                            }}
-                          />
+                        <IconButton
+                          onClick={() => {
+                            onDelete(id);
+                          }}
+                        >
+                          <DeleteIcon />
                         </IconButton>
                       </Grid>
                     </Grid>

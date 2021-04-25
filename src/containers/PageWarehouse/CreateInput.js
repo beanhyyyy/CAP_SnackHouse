@@ -35,6 +35,7 @@ function CreateInput() {
   const [dataMaterial, setDataMaterial] = useState();
   const [dataIdObject, setDataIdObject] = useState();
 
+  const [data, setData] = useState({});
   // Data of Point
   // const [dataPoint, setDataPoint] = useState();
   // const [point, setPoint] = React.useState();
@@ -69,7 +70,6 @@ function CreateInput() {
           var arrayName = [];
           var arrayAddress = [];
           var arrayMaterial;
-
           Object.keys(snapshot.val()).map((id) =>
             arrayImage.push(snapshot.val()[id].warehouseImage)
           );
@@ -88,11 +88,12 @@ function CreateInput() {
           setDataIdObject(Object.keys(snapshot.val()));
         }
 
-        setDataImage(arrayImage);
-        setDataId(arrayId);
-        setDataName(arrayName);
-        setDataAddress(arrayAddress);
+        setDataImage(arrayImage[0]);
+        setDataId(arrayId[0]);
+        setDataName(arrayName[0]);
+        setDataAddress(arrayAddress[0]);
         setDataMaterial(arrayMaterial);
+        // console.log("arrayImage", arrayImage);
       });
   }, []);
 
@@ -139,6 +140,7 @@ function CreateInput() {
   }, [dataAddress]);
 
   useEffect(() => {
+    const a = {};
     setValues({ ...values, warehouseMaterial: dataMaterial });
   }, [dataMaterial]);
 
@@ -148,7 +150,8 @@ function CreateInput() {
   // };
 
   const handleInputChange = (event) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+    data[event.target.name] = event.target.value;
+    console.log(data, "data");
   };
 
   console.log(values);
@@ -172,7 +175,7 @@ function CreateInput() {
 
   // dataMaterial &&
   //   dataMaterial.map((item) => {
-      
+
   //   });
 
   const addOrEdit = (obj) => {
@@ -187,16 +190,13 @@ function CreateInput() {
         .database()
         .ref()
         .child(`Warehouse/${dataIdObject}`)
-        .set(
-          obj,
-          (err) => {
-            if (err) {
-              console.log(err);
-            } else {
-              alert("Success");
-            }
+        .set(obj, (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            alert("Success");
           }
-        );
+        });
     }
   };
 
@@ -352,8 +352,8 @@ function CreateInput() {
                                   type="number"
                                   name={Object.keys(itemTest)}
                                   // value={values.value}
-                                  value={Object.values(itemTest)}
-                                  // onChange={handleInputChange}
+                                  // value={Object.values(itemTest)}
+                                  onChange={handleInputChange}
                                 />
                               </Grid>
                             </React.Fragment>
