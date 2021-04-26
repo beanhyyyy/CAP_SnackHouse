@@ -138,10 +138,13 @@ function CreateInput() {
     data[event.target.name] = firstData[event.target.name] + dataTagetValue;
 
     setData(data);
-    console.log(data, "data");
+    // console.log(data, "data");
 
-    console.log("first data", firstData);
+    // console.log("first data", firstData);
     // setValues({ ...values, warehouseMaterial: dataMaterial });
+
+
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
 
   const handleInputChangeCreate = (event) => {
@@ -185,6 +188,7 @@ function CreateInput() {
     }
   };
   // console.log(values, "values");
+
   // Submit
   const handleSubmit = (e) => {
     const arr = [];
@@ -198,7 +202,7 @@ function CreateInput() {
     console.log(arr);
 
     addOrEdit({ ...values, arr });
-    addTest({ ...values, arr });
+    addTest(values);
   };
 
   return (
@@ -233,7 +237,7 @@ function CreateInput() {
                       </>
                     ) : (
                       <CardContent>
-                        <CardMedia component="img" image={dataImage.toString} />
+                        <CardMedia component="img" image={dataImage} />
                       </CardContent>
                     )}
                   </CardContent>

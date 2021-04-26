@@ -8,8 +8,8 @@ import {
   CardContent,
   CardMedia,
   Card,
-  MenuItem,
   Divider,
+  MenuItem,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
@@ -26,36 +26,41 @@ function CreateOutput() {
   const [values, setValues] = useState({ dateCreate: new Date().toString() });
 
   // Data of Material
-  // const [dataMaterial, setDataMaterial] = useState();
+  const [dataMaterial, setDataMaterial] = useState();
 
   // Data of Warehouse
   const [dataImage, setDataImage] = useState("");
   const [dataId, setDataId] = useState("");
   const [dataName, setDataName] = useState("");
   const [dataAddress, setDataAddress] = useState("");
-  const [dataMaterial, setDataMaterial] = useState();
   const [dataIdObject, setDataIdObject] = useState();
+  const [dataMaterialTotal, setDataMaterialTotal] = useState();
+
+  // data nhap vao vô đây
+  const [data, setData] = useState({});
 
   // Data of Point
   const [dataPoint, setDataPoint] = useState();
   const [point, setPoint] = React.useState();
 
   // Material
-  // useEffect(() => {
-  //   firebaseDB
-  //     .database()
-  //     .ref()
-  //     .child("Material")
-  //     .on("value", (snapshot) => {
-  //       if (snapshot.val() != null) {
-  //         var test = [];
-  //         Object.keys(snapshot.val()).map((id) =>
-  //           test.push(snapshot.val()[id].materialName)
-  //         );
-  //       }
-  //       setDataMaterial(test);
-  //     });
-  // }, []);
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Material")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null) {
+          var test = [];
+          Object.keys(snapshot.val()).map((id) =>
+            test.push({ [snapshot.val()[id].materialName]: 0 })
+          );
+        }
+        setDataMaterial(test);
+      });
+  }, []);
+
+  // console.log("dataMaterial", dataMaterial);
 
   // Effect Warehouse
   useEffect(() => {
@@ -69,7 +74,6 @@ function CreateOutput() {
           var arrayId = [];
           var arrayName = [];
           var arrayAddress = [];
-          var arrayMaterial;
 
           Object.keys(snapshot.val()).map((id) =>
             arrayImage.push(snapshot.val()[id].warehouseImage)
@@ -83,9 +87,11 @@ function CreateOutput() {
           Object.keys(snapshot.val()).map((id) =>
             arrayAddress.push(snapshot.val()[id].warehouseAddress)
           );
-          Object.keys(snapshot.val()).map(
-            (id) => (arrayMaterial = snapshot.val()[id].warehouseMaterial)
+
+          Object.keys(snapshot.val()).map((id) =>
+            setDataMaterialTotal(snapshot.val()[id].arr)
           );
+
           setDataIdObject(Object.keys(snapshot.val()));
         }
 
@@ -93,9 +99,41 @@ function CreateOutput() {
         setDataId(arrayId);
         setDataName(arrayName);
         setDataAddress(arrayAddress);
-        setDataMaterial(arrayMaterial);
+        // console.log("snapshot.val()", snapshot.val());
       });
   }, []);
+
+  useEffect(() => {
+    var obj = { warehouseId: dataId.toString() };
+    Object.assign(values, obj);
+  }, [dataId]);
+
+  useEffect(() => {
+    var obj = { warehouseName: dataName.toString() };
+    Object.assign(values, obj);
+  }, [dataName]);
+
+  useEffect(() => {
+    var obj = { warehouseImage: dataImage.toString() };
+    Object.assign(values, obj);
+  }, [dataImage]);
+
+  useEffect(() => {
+    var obj = { warehouseAddress: dataAddress.toString() };
+    Object.assign(values, obj);
+  }, [dataAddress]);
+
+  const firstData =
+    dataMaterialTotal &&
+    dataMaterialTotal.reduce(function (result, item) {
+      var key = Object.keys(item)[0]; //first property: a, b, c
+      result[key] = item[key];
+      return result;
+    }, {});
+
+  useEffect(() => {
+    setData(firstData);
+  }, [dataMaterialTotal]);
 
   // Effect Point
   useEffect(() => {
@@ -119,47 +157,29 @@ function CreateOutput() {
     setValues({ ...values, namePoint: point });
   }, [point]);
 
-  useEffect(() => {
-    var obj = { warehouseId: dataId.toString() };
-    Object.assign(values, obj);
-  }, [dataId]);
-
-  useEffect(() => {
-    var obj = { warehouseName: dataName.toString() };
-    Object.assign(values, obj);
-  }, [dataName]);
-
-  useEffect(() => {
-    var obj = { warehouseImage: dataImage.toString() };
-    Object.assign(values, obj);
-  }, [dataImage]);
-
-  useEffect(() => {
-    var obj = { warehouseAddress: dataAddress.toString() };
-    Object.assign(values, obj);
-  }, [dataAddress]);
-
-  useEffect(() => {
-    setValues({ ...values, warehouseMaterial: dataMaterial });
-  }, [dataMaterial]);
-
-  // Handle Select Point
-  const handleChangePoint = (event) => {
-    setPoint(event.target.value);
-  };
-
   const handleInputChange = (event) => {
+    const dataTagetValue = +event.target.value;
+    data[event.target.name] = firstData[event.target.name] - dataTagetValue;
+
+    setData(data);
+    // console.log(data, "data");
+
+    // console.log("first data", firstData);
+    // setValues({ ...values, warehouseMaterial: dataMaterial });
+
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  // console.log(values);
+  const handleInputChangeCreate = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
 
   // Create
   const addTest = (obj) => {
     firebaseDB
       .database()
       .ref()
-      .child("WarehouseInput")
+      .child("WarehouseOutput")
       .push(obj, (err) => {
         if (err) {
           console.log(err);
@@ -168,13 +188,6 @@ function CreateOutput() {
         }
       });
   };
-
-  // console.log("iddddddddd", dataIdObject);
-
-  // dataMaterial &&
-  //   dataMaterial.map((item) => {
-
-  //   });
 
   const addOrEdit = (obj) => {
     if (dataIdObject === "") {
@@ -188,22 +201,35 @@ function CreateOutput() {
         .database()
         .ref()
         .child(`Warehouse/${dataIdObject}`)
-        .set(
-          obj,
-
-          (err) => {
-            if (err) {
-              console.log(err);
-            } else {
-              alert("Success");
-            }
+        .set(obj, (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            alert("Success");
           }
-        );
+        });
     }
   };
+  // console.log(values, "values");
+
+  // Handle Select Point
+  const handleChangePoint = (event) => {
+    setPoint(event.target.value);
+  };
+
   // Submit
   const handleSubmit = (e) => {
-    addOrEdit(values);
+    const arr = [];
+    const keys = Object.keys(data);
+    const valuesIn = Object.values(data);
+    for (let i = 0; i < keys.length; i++) {
+      const obj = {};
+      obj[keys[i]] = valuesIn[i];
+      arr.push(obj);
+    }
+    console.log(arr);
+
+    addOrEdit({ ...values, arr });
     addTest(values);
   };
 
@@ -322,13 +348,14 @@ function CreateOutput() {
                         name="createName"
                         fullWidth
                         value={values.createName}
-                        onChange={handleInputChange}
+                        onChange={handleInputChangeCreate}
                       />
                     </Grid>
                     <Grid item xs={12}>
                       <Typography variant="h6">Nguyên liệu</Typography>
                     </Grid>
-
+                    {console.log("NGUYEN LIEUUUUUUUUUUUUUUUUUUU", dataMaterial)}
+                    {console.log("values", values)}
                     {dataMaterial
                       ? dataMaterial.map((itemTest, index) => {
                           const key = index;
@@ -346,13 +373,15 @@ function CreateOutput() {
                               </Grid>
                               <Grid item xs={12} sm={6}>
                                 <TextField
+                                  id={index}
                                   label="Số lượng"
                                   size="small"
                                   variant="outlined"
                                   fullWidth
                                   type="number"
                                   name={Object.keys(itemTest)}
-                                  value={values.value}
+                                  // value={values.value}
+                                  // value={Object.values(itemTest)}
                                   onChange={handleInputChange}
                                 />
                               </Grid>

@@ -28,11 +28,11 @@ const mainTabs = [
     label: "Quản lý xuất kho",
     content: OutputWarehouse,
   },
-  {
-    key: 4,
-    label: "Tạo kho",
-    content: CreateWarehouse,
-  },
+  // {
+  //   key: 4,
+  //   label: "Tạo kho",
+  //   content: CreateWarehouse,
+  // },
   {
     key: 5,
     label: "Tạo phiếu nhập",
