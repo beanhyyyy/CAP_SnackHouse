@@ -24,6 +24,14 @@ import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+// Dialog
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
 function Warehouse() {
   // View
   const [data, setData] = useState({});
@@ -54,6 +62,58 @@ function Warehouse() {
         }
       });
   };
+
+  // Dialog
+
+  function ViewDialog({ propsId, propsData }) {
+    console.log(propsData);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    return (
+      <div>
+        <IconButton>
+          <RemoveRedEyeIcon onClick={handleClickOpen} />
+        </IconButton>
+        <Dialog
+          fullWidth
+          maxWidth="sm"
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Thong bao?"}</DialogTitle>
+          <DialogContent>
+            {propsData[propsId].arr.map((item, index) => {
+              const key = index;
+              return (
+                <React.Fragment key={key}>
+                  {Object.keys(item)} : {Object.values(item)}
+                  <br />
+                </React.Fragment>
+              );
+            })}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Xac nhan
+            </Button>
+            <Button onClick={handleClose} autoFocus>
+              Dong
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -150,9 +210,7 @@ function Warehouse() {
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
-                        <IconButton>
-                          <RemoveRedEyeIcon />
-                        </IconButton>
+                        <ViewDialog propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
                         <IconButton>
@@ -179,6 +237,6 @@ function Warehouse() {
     </div>
   );
 }
-
 export default Warehouse;
+
 const options = [{ title: "Chọn" }];
