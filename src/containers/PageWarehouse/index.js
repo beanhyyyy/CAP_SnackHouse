@@ -10,7 +10,7 @@ import CreateInput from "./CreateInput";
 import CreateOutput from "./CreateOutput";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-import CreateWarehouse from "./CreateWarehouse";
+// import CreateWarehouse from "./CreateWarehouse";
 
 const mainTabs = [
   {
