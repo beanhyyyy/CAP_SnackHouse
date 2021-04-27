@@ -28,6 +28,7 @@ export default function CreateWarehouse() {
 
   const [values, setValues] = useState({
     warehouseImage: "",
+    arr: [],
   });
 
   // Data of Point

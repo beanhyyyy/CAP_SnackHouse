@@ -22,7 +22,7 @@ function CreateInput() {
   // router
   let history = useHistory();
 
-  const [values, setValues] = useState({ dateCreate: new Date().getDate().toString(), arr: [] });
+  const [values, setValues] = useState({ dateCreate: new Date().getDate().toString() });
 
   // Data of Material
   const [dataMaterial, setDataMaterial] = useState();
