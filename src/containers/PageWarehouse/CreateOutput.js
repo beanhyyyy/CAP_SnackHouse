@@ -104,22 +104,22 @@ function CreateOutput() {
   }, []);
 
   useEffect(() => {
-    var obj = { warehouseId: dataId?.toString() };
+    var obj = { warehouseId: dataId };
     Object.assign(values, obj);
   }, [dataId]);
 
   useEffect(() => {
-    var obj = { warehouseName: dataName?.toString() };
+    var obj = { warehouseName: dataName };
     Object.assign(values, obj);
   }, [dataName]);
 
   useEffect(() => {
-    var obj = { warehouseImage: dataImage?.toString() };
+    var obj = { warehouseImage: dataImage };
     Object.assign(values, obj);
   }, [dataImage]);
 
   useEffect(() => {
-    var obj = { warehouseAddress: dataAddress?.toString() };
+    var obj = { warehouseAddress: dataAddress };
     Object.assign(values, obj);
   }, [dataAddress]);
 
