@@ -1,6 +1,10 @@
 import {
   Box,
   CardMedia,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Grid,
   IconButton,
   InputAdornment,
@@ -13,6 +17,7 @@ import {
   TableRow,
   TextField,
   Typography,
+  Button,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
@@ -55,7 +60,69 @@ function InputWarehouse() {
       });
   };
 
-  console.log(data);
+  // Dialog
+
+  function ViewDialog({ propsId, propsData }) {
+    console.log("propsssssssssssss", propsData);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    return (
+      <div>
+        <IconButton>
+          <RemoveRedEyeIcon onClick={handleClickOpen} />
+        </IconButton>
+        <Dialog
+          fullWidth
+          maxWidth="sm"
+          open={open}
+          scroll="body"
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">Chi tiet</DialogTitle>
+          <DialogContent>
+            {Object.values(propsData[propsId]).map((item, index) => {
+              const key = index;
+              return (
+                <Grid container spacing={2} key={key}>
+                  <Grid item xs={12}>
+                    <TextField
+                      disabled
+                      variant="outlined"
+                      size="small"
+                      fullWidth
+                      defaultValue={item}
+                    />
+                  </Grid>
+                </Grid>
+              );
+            })}
+            {/* {Object.keys(propsData[propsId])}:
+          {Object.values(propsData[propsId])} */}
+          {propsData[propsId].createName}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Xac nhan
+            </Button>
+            <Button onClick={handleClose} autoFocus>
+              Dong
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Box mb={2}>
@@ -149,9 +216,7 @@ function InputWarehouse() {
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
-                        <IconButton>
-                          <RemoveRedEyeIcon />
-                        </IconButton>
+                        <ViewDialog propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
                         <IconButton>
