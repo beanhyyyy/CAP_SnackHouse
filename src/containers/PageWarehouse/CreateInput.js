@@ -22,7 +22,9 @@ function CreateInput() {
   // router
   let history = useHistory();
 
-  const [values, setValues] = useState({ dateCreate: new Date().getDate().toString() });
+  const [values, setValues] = useState({
+    dateCreate: new Date().getDate().toString(),
+  });
 
   // Data of Material
   const [dataMaterial, setDataMaterial] = useState();
@@ -87,7 +89,7 @@ function CreateInput() {
           );
 
           Object.keys(snapshot.val()).map((id) =>
-            setDataMaterialTotal(snapshot.val()[id].arr)
+            setDataMaterialTotal(snapshot.val()[id].warehouseMaterial)
           );
 
           setDataIdObject(Object.keys(snapshot.val()));
@@ -134,6 +136,9 @@ function CreateInput() {
   }, [dataMaterialTotal]);
 
   const handleInputChange = (event) => {
+    console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
+    console.log("firstDataaaaaaaaa", firstData);
+
     const dataTagetValue = +event.target.value;
     data[event.target.name] = firstData[event.target.name] + dataTagetValue;
 
@@ -142,7 +147,6 @@ function CreateInput() {
 
     // console.log("first data", firstData);
     // setValues({ ...values, warehouseMaterial: dataMaterial });
-
 
     setValues({ ...values, [event.target.name]: event.target.value });
   };
@@ -191,17 +195,16 @@ function CreateInput() {
 
   // Submit
   const handleSubmit = (e) => {
-    const arr = [];
+    const warehouseMaterial = [];
     const keys = Object.keys(data);
     const valuesIn = Object.values(data);
     for (let i = 0; i < keys.length; i++) {
       const obj = {};
       obj[keys[i]] = valuesIn[i];
-      arr.push(obj);
+      warehouseMaterial.push(obj);
     }
-    console.log(arr);
 
-    addOrEdit({ ...values, arr });
+    addOrEdit({ ...values, warehouseMaterial });
     addTest(values);
   };
 
@@ -326,8 +329,6 @@ function CreateInput() {
                     <Grid item xs={12}>
                       <Typography variant="h6">Nguyên liệu</Typography>
                     </Grid>
-                    {console.log("NGUYEN LIEUUUUUUUUUUUUUUUUUUU", dataMaterial)}
-                    {console.log("values", values)}
                     {dataMaterial
                       ? dataMaterial.map((itemTest, index) => {
                           const key = index;

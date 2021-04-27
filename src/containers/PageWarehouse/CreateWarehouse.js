@@ -24,11 +24,10 @@ export default function CreateWarehouse() {
   let history = useHistory();
 
   // Data of Material
-  // const [dataMaterialName, setDataMaterialName] = useState();
+  const [dataMaterialName, setDataMaterialName] = useState();
 
   const [values, setValues] = useState({
     warehouseImage: "",
-    arr: [],
   });
 
   // Data of Point
@@ -37,30 +36,30 @@ export default function CreateWarehouse() {
   const [point, setPoint] = React.useState();
 
   // Material
-  // useEffect(() => {
-  //   firebaseDB
-  //     .database()
-  //     .ref()
-  //     .child("Material")
-  //     .on("value", (snapshot) => {
-  //       if (snapshot.val() != null) {
-  //         var test = [];
-  //         Object.keys(snapshot.val()).map((id) =>
-  //           test.push({ [snapshot.val()[id].materialName]: 0 })
-  //         );
-  //       }
-  //       setDataMaterialName(test);
-  //     });
-  // }, []);
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Material")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null) {
+          var test = [];
+          Object.keys(snapshot.val()).map((id) =>
+            test.push({ [snapshot.val()[id].materialName]: 0 })
+          );
+        }
+        setDataMaterialName(test);
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   var test2 = {
-  //     warehouseImage: "",
-  //     warehouseMaterial: dataMaterialName,
-  //   };
+  useEffect(() => {
+    var test2 = {
+      warehouseImage: "",
+      warehouseMaterial: dataMaterialName,
+    };
 
-  //   setValues(test2);
-  // }, [dataMaterialName]);
+    setValues(test2);
+  }, [dataMaterialName]);
 
   // Effect Point
   useEffect(() => {

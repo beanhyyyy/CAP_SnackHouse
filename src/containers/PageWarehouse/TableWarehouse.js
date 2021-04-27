@@ -91,7 +91,7 @@ function Warehouse() {
         >
           <DialogTitle id="alert-dialog-title">{"Thong bao?"}</DialogTitle>
           <DialogContent>
-            {propsData[propsId].arr?.map((item, index) => {
+            {propsData[propsId].warehouseMaterial?.map((item, index) => {
               const key = index;
               return (
                 <React.Fragment key={key}>
