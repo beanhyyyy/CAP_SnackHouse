@@ -89,7 +89,7 @@ function CreateOutput() {
           );
 
           Object.keys(snapshot.val()).map((id) =>
-            setDataMaterialTotal(snapshot.val()[id].arr)
+            setDataMaterialTotal(snapshot.val()[id].warehouseMaterial)
           );
 
           setDataIdObject(Object.keys(snapshot.val()));
@@ -123,7 +123,7 @@ function CreateOutput() {
     Object.assign(values, obj);
   }, [dataAddress]);
 
-  const firstData =
+  var firstData =
     dataMaterialTotal &&
     dataMaterialTotal.reduce(function (result, item) {
       var key = Object.keys(item)[0]; //first property: a, b, c
@@ -159,7 +159,7 @@ function CreateOutput() {
 
   const handleInputChange = (event) => {
     const dataTagetValue = +event.target.value;
-    data[event.target.name] = firstData[event.target.name] - dataTagetValue;
+    data[event.target.name] = firstData[event.target.name] ? firstData[event.target.name] - dataTagetValue : 0;
 
     setData(data);
     // console.log(data, "data");
@@ -219,17 +219,16 @@ function CreateOutput() {
 
   // Submit
   const handleSubmit = (e) => {
-    const arr = [];
+    const warehouseMaterial = [];
     const keys = Object.keys(data);
     const valuesIn = Object.values(data);
     for (let i = 0; i < keys.length; i++) {
       const obj = {};
       obj[keys[i]] = valuesIn[i];
-      arr.push(obj);
+      warehouseMaterial.push(obj);
     }
-    console.log(arr);
 
-    addOrEdit({ ...values, arr });
+    addOrEdit({ ...values, warehouseMaterial });
     addTest(values);
   };
 

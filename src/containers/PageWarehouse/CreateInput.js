@@ -123,7 +123,7 @@ function CreateInput() {
     Object.assign(values, obj);
   }, [dataAddress]);
 
-  const firstData =
+  var firstData =
     dataMaterialTotal &&
     dataMaterialTotal.reduce(function (result, item) {
       var key = Object.keys(item)[0]; //first property: a, b, c
@@ -136,17 +136,10 @@ function CreateInput() {
   }, [dataMaterialTotal]);
 
   const handleInputChange = (event) => {
-    console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
-    console.log("firstDataaaaaaaaa", firstData);
-
     const dataTagetValue = +event.target.value;
-    data[event.target.name] = firstData[event.target.name] + dataTagetValue;
+    data[event.target.name] = firstData[event.target.name] ? firstData[event.target.name] + dataTagetValue : dataTagetValue;
 
     setData(data);
-    // console.log(data, "data");
-
-    // console.log("first data", firstData);
-    // setValues({ ...values, warehouseMaterial: dataMaterial });
 
     setValues({ ...values, [event.target.name]: event.target.value });
   };
@@ -329,6 +322,7 @@ function CreateInput() {
                     <Grid item xs={12}>
                       <Typography variant="h6">Nguyên liệu</Typography>
                     </Grid>
+
                     {dataMaterial
                       ? dataMaterial.map((itemTest, index) => {
                           const key = index;
