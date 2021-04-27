@@ -10,7 +10,7 @@ import CreateInput from "./CreateInput";
 import CreateOutput from "./CreateOutput";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-// import CreateWarehouse from "./CreateWarehouse";
+import CreateWarehouse from "./CreateWarehouse";
 
 const mainTabs = [
   {
@@ -28,11 +28,11 @@ const mainTabs = [
     label: "Quản lý xuất kho",
     content: OutputWarehouse,
   },
-  // {
-  //   key: 4,
-  //   label: "Tạo kho",
-  //   content: CreateWarehouse,
-  // },
+  {
+    key: 4,
+    label: "Tạo kho",
+    content: CreateWarehouse,
+  },
   {
     key: 5,
     label: "Tạo phiếu nhập",
