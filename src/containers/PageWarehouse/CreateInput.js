@@ -22,7 +22,7 @@ function CreateInput() {
   // router
   let history = useHistory();
 
-  const [values, setValues] = useState({ dateCreate: new Date().toString() });
+  const [values, setValues] = useState({ dateCreate: new Date().getDate().toString() });
 
   // Data of Material
   const [dataMaterial, setDataMaterial] = useState();
@@ -102,22 +102,22 @@ function CreateInput() {
   }, []);
 
   useEffect(() => {
-    var obj = { warehouseId: dataId.toString() };
+    var obj = { warehouseId: dataId?.toString() };
     Object.assign(values, obj);
   }, [dataId]);
 
   useEffect(() => {
-    var obj = { warehouseName: dataName.toString() };
+    var obj = { warehouseName: dataName?.toString() };
     Object.assign(values, obj);
   }, [dataName]);
 
   useEffect(() => {
-    var obj = { warehouseImage: dataImage.toString() };
+    var obj = { warehouseImage: dataImage?.toString() };
     Object.assign(values, obj);
   }, [dataImage]);
 
   useEffect(() => {
-    var obj = { warehouseAddress: dataAddress.toString() };
+    var obj = { warehouseAddress: dataAddress?.toString() };
     Object.assign(values, obj);
   }, [dataAddress]);
 
