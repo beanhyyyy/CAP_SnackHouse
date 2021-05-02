@@ -23,7 +23,7 @@ function CreateInput() {
   let history = useHistory();
 
   const [values, setValues] = useState({
-    dateCreate: new Date().getDate().toString(),
+    dateCreate: new Date().toString(),
   });
 
   // Data of Material

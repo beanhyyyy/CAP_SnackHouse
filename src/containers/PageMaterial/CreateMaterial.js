@@ -105,7 +105,7 @@ export default function CreateMaterial() {
           </Grid>
           <Grid item md={9} sm={8} xs={12}>
             <Grid container spacing={2}>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Tên"
                   placeholder="Nhập tên ... "
@@ -117,7 +117,7 @@ export default function CreateMaterial() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Mã SKU"
                   placeholder="Mã SKU ... "
@@ -129,7 +129,7 @@ export default function CreateMaterial() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Danh mục"
                   variant="outlined"

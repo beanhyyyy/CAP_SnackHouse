@@ -95,7 +95,7 @@ export default function CreatePoint() {
           </Grid>
           <Grid item md={9} sm={8} xs={12}>
             <Grid container spacing={2}>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Tên"
                   placeholder="Nhập tên ... "
@@ -107,7 +107,7 @@ export default function CreatePoint() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Mã chi nhánh"
                   placeholder="Nhập mã chi nhánh... "
@@ -119,7 +119,7 @@ export default function CreatePoint() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Địa chỉ"
                   placeholder="Nhập địa chỉ chi nhánh... "

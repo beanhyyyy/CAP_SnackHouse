@@ -163,7 +163,7 @@ export default function CreateWarehouse() {
           </Grid>
           <Grid item md={9} sm={8} xs={12}>
             <Grid container spacing={2}>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Mã kho	"
                   placeholder="Nhập mã kho... "
@@ -175,7 +175,7 @@ export default function CreateWarehouse() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Tên kho"
                   placeholder="Nhập tên kho... "
@@ -187,7 +187,7 @@ export default function CreateWarehouse() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   fullWidth
                   variant="outlined"
@@ -207,7 +207,7 @@ export default function CreateWarehouse() {
                     ))}
                 </TextField>
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Địa chỉ"
                   placeholder="Nhập địa chỉ... "
@@ -219,7 +219,7 @@ export default function CreateWarehouse() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item lg={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Người tạo"
                   placeholder="Nhập tên người tạo... "

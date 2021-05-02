@@ -169,7 +169,7 @@ import {
             </Grid>
             <Grid item md={9} sm={8} xs={12}>
               <Grid container spacing={2}>
-                <Grid item lg={4} sm={6} xs={12}>
+                <Grid item md={4} sm={6} xs={12}>
                   <TextField
                     label="Mã kho	"
                     placeholder="Nhập mã kho... "
@@ -181,7 +181,7 @@ import {
                     onChange={handleInputChange}
                   />
                 </Grid>
-                <Grid item lg={4} sm={6} xs={12}>
+                <Grid item md={4} sm={6} xs={12}>
                   <TextField
                     label="Tên kho"
                     placeholder="Nhập tên kho... "
@@ -193,7 +193,7 @@ import {
                     onChange={handleInputChange}
                   />
                 </Grid>
-                <Grid item lg={4} sm={6} xs={12}>
+                <Grid item md={4} sm={6} xs={12}>
                   <TextField
                     fullWidth
                     variant="outlined"
@@ -213,7 +213,7 @@ import {
                       ))}
                   </TextField>
                 </Grid>
-                <Grid item lg={4} sm={6} xs={12}>
+                <Grid item md={4} sm={6} xs={12}>
                   <TextField
                     label="Địa chỉ"
                     placeholder="Nhập địa chỉ... "
@@ -225,7 +225,7 @@ import {
                     onChange={handleInputChange}
                   />
                 </Grid>
-                <Grid item lg={4} sm={6} xs={12}>
+                <Grid item md={4} sm={6} xs={12}>
                   <TextField
                     label="Người tạo"
                     placeholder="Nhập tên người tạo... "

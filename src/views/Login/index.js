@@ -82,7 +82,7 @@ export default function Login() {
       if (emailRef.current.value === "admin@gmail.com") {
         history.push("/admin")
       } else {
-        history.push("/update-profile")
+        history.push("/report")
       }
     } catch (error) {
       setError("Failed to log in")
