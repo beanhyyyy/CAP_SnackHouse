@@ -38,6 +38,7 @@ export default function CreatePoint() {
 
   const initialFieldValues = {
     pointImage: "",
+    dateCreate: new Date().toString(),
   };
 
   var [values, setValues] = useState(initialFieldValues);

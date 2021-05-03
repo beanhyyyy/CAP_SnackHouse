@@ -24,8 +24,8 @@ import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 
 import firebaseDB from "../../firebase";
 
@@ -60,10 +60,8 @@ export default function CreatePoint() {
       });
   };
 
-  // Dialog
-
+  // Dialog Detail
   function ViewDialog({ propsId, propsData }) {
-    console.log("propsssssssssssss", propsData);
     const [open, setOpen] = React.useState(false);
 
     const handleClose = () => {
@@ -83,38 +81,227 @@ export default function CreatePoint() {
           fullWidth
           maxWidth="sm"
           open={open}
+          scroll="body"
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Chi tiet</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Thông tin chi tiết</DialogTitle>
           <DialogContent>
-            {Object.values(propsData[propsId]).map((item, index) => {
-              const key = index;
-              return (
-                <Grid container spacing={2} key={key}>
-                  <Grid item xs={12}>
-                    <TextField
-                      disabled
-                      variant="outlined"
-                      size="small"
-                      fullWidth
-                      defaultValue={item}
-                    />
-                  </Grid>
-                </Grid>
-              );
-            })}
-            {/* {Object.keys(propsData[propsId])}:
-          {Object.values(propsData[propsId])} */}
-            {propsData[propsId].createName}
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <CardMedia
+                  component="img"
+                  src={propsData[propsId].pointImage}
+                  variant="square"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Link hình"
+                  value={propsData[propsId].pointImage}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Mã chi nhánh"
+                  value={propsData[propsId].pointId}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên chi nhánh"
+                  value={propsData[propsId].pointName}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Địa chỉ chi nhánh"
+                  value={propsData[propsId].pointAddress}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Thời gian cập nhật"
+                  value={propsData[propsId].dateCreate}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+            </Grid>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
-              Xac nhan
+              Xác nhận
             </Button>
             <Button onClick={handleClose} autoFocus>
-              Dong
+              Đóng
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
+
+  // Dialog Edit
+  function ViewDialogEdit({ propsId, propsData }) {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const [values, setValues] = useState({
+      dateCreate: new Date().toString(),
+    });
+
+    var obj1 = propsData[propsId];
+
+    useEffect(() => {
+      Object.assign(obj1, {dateCreate: new Date().toString()})
+      setValues(obj1);
+    }, [obj1]);
+
+    const handleChangeEdit = (event) => {
+      setValues({ ...values, [event.target.name]: event.target.value });
+    };
+
+    const addOrEdit = (obj) => {
+      if (propsId === "") {
+        firebaseDB.child("Point").push(obj, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      } else {
+        firebaseDB
+          .database()
+          .ref()
+          .child(`Point/${propsId}`)
+          .set(obj, (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              alert("Cập nhật thành công");
+            }
+          });
+      }
+    };
+  
+    console.log(values);
+
+    // Submit
+    const handleSubmit = (e) => {
+      addOrEdit(values);
+    };
+
+    return (
+      <div>
+        <IconButton>
+          <EditIcon onClick={handleClickOpen} />
+        </IconButton>
+        <Dialog
+          fullWidth
+          maxWidth="sm"
+          open={open}
+          scroll="body"
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">Chỉnh sửa</DialogTitle>
+          <DialogContent>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <CardMedia
+                  component="img"
+                  src={values.obj1?.pointImage}
+                  variant="square"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Link hình"
+                  defaultValue={obj1?.pointImage}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="pointImage"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Mã chi nhánh"
+                  defaultValue={obj1?.pointId}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên chi nhánh"
+                  defaultValue={obj1?.pointName}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="pointName"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Địa chỉ chi nhánh"
+                  defaultValue={obj1?.pointAddress}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="pointAddress"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Thời gian cập nhật"
+                  defaultValue={propsData[propsId].dateCreate}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSubmit} color="primary">
+              Xác nhận
+            </Button>
+            <Button onClick={handleClose} autoFocus>
+              Đóng
             </Button>
           </DialogActions>
         </Dialog>
@@ -224,9 +411,7 @@ export default function CreatePoint() {
                         <ViewDialog propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
-                        <IconButton>
-                          <EditIcon />
-                        </IconButton>
+                        <ViewDialogEdit propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
                         <IconButton
