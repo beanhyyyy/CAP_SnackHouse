@@ -205,7 +205,7 @@ function CreateOutput() {
           if (err) {
             console.log(err);
           } else {
-            alert("Success");
+            alert("Tạo phiếu xuất thành công");
           }
         });
     }

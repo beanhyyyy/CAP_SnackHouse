@@ -57,7 +57,7 @@ function Warehouse() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Xóa kho thành công");
         }
       });
   };

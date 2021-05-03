@@ -94,7 +94,7 @@ export default function CreateWarehouse() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Tạo kho thành công");
           history.go("/admin/PageWarehouse");
         }
       });

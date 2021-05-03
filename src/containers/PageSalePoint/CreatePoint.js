@@ -30,7 +30,7 @@ export default function CreatePoint() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Tạo chi nhánh thành công");
           history.go("/admin/PageSalePoint");
         }
       });

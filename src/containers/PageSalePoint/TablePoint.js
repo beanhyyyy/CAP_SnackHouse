@@ -55,7 +55,7 @@ export default function CreatePoint() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Xóa chi nhánh thành công");
         }
       });
   };

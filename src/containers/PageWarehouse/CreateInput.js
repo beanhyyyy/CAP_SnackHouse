@@ -179,7 +179,7 @@ function CreateInput() {
           if (err) {
             console.log(err);
           } else {
-            alert("Success");
+            alert("Tạo phiếu nhập thành công");
           }
         });
     }

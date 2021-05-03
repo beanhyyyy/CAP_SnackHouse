@@ -104,7 +104,7 @@ import {
           if (err) {
             console.log(err);
           } else {
-            alert("Success");
+            alert("Tạo kh thành công");
             history.go("/admin/PageWarehouse");
           }
         });

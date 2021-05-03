@@ -55,14 +55,14 @@ function OutputWarehouse() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Xóa phiếu xuất thành công");
         }
       });
   };
 
-  // Dialog
+   // Dialog
 
-  function ViewDialog({ propsId, propsData }) {
+   function ViewDialog({ propsId, propsData }) {
     console.log("propsssssssssssss", propsData);
     const [open, setOpen] = React.useState(false);
 
@@ -82,47 +82,56 @@ function OutputWarehouse() {
         <Dialog
           fullWidth
           maxWidth="sm"
-          scroll="body"
           open={open}
+          scroll="body"
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Chi tiet</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Thông tin chi tiết</DialogTitle>
           <DialogContent>
-            {Object.values(propsData[propsId]).map((item, index) => {
-              const key = index;
-              return (
-                <Grid container spacing={2} key={key}>
-                  <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                {Object.keys(propsData)?.map((item1) => {
+                  return (
                     <TextField
-                      disabled
-                      variant="outlined"
                       size="small"
                       fullWidth
-                      defaultValue={item}
-                    />
-                  </Grid>
-                </Grid>
-              );
-            })}
+                      disabled
+                      defaultValue={item1}
+                    ></TextField>
+                  );
+                })}
+              </Grid>
+              <Grid item xs={8}>
+                {Object.values(propsData)?.map((item2) => {
+                  return (
+                    <TextField
+                      size="small"
+                      fullWidth
+                      disabled
+                      defaultValue={item2}
+                    ></TextField>
+                  );
+                })}
+              </Grid>
+            </Grid>
+
             {/* {Object.keys(propsData[propsId])}:
-        {Object.values(propsData[propsId])} */}
-            {propsData[propsId].createName}
+          {Object.values(propsData[propsId])} */}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
-              Xac nhan
+              Xác nhận
             </Button>
             <Button onClick={handleClose} autoFocus>
-              Dong
+              Đóng
             </Button>
           </DialogActions>
         </Dialog>
       </div>
     );
   }
-
   return (
     <div>
       <Box mb={2}>
@@ -216,7 +225,7 @@ function OutputWarehouse() {
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
-                        <ViewDialog propsId={id} propsData={data} />
+                        <ViewDialog propsId={id} propsData={data[id]} />
                       </Grid>
                       <Grid item>
                         <IconButton>

@@ -237,7 +237,7 @@ export default function Report() {
           if (err) {
             console.log(err);
           } else {
-            alert("Success");
+            alert("Tạo phiếu thành công");
           }
         });
     }

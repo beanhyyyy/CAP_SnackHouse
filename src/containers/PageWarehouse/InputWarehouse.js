@@ -55,7 +55,7 @@ function InputWarehouse() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Xóa phiếu nhập thành công");
         }
       });
   };
@@ -88,34 +88,44 @@ function InputWarehouse() {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Chi tiet</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Thông tin chi tiết</DialogTitle>
           <DialogContent>
-            {Object.values(propsData[propsId]).map((item, index) => {
-              const key = index;
-              return (
-                <Grid container spacing={2} key={key}>
-                  <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                {Object.keys(propsData)?.map((item1) => {
+                  return (
                     <TextField
-                      disabled
-                      variant="outlined"
                       size="small"
                       fullWidth
-                      defaultValue={item}
-                    />
-                  </Grid>
-                </Grid>
-              );
-            })}
+                      disabled
+                      defaultValue={item1}
+                    ></TextField>
+                  );
+                })}
+              </Grid>
+              <Grid item xs={8}>
+                {Object.values(propsData)?.map((item2) => {
+                  return (
+                    <TextField
+                      size="small"
+                      fullWidth
+                      disabled
+                      defaultValue={item2}
+                    ></TextField>
+                  );
+                })}
+              </Grid>
+            </Grid>
+
             {/* {Object.keys(propsData[propsId])}:
           {Object.values(propsData[propsId])} */}
-          {propsData[propsId].createName}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
-              Xac nhan
+              Xác nhận
             </Button>
             <Button onClick={handleClose} autoFocus>
-              Dong
+              Đóng
             </Button>
           </DialogActions>
         </Dialog>
@@ -192,51 +202,55 @@ function InputWarehouse() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Object.keys(data).reverse().map((id, index) => {
-              const key = index;
-              return (
-                <TableRow key={key}>
-                  <TableCell component="th" scope="row">
-                    {key + 1}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <CardMedia
-                      component="img"
-                      image={data[id].warehouseImage}
-                      style={{ width: "50px", height: "50px" }}
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row" align="right">
-                    {data[id].warehouseId}
-                  </TableCell>
-                  <TableCell align="right">{data[id].warehouseName}</TableCell>
-                  <TableCell align="right">{data[id].namePoint}</TableCell>
-                  <TableCell align="right">{data[id].dateCreate}</TableCell>
-                  <TableCell align="right">{data[id].createName}</TableCell>
-                  <TableCell>
-                    <Grid container justify="flex-end">
-                      <Grid item>
-                        <ViewDialog propsId={id} propsData={data} />
+            {Object.keys(data)
+              .reverse()
+              .map((id, index) => {
+                const key = index;
+                return (
+                  <TableRow key={key}>
+                    <TableCell component="th" scope="row">
+                      {key + 1}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      <CardMedia
+                        component="img"
+                        image={data[id].warehouseImage}
+                        style={{ width: "50px", height: "50px" }}
+                      />
+                    </TableCell>
+                    <TableCell component="th" scope="row" align="right">
+                      {data[id].warehouseId}
+                    </TableCell>
+                    <TableCell align="right">
+                      {data[id].warehouseName}
+                    </TableCell>
+                    <TableCell align="right">{data[id].namePoint}</TableCell>
+                    <TableCell align="right">{data[id].dateCreate}</TableCell>
+                    <TableCell align="right">{data[id].createName}</TableCell>
+                    <TableCell>
+                      <Grid container justify="flex-end">
+                        <Grid item>
+                          <ViewDialog propsId={id} propsData={data[id]} />
+                        </Grid>
+                        <Grid item>
+                          <IconButton>
+                            <EditIcon />
+                          </IconButton>
+                        </Grid>
+                        <Grid item>
+                          <IconButton
+                            onClick={() => {
+                              onDelete(id);
+                            }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Grid>
                       </Grid>
-                      <Grid item>
-                        <IconButton>
-                          <EditIcon />
-                        </IconButton>
-                      </Grid>
-                      <Grid item>
-                        <IconButton
-                          onClick={() => {
-                            onDelete(id);
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </Grid>
-                    </Grid>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </TableContainer>
