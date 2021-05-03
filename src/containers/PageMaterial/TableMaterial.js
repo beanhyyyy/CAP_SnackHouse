@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
   Button,
@@ -55,15 +56,13 @@ export default function TableMaterial() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Xóa thành công");
         }
       });
   };
 
-  // Dialog
-
+  // Dialog Detail
   function ViewDialog({ propsId, propsData }) {
-    console.log("propsssssssssssss", propsData);
     const [open, setOpen] = React.useState(false);
 
     const handleClose = () => {
@@ -88,40 +87,206 @@ export default function TableMaterial() {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Chi tiet</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Thông tin chi tiết</DialogTitle>
           <DialogContent>
-            {Object.values(propsData[propsId]).map((item, index) => {
-              const key = index;
-              return (
-                <Grid container spacing={2} key={key}>
-                  <Grid item xs={12}>
-                    <TextField
-                      disabled
-                      variant="outlined"
-                      size="small"
-                      fullWidth
-                      defaultValue={item}
-                    />
-                  </Grid>
-                </Grid>
-              );
-            })}
-            {/* {Object.keys(propsData[propsId])}:
-            {Object.values(propsData[propsId])} */}
-            {propsData[propsId].createName}
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <CardMedia
+                  component="img"
+                  src={propsData[propsId].materialImage}
+                  variant="square"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Link hình"
+                  value={propsData[propsId].materialImage}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Mã nguyên liệu"
+                  value={propsData[propsId].materialId}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên nguyên liệu"
+                  value={propsData[propsId].materialName}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Thời gian cập nhật"
+                  value={propsData[propsId].dateCreate}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+            </Grid>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
-              Xac nhan
+              Xác nhận
             </Button>
             <Button onClick={handleClose} autoFocus>
-              Dong
+              Đóng
             </Button>
           </DialogActions>
         </Dialog>
       </div>
     );
   }
+
+  // Dialog Edit
+  function ViewDialogEdit({ propsId, propsData }) {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const [values, setValues] = useState({
+      dateCreate: new Date().toString(),
+    });
+
+    var obj1 = propsData[propsId];
+
+    useEffect(() => {
+      setValues({ ...values, obj1 });
+    }, [obj1]);
+
+    const handleChangeEdit = (event) => {
+      setValues({ ...values, [event.target.name]: event.target.value });
+    };
+
+    const addOrEdit = (obj) => {
+      if (propsId === "") {
+        firebaseDB.child("Material").push(obj, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      } else {
+        firebaseDB
+          .database()
+          .ref()
+          .child(`Material/${propsId}`)
+          .set(obj, (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              alert("Cập nhật thành công");
+            }
+          });
+      }
+    };
+
+    // Submit
+    const handleSubmit = (e) => {
+      addOrEdit(values);
+    };
+
+    return (
+      <div>
+        <IconButton>
+          <EditIcon onClick={handleClickOpen} />
+        </IconButton>
+        <Dialog
+          fullWidth
+          maxWidth="sm"
+          open={open}
+          scroll="body"
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">Chỉnh sửa</DialogTitle>
+          <DialogContent>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <CardMedia
+                  component="img"
+                  src={values.obj1?.materialImage}
+                  variant="square"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Link hình"
+                  defaultValue={values.obj1?.materialImage}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="materialImage"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Mã nguyên liệu"
+                  defaultValue={values.obj1?.materialId}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="materialId"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên nguyên liệu"
+                  defaultValue={values.obj1?.materialName}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="materialName"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Thời gian cập nhật"
+                  defaultValue={values.obj1?.dateCreate}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSubmit} color="primary">
+              Xác nhận
+            </Button>
+            <Button onClick={handleClose} autoFocus>
+              Đóng
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Box mb={2}>
@@ -194,7 +359,7 @@ export default function TableMaterial() {
               <TableCell>Hình ảnh </TableCell>
               <TableCell align="right">Mã </TableCell>
               <TableCell align="right">Tên</TableCell>
-              <TableCell align="right">Danh mục </TableCell>
+              <TableCell align="right">Thời gian cập nhật</TableCell>
               <TableCell align="right">Chức năng</TableCell>
             </TableRow>
           </TableHead>
@@ -217,16 +382,14 @@ export default function TableMaterial() {
                   <TableCell component="th" scope="row" align="right">
                     {data[id].materialName}
                   </TableCell>
-                  <TableCell align="right">{data[id].category}</TableCell>
+                  <TableCell align="right">{data[id].dateCreate}</TableCell>
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>
                         <ViewDialog propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
-                        <IconButton>
-                          <EditIcon />
-                        </IconButton>
+                        <ViewDialogEdit propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
                         <IconButton

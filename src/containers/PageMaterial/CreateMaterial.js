@@ -40,7 +40,7 @@ export default function CreateMaterial() {
         if (err) {
           console.log(err);
         } else {
-          alert("Success");
+          alert("Thêm mới thành công");
           history.go("/admin/material");
         }
       });
@@ -48,6 +48,7 @@ export default function CreateMaterial() {
 
   const initialFieldValues = {
     materialImage: "",
+    dateCreate: new Date().toString(),
   };
 
   var [values, setValues] = useState(initialFieldValues);
@@ -107,7 +108,7 @@ export default function CreateMaterial() {
             <Grid container spacing={2}>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
-                  label="Tên"
+                  label="Tên nguyên liệu"
                   placeholder="Nhập tên ... "
                   size="small"
                   fullWidth
@@ -119,24 +120,13 @@ export default function CreateMaterial() {
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
-                  label="Mã SKU"
-                  placeholder="Mã SKU ... "
+                  label="Mã nguyên liệu"
+                  placeholder="Mã nguyên liệu... "
                   size="small"
                   fullWidth
                   variant="outlined"
                   name="materialId"
                   value={values.materialId}
-                  onChange={handleInputChange}
-                />
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <TextField
-                  label="Danh mục"
-                  variant="outlined"
-                  size="small"
-                  name="category"
-                  fullWidth
-                  value={values.category}
                   onChange={handleInputChange}
                 />
               </Grid>
