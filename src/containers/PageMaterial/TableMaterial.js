@@ -267,7 +267,7 @@ export default function TableMaterial() {
               <Grid item xs={12}>
                 <TextField
                   label="Thời gian cập nhật"
-                  defaultValue={values.obj1?.dateCreate}
+                  defaultValue={obj1?.dateCreate}
                   fullWidth
                   variant="outlined"
                   disabled
@@ -366,7 +366,7 @@ export default function TableMaterial() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Object.keys(data).map((id, index) => {
+            {Object.keys(data).reverse().map((id, index) => {
               const key = index;
               return (
                 <TableRow key={key}>

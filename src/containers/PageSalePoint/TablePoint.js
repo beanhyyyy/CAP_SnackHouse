@@ -386,7 +386,7 @@ export default function CreatePoint() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Object.keys(data).map((id, index) => {
+            {Object.keys(data).reverse().map((id, index) => {
               const key = index;
               return (
                 <TableRow key={key}>

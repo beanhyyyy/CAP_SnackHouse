@@ -200,7 +200,7 @@ useEffect(() => {
               <Typography align="center">
                 <b>Phiếu nhập kho</b>
               </Typography>
-              {Object.keys(dataInput).map((id, index) => {
+              {Object.keys(dataInput).reverse().map((id, index) => {
                 const key = index;
                 return (
                   <List key={key}>
@@ -219,7 +219,7 @@ useEffect(() => {
               <Typography align="center">
                 <b>Phiếu xuất kho</b>
               </Typography>
-              {Object.keys(dataOutput).map((id, index) => {
+              {Object.keys(dataOutput).reverse().map((id, index) => {
                 const key = index;
                 return (
                   <List key={key}>
@@ -238,7 +238,7 @@ useEffect(() => {
               <Typography align="center">
                 <b>Phiếu tồn kho</b>
               </Typography>
-              {Object.keys(dataInventory).map((id, index) => {
+              {Object.keys(dataInventory).reverse().map((id, index) => {
                 const key = index;
                 return (
                   <List key={key}>
