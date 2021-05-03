@@ -58,9 +58,11 @@ export default function CreateMaterial() {
   };
 
   const handleSubmit = (e) => {
+    if (values.materialName) {
+      values.materialName = "Nguyên Liệu: " + values.materialName;
+    }
     addTest(values);
   };
-
   return (
     <div>
       <Typography variant="h6">Tạo mới nguyên vật liệu</Typography>
