@@ -171,7 +171,8 @@ export default function TableMaterial() {
     var obj1 = propsData[propsId];
 
     useEffect(() => {
-      setValues({ ...values, obj1 });
+      Object.assign(obj1, {dateCreate: new Date().toString()})
+      setValues(obj1);
     }, [obj1]);
 
     const handleChangeEdit = (event) => {
@@ -200,6 +201,7 @@ export default function TableMaterial() {
       }
     };
 
+    console.log(values);
     // Submit
     const handleSubmit = (e) => {
       addOrEdit(values);
@@ -225,14 +227,14 @@ export default function TableMaterial() {
               <Grid item xs={12}>
                 <CardMedia
                   component="img"
-                  src={values.obj1?.materialImage}
+                  src={obj1?.materialImage}
                   variant="square"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   label="Link hình"
-                  defaultValue={values.obj1?.materialImage}
+                  defaultValue={obj1?.materialImage}
                   fullWidth
                   variant="outlined"
                   size="small"
@@ -243,7 +245,7 @@ export default function TableMaterial() {
               <Grid item xs={12}>
                 <TextField
                   label="Mã nguyên liệu"
-                  defaultValue={values.obj1?.materialId}
+                  defaultValue={obj1?.materialId}
                   fullWidth
                   variant="outlined"
                   size="small"
@@ -254,7 +256,7 @@ export default function TableMaterial() {
               <Grid item xs={12}>
                 <TextField
                   label="Tên nguyên liệu"
-                  defaultValue={values.obj1?.materialName}
+                  defaultValue={obj1?.materialName}
                   fullWidth
                   variant="outlined"
                   size="small"
