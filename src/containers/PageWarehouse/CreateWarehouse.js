@@ -8,7 +8,7 @@ import {
   CardMedia,
   IconButton,
   Card,
-  MenuItem,
+  // MenuItem,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
@@ -31,9 +31,9 @@ export default function CreateWarehouse() {
   });
 
   // Data of Point
-  const [dataPoint, setDataPoint] = useState();
+  // const [dataPoint, setDataPoint] = useState();
 
-  const [point, setPoint] = React.useState();
+  // const [point, setPoint] = React.useState();
 
   // Material
   useEffect(() => {
@@ -62,27 +62,27 @@ export default function CreateWarehouse() {
   }, [dataMaterialName]);
 
   // Effect Point
-  useEffect(() => {
-    firebaseDB
-      .database()
-      .ref()
-      .child("Point")
-      .on("value", (snapshot) => {
-        if (snapshot.val() != null) {
-          var test = [];
-          Object.keys(snapshot.val()).map((id) =>
-            test.push(snapshot.val()[id].pointName)
-          );
-        }
-        setDataPoint(test);
-      });
-  }, []);
+  // useEffect(() => {
+  //   firebaseDB
+  //     .database()
+  //     .ref()
+  //     .child("Point")
+  //     .on("value", (snapshot) => {
+  //       if (snapshot.val() != null) {
+  //         var test = [];
+  //         Object.keys(snapshot.val()).map((id) =>
+  //           test.push(snapshot.val()[id].pointName)
+  //         );
+  //       }
+  //       setDataPoint(test);
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    setValues({ ...values, namePoint: point });
+  // useEffect(() => {
+  //   setValues({ ...values, namePoint: point });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [point]);
+  // }, [point]);
 
   // Create
   const addTest = (obj) => {
@@ -109,9 +109,9 @@ export default function CreateWarehouse() {
   };
 
   // Handle Select Point
-  const handleChangePoint = (event) => {
-    setPoint(event.target.value);
-  };
+  // const handleChangePoint = (event) => {
+  //   setPoint(event.target.value);
+  // };
 
   console.log(values);
 
@@ -187,7 +187,7 @@ export default function CreateWarehouse() {
                   onChange={handleInputChange}
                 />
               </Grid>
-              <Grid item md={4} sm={6} xs={12}>
+              {/* <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   fullWidth
                   variant="outlined"
@@ -206,7 +206,7 @@ export default function CreateWarehouse() {
                       </MenuItem>
                     ))}
                 </TextField>
-              </Grid>
+              </Grid> */}
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
                   label="Địa chỉ"

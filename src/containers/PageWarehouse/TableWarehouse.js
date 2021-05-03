@@ -62,10 +62,8 @@ function Warehouse() {
       });
   };
 
-  // Dialog
-
+  // Dialog Detail
   function ViewDialog({ propsId, propsData }) {
-    console.log(propsData);
     const [open, setOpen] = React.useState(false);
 
     const handleClose = () => {
@@ -85,28 +83,91 @@ function Warehouse() {
           fullWidth
           maxWidth="sm"
           open={open}
+          scroll="body"
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Thong bao?"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Thông tin chi tiết</DialogTitle>
           <DialogContent>
-            {propsData[propsId].warehouseMaterial?.map((item, index) => {
-              const key = index;
-              return (
-                <React.Fragment key={key}>
-                  {Object.keys(item)} : {Object.values(item)}
-                  <br />
-                </React.Fragment>
-              );
-            })}
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <CardMedia
+                  component="img"
+                  src={propsData[propsId].warehouseImage}
+                  variant="square"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Link hình"
+                  value={propsData[propsId].warehouseImage}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Mã kho"
+                  value={propsData[propsId].warehouseId}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên kho"
+                  value={propsData[propsId].warehouseName}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Ngày cập nhật"
+                  value={propsData[propsId].dateCreate}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên người tạo"
+                  value={propsData[propsId].createName}
+                  fullWidth
+                  variant="outlined"
+                  disabled
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Typography>Nguyen Lieu</Typography>
+                {propsData[propsId].warehouseMaterial?.map((item, index) => {
+                  const key = index;
+                  return (
+                    <React.Fragment key={key}>
+                      {Object.keys(item)} : {Object.values(item)}
+                      <br />
+                    </React.Fragment>
+                  );
+                })}
+              </Grid>
+            </Grid>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
-              Xac nhan
+              Xác nhận
             </Button>
             <Button onClick={handleClose} autoFocus>
-              Dong
+              Đóng
             </Button>
           </DialogActions>
         </Dialog>
@@ -114,6 +175,136 @@ function Warehouse() {
     );
   }
 
+    // Dialog Edit
+    function ViewDialogEdit({ propsId, propsData }) {
+      const [open, setOpen] = React.useState(false);
+  
+      const handleClose = () => {
+        setOpen(false);
+      };
+  
+      const handleClickOpen = () => {
+        setOpen(true);
+      };
+  
+      const [values, setValues] = useState({
+        dateCreate: new Date().toString(),
+      });
+  
+      var obj1 = propsData[propsId];
+  
+      useEffect(() => {
+        Object.assign(obj1, {dateCreate: new Date().toString()})
+        setValues(obj1);
+      }, [obj1]);
+  
+      const handleChangeEdit = (event) => {
+        setValues({ ...values, [event.target.name]: event.target.value });
+      };
+  
+      const addOrEdit = (obj) => {
+        if (propsId === "") {
+          firebaseDB.child("Warehouse").push(obj, (err) => {
+            if (err) {
+              console.log(err);
+            }
+          });
+        } else {
+          firebaseDB
+            .database()
+            .ref()
+            .child(`Warehouse/${propsId}`)
+            .set(obj, (err) => {
+              if (err) {
+                console.log(err);
+              } else {
+                alert("Cập nhật thành công");
+              }
+            });
+        }
+      };
+    
+      console.log(values);
+  
+      // Submit
+      const handleSubmit = (e) => {
+        addOrEdit(values);
+      };
+  
+      return (
+        <div>
+          <IconButton>
+            <EditIcon onClick={handleClickOpen} />
+          </IconButton>
+          <Dialog
+            fullWidth
+            maxWidth="sm"
+            open={open}
+            scroll="body"
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">Chỉnh sửa</DialogTitle>
+            <DialogContent>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <CardMedia
+                    component="img"
+                    src={obj1?.warehouseImage}
+                    variant="square"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Link hình"
+                    defaultValue={obj1?.warehouseImage}
+                    fullWidth
+                    variant="outlined"
+                    size="small"
+                    name="warehouseImage"
+                    onChange={handleChangeEdit}
+                  />
+                </Grid>
+       
+                <Grid item xs={12}>
+                  <TextField
+                    label="Tên kho"
+                    defaultValue={obj1?.warehouseName}
+                    fullWidth
+                    variant="outlined"
+                    size="small"
+                    name="warehouseName"
+                    onChange={handleChangeEdit}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    label="Tên người tạo"
+                    defaultValue={obj1?.createName}
+                    fullWidth
+                    variant="outlined"
+                    size="small"
+                    name="createName"
+                    onChange={handleChangeEdit}
+                  />
+                </Grid>
+              </Grid>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleSubmit} color="primary">
+                Xác nhận
+              </Button>
+              <Button onClick={handleClose} autoFocus>
+                Đóng
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      );
+    }
+  
   return (
     <div>
       <Box mb={2}>
@@ -176,7 +367,6 @@ function Warehouse() {
               <TableCell>Hình ảnh</TableCell>
               <TableCell align="right">Mã kho</TableCell>
               <TableCell align="right">Tên kho</TableCell>
-              <TableCell align="right">Chi nhánh</TableCell>
               <TableCell align="right">Địa chỉ</TableCell>
               <TableCell align="right">Người tạo</TableCell>
               <TableCell align="right">Chức năng</TableCell>
@@ -201,7 +391,6 @@ function Warehouse() {
                     {data[id].warehouseId}
                   </TableCell>
                   <TableCell align="right">{data[id].warehouseName}</TableCell>
-                  <TableCell align="right">{data[id].pointName}</TableCell>
                   <TableCell align="right">
                     {data[id].warehouseAddress}
                   </TableCell>
@@ -212,9 +401,7 @@ function Warehouse() {
                         <ViewDialog propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
-                        <IconButton>
-                          <EditIcon />
-                        </IconButton>
+                        <ViewDialogEdit propsId={id} propsData={data} />
                       </Grid>
                       <Grid item>
                         <IconButton
