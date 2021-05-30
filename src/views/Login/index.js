@@ -21,8 +21,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link to="#" color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link to="#" color="inherit" href="https://www.vanlanguni.edu.vn/">
+        Dreamaker
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

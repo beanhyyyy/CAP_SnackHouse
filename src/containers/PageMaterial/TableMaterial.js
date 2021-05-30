@@ -361,7 +361,6 @@ export default function TableMaterial() {
               <TableCell>Hình ảnh </TableCell>
               <TableCell align="right">Mã </TableCell>
               <TableCell align="right">Tên</TableCell>
-              <TableCell align="right">Thời gian cập nhật</TableCell>
               <TableCell align="right">Chức năng</TableCell>
             </TableRow>
           </TableHead>
@@ -384,7 +383,6 @@ export default function TableMaterial() {
                   <TableCell component="th" scope="row" align="right">
                     {data[id].materialName}
                   </TableCell>
-                  <TableCell align="right">{data[id].dateCreate}</TableCell>
                   <TableCell>
                     <Grid container justify="flex-end">
                       <Grid item>

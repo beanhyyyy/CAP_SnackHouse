@@ -37,13 +37,21 @@ export default function Header(props) {
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
           {/* Here we create navbar brand, based on route name */}
-          <Button variant="outlined" href="#" className={classes.title}>
-            {makeBrand()}
-          </Button>
+          <Box pl={3}>
+            <Button
+              variant="outlined"
+              color="primary"
+              className={classes.title}
+            >
+              {makeBrand()}
+            </Button>
+          </Box>
         </div>
         <Hidden smDown implementation="css">
           <Box alignItems="center" display="flex">
-            <Typography>Logout</Typography>
+            <Typography>
+              <b>ĐĂNG XUẤT</b>
+            </Typography>
             &ensp;
             <IconButton href="/Login">
               <ExitToAppIcon />

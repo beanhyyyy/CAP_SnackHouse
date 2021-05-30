@@ -19,8 +19,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link to="#" color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link to="#" color="inherit" href="https://www.vanlanguni.edu.vn/">
+        Dreamaker
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -111,7 +111,7 @@ export default function ForgotPassword() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Reset Password
+            Quên mật khẩu
         </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             {error &&
@@ -137,7 +137,7 @@ export default function ForgotPassword() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email công ty"
               name="email"
               inputRef={emailRef}
             />
@@ -149,12 +149,12 @@ export default function ForgotPassword() {
               className={classes.submit}
               disabled={loading}
             >
-              Reset Password
+              Gửi
               </Button>
             <Grid container justify="center" spacing={2}>
               <Grid item>
                 <Link to="/Login" href="#" variant="body2">
-                  Already have an account? Sign in
+                  Tôi đã có tài khoản? Đăng nhập
               </Link>
               </Grid>
               {/* <Grid item>

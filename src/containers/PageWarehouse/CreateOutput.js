@@ -353,8 +353,6 @@ function CreateOutput() {
                     <Grid item xs={12}>
                       <Typography variant="h6">Nguyên liệu</Typography>
                     </Grid>
-                    {console.log("NGUYEN LIEUUUUUUUUUUUUUUUUUUU", dataMaterial)}
-                    {console.log("values", values)}
                     {dataMaterial
                       ? dataMaterial.map((itemTest, index) => {
                           const key = index;
@@ -403,11 +401,11 @@ function CreateOutput() {
           startIcon={<CheckIcon />}
           onClick={handleSubmit}
         >
-          Submit
+          Tạo
         </Button>
         &nbsp;&nbsp;
         <Button color="secondary" variant="outlined" startIcon={<CloseIcon />}>
-          Cancel
+          Hủy
         </Button>
       </Box>
     </div>

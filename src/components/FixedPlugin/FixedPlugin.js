@@ -32,7 +32,7 @@ export default function FixedPlugin(props) {
           <i className="fa fa-cog fa-2x" />
         </div>
         <ul className="dropdown-menu">
-          <li className="header-title">SIDEBAR FILTERS</li>
+          <li className="header-title">Đổi tông màu</li>
           <li className="adjustments-line">
             <a className="switch-trigger">
               <div>
@@ -94,7 +94,7 @@ export default function FixedPlugin(props) {
               </div>
             </a>
           </li>
-          <li className="header-title">Images</li>
+          <li className="header-title">Đổi hình nền</li>
           <li className={bgImage === imagine1 ? "active" : ""}>
             <a
               className="img-holder switch-trigger"

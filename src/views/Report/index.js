@@ -392,11 +392,6 @@ export default function Report() {
                             <Grid item xs={12}>
                               <Typography variant="h6">Nguyên liệu</Typography>
                             </Grid>
-                            {console.log(
-                              "NGUYEN LIEUUUUUUUUUUUUUUUUUUU",
-                              dataMaterial
-                            )}
-                            {console.log("values", values)}
                             {dataMaterial
                               ? dataMaterial.map((itemTest, index) => {
                                   const key = index;

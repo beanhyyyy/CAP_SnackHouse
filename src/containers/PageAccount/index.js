@@ -4,25 +4,20 @@ import TabIndicatorCenter from "../../components/TabIndicatorCenter";
 import TabPanel from "../../components/TabPanel";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
-import Account from "./Account";
+// import Account from "./Account";
 import CreateAccount from "../../views/CreateAccount";
 import Decentralization from "./Decentralization";
 
 const mainTabs = [
   {
-    key: 1,
-    label: "Tài khoản",
-    content: Account,
+    key: 3,
+    label: "Phân quyền",
+    content: Decentralization,
   },
   {
     key: 2,
     label: "Tạo tài khoản",
     content: CreateAccount,
-  },
-  {
-    key: 3,
-    label: "Phân quyền",
-    content: Decentralization,
   },
 ];
 

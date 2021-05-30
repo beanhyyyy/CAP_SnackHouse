@@ -97,7 +97,7 @@ export default function CreateAccount() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email công ty"
               name="email"
               inputRef={emailRef}
             />
@@ -107,7 +107,7 @@ export default function CreateAccount() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mật khẩu"
               type="password"
               id="password"
               inputRef={passwordRef}
@@ -118,7 +118,7 @@ export default function CreateAccount() {
                 required
                 fullWidth
                 name="password"
-                label="Password Confirm"
+                label="Nhập lại mật khẩu"
                 type="password"
                 id="password-confirm"
                 inputRef={passwordConfirmRef}

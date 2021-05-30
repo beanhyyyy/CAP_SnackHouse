@@ -142,7 +142,7 @@ export default function CreatePoint() {
                 startIcon={<CheckIcon />}
                 onClick={handleSubmit}
               >
-                Submit
+                Tạo
               </Button>
               &nbsp;&nbsp;
               <Button
@@ -150,7 +150,7 @@ export default function CreatePoint() {
                 variant="outlined"
                 startIcon={<CloseIcon />}
               >
-                Cancel
+                Hủy
               </Button>
             </Box>
           </Grid>

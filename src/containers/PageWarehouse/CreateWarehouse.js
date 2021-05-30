@@ -241,7 +241,7 @@ export default function CreateWarehouse() {
                 startIcon={<CheckIcon />}
                 onClick={handleSubmit}
               >
-                Submit
+                Tạo
               </Button>
               &nbsp;&nbsp;
               <Button
@@ -249,7 +249,7 @@ export default function CreateWarehouse() {
                 variant="outlined"
                 startIcon={<CloseIcon />}
               >
-                Cancel
+                Hủy
               </Button>
             </Box>
           </Grid>

@@ -149,13 +149,31 @@ function Warehouse() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Typography>Nguyen Lieu</Typography>
+                <Typography>
+                  <b>Danh sách các nguyên liệu trong kho:</b>
+                </Typography>
                 {propsData[propsId].warehouseMaterial?.map((item, index) => {
                   const key = index;
                   return (
                     <React.Fragment key={key}>
-                      {Object.keys(item)} : {Object.values(item)}
-                      <br />
+                      <Grid container spacing={2}>
+                        <Grid item xs={12} md={4}>
+                          <TextField
+                            disabled
+                            size="small"
+                            fullWidth
+                            defaultValue={Object.keys(item)}
+                          />
+                        </Grid>
+                        <Grid item xs={12} md={8}>
+                          <TextField
+                            disabled
+                            size="small"
+                            fullWidth
+                            defaultValue={Object.values(item)}
+                          />
+                        </Grid>
+                      </Grid>
                     </React.Fragment>
                   );
                 })}
@@ -175,136 +193,136 @@ function Warehouse() {
     );
   }
 
-    // Dialog Edit
-    function ViewDialogEdit({ propsId, propsData }) {
-      const [open, setOpen] = React.useState(false);
-  
-      const handleClose = () => {
-        setOpen(false);
-      };
-  
-      const handleClickOpen = () => {
-        setOpen(true);
-      };
-  
-      const [values, setValues] = useState({
-        dateCreate: new Date().toString(),
-      });
-  
-      var obj1 = propsData[propsId];
-  
-      useEffect(() => {
-        Object.assign(obj1, {dateCreate: new Date().toString()})
-        setValues(obj1);
-      }, [obj1]);
-  
-      const handleChangeEdit = (event) => {
-        setValues({ ...values, [event.target.name]: event.target.value });
-      };
-  
-      const addOrEdit = (obj) => {
-        if (propsId === "") {
-          firebaseDB.child("Warehouse").push(obj, (err) => {
+  // Dialog Edit
+  function ViewDialogEdit({ propsId, propsData }) {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const [values, setValues] = useState({
+      dateCreate: new Date().toString(),
+    });
+
+    var obj1 = propsData[propsId];
+
+    useEffect(() => {
+      Object.assign(obj1, { dateCreate: new Date().toString() });
+      setValues(obj1);
+    }, [obj1]);
+
+    const handleChangeEdit = (event) => {
+      setValues({ ...values, [event.target.name]: event.target.value });
+    };
+
+    const addOrEdit = (obj) => {
+      if (propsId === "") {
+        firebaseDB.child("Warehouse").push(obj, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      } else {
+        firebaseDB
+          .database()
+          .ref()
+          .child(`Warehouse/${propsId}`)
+          .set(obj, (err) => {
             if (err) {
               console.log(err);
+            } else {
+              alert("Cập nhật thành công");
             }
           });
-        } else {
-          firebaseDB
-            .database()
-            .ref()
-            .child(`Warehouse/${propsId}`)
-            .set(obj, (err) => {
-              if (err) {
-                console.log(err);
-              } else {
-                alert("Cập nhật thành công");
-              }
-            });
-        }
-      };
-    
-      console.log(values);
-  
-      // Submit
-      const handleSubmit = (e) => {
-        addOrEdit(values);
-      };
-  
-      return (
-        <div>
-          <IconButton>
-            <EditIcon onClick={handleClickOpen} />
-          </IconButton>
-          <Dialog
-            fullWidth
-            maxWidth="sm"
-            open={open}
-            scroll="body"
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">Chỉnh sửa</DialogTitle>
-            <DialogContent>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <CardMedia
-                    component="img"
-                    src={obj1?.warehouseImage}
-                    variant="square"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    label="Link hình"
-                    defaultValue={obj1?.warehouseImage}
-                    fullWidth
-                    variant="outlined"
-                    size="small"
-                    name="warehouseImage"
-                    onChange={handleChangeEdit}
-                  />
-                </Grid>
-       
-                <Grid item xs={12}>
-                  <TextField
-                    label="Tên kho"
-                    defaultValue={obj1?.warehouseName}
-                    fullWidth
-                    variant="outlined"
-                    size="small"
-                    name="warehouseName"
-                    onChange={handleChangeEdit}
-                  />
-                </Grid>
+      }
+    };
 
-                <Grid item xs={12}>
-                  <TextField
-                    label="Tên người tạo"
-                    defaultValue={obj1?.createName}
-                    fullWidth
-                    variant="outlined"
-                    size="small"
-                    name="createName"
-                    onChange={handleChangeEdit}
-                  />
-                </Grid>
+    console.log(values);
+
+    // Submit
+    const handleSubmit = (e) => {
+      addOrEdit(values);
+    };
+
+    return (
+      <div>
+        <IconButton>
+          <EditIcon onClick={handleClickOpen} />
+        </IconButton>
+        <Dialog
+          fullWidth
+          maxWidth="sm"
+          open={open}
+          scroll="body"
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">Chỉnh sửa</DialogTitle>
+          <DialogContent>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <CardMedia
+                  component="img"
+                  src={obj1?.warehouseImage}
+                  variant="square"
+                />
               </Grid>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleSubmit} color="primary">
-                Xác nhận
-              </Button>
-              <Button onClick={handleClose} autoFocus>
-                Đóng
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </div>
-      );
-    }
-  
+              <Grid item xs={12}>
+                <TextField
+                  label="Link hình"
+                  defaultValue={obj1?.warehouseImage}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="warehouseImage"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên kho"
+                  defaultValue={obj1?.warehouseName}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="warehouseName"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  label="Tên người tạo"
+                  defaultValue={obj1?.createName}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="createName"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSubmit} color="primary">
+              Xác nhận
+            </Button>
+            <Button onClick={handleClose} autoFocus>
+              Đóng
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Box mb={2}>
@@ -373,50 +391,54 @@ function Warehouse() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Object.keys(data).reverse().map((id, index) => {
-              const key = index;
-              return (
-                <TableRow key={key}>
-                  <TableCell component="th" scope="row">
-                    {key + 1}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <CardMedia
-                      component="img"
-                      image={data[id].warehouseImage}
-                      style={{ width: "50px", height: "50px" }}
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row" align="right">
-                    {data[id].warehouseId}
-                  </TableCell>
-                  <TableCell align="right">{data[id].warehouseName}</TableCell>
-                  <TableCell align="right">
-                    {data[id].warehouseAddress}
-                  </TableCell>
-                  <TableCell align="right">{data[id].createName}</TableCell>
-                  <TableCell>
-                    <Grid container justify="flex-end">
-                      <Grid item>
-                        <ViewDialog propsId={id} propsData={data} />
+            {Object.keys(data)
+              .reverse()
+              .map((id, index) => {
+                const key = index;
+                return (
+                  <TableRow key={key}>
+                    <TableCell component="th" scope="row">
+                      {key + 1}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      <CardMedia
+                        component="img"
+                        image={data[id].warehouseImage}
+                        style={{ width: "50px", height: "50px" }}
+                      />
+                    </TableCell>
+                    <TableCell component="th" scope="row" align="right">
+                      {data[id].warehouseId}
+                    </TableCell>
+                    <TableCell align="right">
+                      {data[id].warehouseName}
+                    </TableCell>
+                    <TableCell align="right">
+                      {data[id].warehouseAddress}
+                    </TableCell>
+                    <TableCell align="right">{data[id].createName}</TableCell>
+                    <TableCell>
+                      <Grid container justify="flex-end">
+                        <Grid item>
+                          <ViewDialog propsId={id} propsData={data} />
+                        </Grid>
+                        <Grid item>
+                          <ViewDialogEdit propsId={id} propsData={data} />
+                        </Grid>
+                        <Grid item>
+                          <IconButton
+                            onClick={() => {
+                              onDelete(id);
+                            }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Grid>
                       </Grid>
-                      <Grid item>
-                        <ViewDialogEdit propsId={id} propsData={data} />
-                      </Grid>
-                      <Grid item>
-                        <IconButton
-                          onClick={() => {
-                            onDelete(id);
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </Grid>
-                    </Grid>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </TableContainer>

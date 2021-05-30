@@ -158,7 +158,7 @@ export default function CreateMaterial() {
                 startIcon={<CheckIcon />}
                 onClick={handleSubmit}
               >
-                Submit
+                Tạo
               </Button>
               &nbsp;&nbsp;
               <Button
@@ -166,7 +166,7 @@ export default function CreateMaterial() {
                 variant="outlined"
                 startIcon={<CloseIcon />}
               >
-                Cancel
+                Hủy
               </Button>
             </Box>
           </Grid>

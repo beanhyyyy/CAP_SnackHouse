@@ -57,24 +57,22 @@ function PageInventoryReport() {
       });
   }, []);
 
-// View
-const [dataInventory, setDataInventory] = useState({});
+  // View
+  const [dataInventory, setDataInventory] = useState({});
 
-useEffect(() => {
-  firebaseDB
-    .database()
-    .ref()
-    .child("WarehouseInventory")
-    .on("value", (snapshot) => {
-      if (snapshot.val() != null)
-        setDataInventory({
-          ...snapshot.val(),
-        });
-    });
-}, []);
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("WarehouseInventory")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setDataInventory({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
 
-
-  
   // Dialog
 
   function ViewDialogInput({ propsId, propsData }) {
@@ -104,32 +102,62 @@ useEffect(() => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Chi tiet</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Chi tiết</DialogTitle>
           <DialogContent>
-            {Object.values(propsData[propsId]).map((item, index) => {
-              const key = index;
-              return (
-                <Grid container spacing={2} key={key}>
-                  <Grid item xs={12}>
-                    <TextField
-                      disabled
-                      variant="outlined"
-                      size="small"
-                      fullWidth
-                      defaultValue={item}
-                    />
-                  </Grid>
-                </Grid>
-              );
-            })}
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                {Object.keys(propsData[propsId]).map((item, index) => {
+                  const key = index;
+                  return (
+                    <Grid container spacing={2} key={key}>
+                      <Grid item xs={12}>
+                        <TextField
+                          disabled
+                          size="small"
+                          fullWidth
+                          defaultValue={
+                            (item === "warehouseAddress" && ". Địa chỉ") ||
+                            (item === "warehouseId" && ". Mã kho") ||
+                            (item === "warehouseImage" && ". Link hình") ||
+                            (item === "warehouseName" && ". Tên kho") ||
+                            (item === "dateCreate" && ". Ngày tạo") ||
+                            (item === "createName" && ". Người tạo") ||
+                            (item === "namePoint" && ". Tên chi nhánh") ||
+                            item
+                          }
+                        />
+                      </Grid>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+              <Grid item xs={8}>
+                {Object.values(propsData[propsId]).map((item, index) => {
+                  const key = index;
+                  return (
+                    <Grid container spacing={2} key={key}>
+                      <Grid item xs={12}>
+                        <TextField
+                          disabled
+                          size="small"
+                          fullWidth
+                          defaultValue={item}
+                        />
+                      </Grid>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Grid>
+
             {/* {Object.values(propsData[propsId])} */}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
-              Xac nhan
+              Xác nhận
             </Button>
             <Button onClick={handleClose} autoFocus>
-              Dong
+              Đóng
             </Button>
           </DialogActions>
         </Dialog>
@@ -139,7 +167,9 @@ useEffect(() => {
 
   return (
     <SectionTemplate>
-      <CardShadow><b>Quản lý phiếu báo cáo</b></CardShadow>
+      <CardShadow>
+        <b>Quản lý phiếu báo cáo</b>
+      </CardShadow>
 
       <CardShadow>
         <div>
@@ -200,58 +230,67 @@ useEffect(() => {
               <Typography align="center">
                 <b>Phiếu nhập kho</b>
               </Typography>
-              {Object.keys(dataInput).reverse().map((id, index) => {
-                const key = index;
-                return (
-                  <List key={key}>
-                    <ListItem button>
-                      <ListItemText
-                        primary={id}
-                        secondary={dataInput[id].dateCreate}
-                      ></ListItemText>
-                      <ViewDialogInput propsId={id} propsData={dataInput} />
-                    </ListItem>
-                  </List>
-                );
-              })}
+              {Object.keys(dataInput)
+                .reverse()
+                .map((id, index) => {
+                  const key = index;
+                  return (
+                    <List key={key}>
+                      <ListItem button>
+                        <ListItemText
+                          primary={`Mã phiếu : ${id}`}
+                          secondary={`Thời gian tạo phiếu : ${dataInput[id].dateCreate}`}
+                        ></ListItemText>
+                        <ViewDialogInput propsId={id} propsData={dataInput} />
+                      </ListItem>
+                    </List>
+                  );
+                })}
             </Grid>
             <Grid item xs={12} md={4}>
               <Typography align="center">
                 <b>Phiếu xuất kho</b>
               </Typography>
-              {Object.keys(dataOutput).reverse().map((id, index) => {
-                const key = index;
-                return (
-                  <List key={key}>
-                    <ListItem button>
-                      <ListItemText
-                        primary={id}
-                        secondary={dataOutput[id].dateCreate}
-                      ></ListItemText>
-                      <ViewDialogInput propsId={id} propsData={dataOutput} />
-                    </ListItem>
-                  </List>
-                );
-              })}
+              {Object.keys(dataOutput)
+                .reverse()
+                .map((id, index) => {
+                  const key = index;
+                  return (
+                    <List key={key}>
+                      <ListItem button>
+                        <ListItemText
+                          primary={`Mã phiếu : ${id}`}
+                          secondary={`Thời gian tạo phiếu : ${dataOutput[id].dateCreate}`}
+                        ></ListItemText>
+                        <ViewDialogInput propsId={id} propsData={dataOutput} />
+                      </ListItem>
+                    </List>
+                  );
+                })}
             </Grid>
             <Grid item xs={12} md={4}>
               <Typography align="center">
                 <b>Phiếu tồn kho</b>
               </Typography>
-              {Object.keys(dataInventory).reverse().map((id, index) => {
-                const key = index;
-                return (
-                  <List key={key}>
-                    <ListItem button>
-                      <ListItemText
-                        primary={id}
-                        secondary={dataInventory[id].dateCreate}
-                      ></ListItemText>
-                      <ViewDialogInput propsId={id} propsData={dataInventory} />
-                    </ListItem>
-                  </List>
-                );
-              })}
+              {Object.keys(dataInventory)
+                .reverse()
+                .map((id, index) => {
+                  const key = index;
+                  return (
+                    <List key={key}>
+                      <ListItem button>
+                        <ListItemText
+                          primary={`Mã phiếu : ${id}`}
+                          secondary={`Thời gian tạo phiếu : ${dataInventory[id].dateCreate}`}
+                        ></ListItemText>
+                        <ViewDialogInput
+                          propsId={id}
+                          propsData={dataInventory}
+                        />
+                      </ListItem>
+                    </List>
+                  );
+                })}
             </Grid>
           </Grid>
         </div>

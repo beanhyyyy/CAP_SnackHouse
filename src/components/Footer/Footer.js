@@ -18,23 +18,23 @@ export default function Footer(props) {
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
-              <a href="#home" className={classes.block}>
-                Home
+              <a href="/admin/dashboard" className={classes.block}>
+                Thống kê
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="#company" className={classes.block}>
-                Company
+              <a href="/admin/material" className={classes.block}>
+                Nguyên liệu
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="#portfolio" className={classes.block}>
-                Portfolio
+              <a href="/admin/PageSalePoint" className={classes.block}>
+                Chi nhánh
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="#blog" className={classes.block}>
-                Blog
+              <a href="/admin/PageWarehouse" className={classes.block}>
+                Kho
               </a>
             </ListItem>
           </List>
@@ -43,13 +43,13 @@ export default function Footer(props) {
           <span>
             &copy; {1900 + new Date().getYear()}{" "}
             <a
-              href="https://www.creative-tim.com?ref=mdr-footer"
+              href="https://www.vanlanguni.edu.vn/"
               target="_blank"
               className={classes.a}
             >
-              Team 9
+              Dreamaker
             </a>
-            , made with love for a better web
+            , trường đại học Văn Lang
           </span>
         </p>
       </div>

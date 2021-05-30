@@ -371,11 +371,11 @@ function CreateInput() {
           startIcon={<CheckIcon />}
           onClick={handleSubmit}
         >
-          Submit
+          Tạo
         </Button>
         &nbsp;&nbsp;
         <Button color="secondary" variant="outlined" startIcon={<CloseIcon />}>
-          Cancel
+          Hủy
         </Button>
       </Box>
     </div>
