@@ -1,59 +1,61 @@
-import React, { useRef, useState } from "react"
-import { useAuth } from "../../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import { Button, TextField } from "@material-ui/core"
+import React, { useRef, useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { Link, useHistory } from "react-router-dom";
+import { Button, TextField } from "@material-ui/core";
 
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Avatar from "@material-ui/core/Avatar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import { Form } from "react-bootstrap";
 
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link to="#" color="inherit" href="https://www.vanlanguni.edu.vn/">
         Dreamaker
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: "100vh",
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
   paper: {
     margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -62,36 +64,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const { login } = useAuth()
-  const [error, setError] = useState("")
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState("");
   // const [errorCode, setErrorCode] = useState("")
-  const [errorMessage, setErrorMessage] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   async function handleSubmit(e) {
-    e.preventDefault()
-        
+    e.preventDefault();
+
     try {
-      setError("")
+      setError("");
       // setErrorCode("")
-      setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
       if (emailRef.current.value === "admin@gmail.com") {
-        history.push("/admin")
+        history.push("/admin");
+      }
+      if (emailRef.current.value === "warehouser@gmail.com") {
+        history.push("/warehouser");
       } else {
-        history.push("/report")
+        history.push("/report");
       }
     } catch (error) {
-      setError("Failed to log in")
+      setError("Failed to log in");
       // var errorCode = error.code;
       var errorMessage = error.message;
       // setErrorCode("Error Code : \n" + errorCode)
-      setErrorMessage("Description Error : \n" + errorMessage)
+      setErrorMessage("Description Error : \n" + errorMessage);
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   const classes = useStyles();
@@ -135,9 +140,9 @@ export default function Login() {
             </Avatar>
             <Typography component="h1" variant="h5">
               Trang Đăng Nhập
-          </Typography>
+            </Typography>
             <Form className={classes.form} noValidate onSubmit={handleSubmit}>
-              {error &&
+              {error && (
                 <Alert severity="error">
                   <AlertTitle>Error</AlertTitle>
                   {error} — <strong>check it out!</strong>
@@ -146,7 +151,7 @@ export default function Login() {
                   <br />
                   {errorMessage}
                 </Alert>
-              }
+              )}
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -157,7 +162,6 @@ export default function Login() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-
                 inputRef={emailRef}
               />
               <TextField
@@ -190,7 +194,7 @@ export default function Login() {
                 <Grid item xs>
                   <Link to="/forgot-password" variant="body2">
                     Quên mật khẩu?
-                </Link>
+                  </Link>
                 </Grid>
                 {/* <Grid item>
                   <Link to="/signup" variant="body2">
@@ -206,5 +210,5 @@ export default function Login() {
         </Grid>
       </Grid>
     </>
-  )
+  );
 }

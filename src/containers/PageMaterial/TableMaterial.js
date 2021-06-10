@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
@@ -20,7 +21,6 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -29,6 +29,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import firebaseDB from "../../firebase";
+
+import _slice from "lodash/slice";
 
 export default function TableMaterial() {
   // View
@@ -171,7 +173,7 @@ export default function TableMaterial() {
     var obj1 = propsData[propsId];
 
     useEffect(() => {
-      Object.assign(obj1, {dateCreate: new Date().toString()})
+      Object.assign(obj1, { dateCreate: new Date().toString() });
       setValues(obj1);
     }, [obj1]);
 
@@ -289,6 +291,33 @@ export default function TableMaterial() {
     );
   }
 
+  // TABLE
+  const dataTable = Object.keys(data).reverse();
+
+  const [limit, setLimit] = useState(5);
+  const [offset, setOffset] = useState(0);
+
+  var dataTableSlice = _slice(dataTable, offset, limit);
+  const handleLoadMore = () => {
+    setLimit(limit + 5);
+  };
+
+  // ON CHANGE
+  const [filter, setFilter] = useState("");
+
+  const handleOnChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const [check, setCheck] = useState("1");
+
+  useEffect(() => {
+    var dataTableFilter = Object.keys(data)
+      .reverse()
+      .filter((id) => data[id].materialId === filter);
+    setCheck(dataTableFilter);
+  }, [filter]);
+
   return (
     <div>
       <Box mb={2}>
@@ -299,7 +328,7 @@ export default function TableMaterial() {
               variant="outlined"
               size="small"
               fullWidth
-              label="Search"
+              label="Tìm kiếm theo mã"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -307,52 +336,13 @@ export default function TableMaterial() {
                   </InputAdornment>
                 ),
               }}
-            />
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
-            <Autocomplete
-              options={options}
-              getOptionLabel={(option) => option.title}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Chi nhánh"
-                  variant="outlined"
-                  size="small"
-                />
-              )}
-            />
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
-            <Autocomplete
-              options={options}
-              getOptionLabel={(option) => option.title}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Chức vụ"
-                  variant="outlined"
-                  size="small"
-                />
-              )}
+              onChange={handleOnChange}
             />
           </Grid>
         </Grid>
       </Box>
       <Typography variant="h6">Danh sách nguyên liệu</Typography>
       <br />
-      {/* <Box mt={2}>
-        <ResponsiveTable
-          rows={rowsMaterial}
-          columns={columnsMaterial}
-          countResults
-          showNumberOrder
-          CheckboxAllComponent={CheckBox}
-          CheckboxItemComponent={CheckBox}
-        />
-      </Box> */}
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
@@ -365,50 +355,101 @@ export default function TableMaterial() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Object.keys(data).reverse().map((id, index) => {
-              const key = index;
-              return (
-                <TableRow key={key}>
-                  <TableCell component="th" scope="row">
-                    {key + 1}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <CardMedia
-                      component="img"
-                      image={data[id].materialImage}
-                      style={{ width: "50px", height: "50px" }}
-                    />
-                  </TableCell>
-                  <TableCell align="right">{data[id].materialId}</TableCell>
-                  <TableCell component="th" scope="row" align="right">
-                    {data[id].materialName}
-                  </TableCell>
-                  <TableCell>
-                    <Grid container justify="flex-end">
-                      <Grid item>
-                        <ViewDialog propsId={id} propsData={data} />
+            {check !== "1" &&
+              check?.map((id, index) => {
+                const key = index;
+                return (
+                  <TableRow key={key}>
+                    <TableCell component="th" scope="row">
+                      {key + 1}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      <CardMedia
+                        component="img"
+                        image={data[id].materialImage}
+                        style={{ width: "50px", height: "50px" }}
+                      />
+                    </TableCell>
+                    <TableCell align="right">{data[id].materialId}</TableCell>
+                    <TableCell component="th" scope="row" align="right">
+                      {data[id].materialName}
+                    </TableCell>
+                    <TableCell>
+                      <Grid container justify="flex-end">
+                        <Grid item>
+                          <ViewDialog propsId={id} propsData={data} />
+                        </Grid>
+                        <Grid item>
+                          <ViewDialogEdit propsId={id} propsData={data} />
+                        </Grid>
+                        <Grid item>
+                          <IconButton
+                            onClick={() => {
+                              onDelete(id);
+                            }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Grid>
                       </Grid>
-                      <Grid item>
-                        <ViewDialogEdit propsId={id} propsData={data} />
-                      </Grid>
-                      <Grid item>
-                        <IconButton
-                          onClick={() => {
-                            onDelete(id);
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </Grid>
-                    </Grid>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            {check.length === 0 ? (
+              <>
+                {dataTableSlice.map((id, index) => {
+                  const key = index;
+                  return (
+                    <TableRow key={key}>
+                      <TableCell component="th" scope="row">
+                        {key + 1}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        <CardMedia
+                          component="img"
+                          image={data[id].materialImage}
+                          style={{ width: "50px", height: "50px" }}
+                        />
+                      </TableCell>
+                      <TableCell align="right">{data[id].materialId}</TableCell>
+                      <TableCell component="th" scope="row" align="right">
+                        {data[id].materialName}
+                      </TableCell>
+                      <TableCell>
+                        <Grid container justify="flex-end">
+                          <Grid item>
+                            <ViewDialog propsId={id} propsData={data} />
+                          </Grid>
+                          <Grid item>
+                            <ViewDialogEdit propsId={id} propsData={data} />
+                          </Grid>
+                          <Grid item>
+                            <IconButton
+                              onClick={() => {
+                                onDelete(id);
+                              }}
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </Grid>
+                        </Grid>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
           </TableBody>
         </Table>
+        <Box m={2} display="flex" justifyContent="center">
+          <Button variant="outlined" color="primary" onClick={handleLoadMore}>
+            Xem thêm
+          </Button>
+        </Box>
       </TableContainer>
     </div>
   );
 }
-const options = [{ title: "Chọn" }];

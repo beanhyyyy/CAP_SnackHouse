@@ -22,7 +22,7 @@ import firebaseDB from "../../firebase";
 
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+// import DeleteIcon from "@material-ui/icons/Delete";
 
 // Dialog
 import Button from "@material-ui/core/Button";
@@ -48,19 +48,19 @@ function Warehouse() {
       });
   }, []);
 
-  const onDelete = (id) => {
-    firebaseDB
-      .database()
-      .ref()
-      .child(`Warehouse/${id}`)
-      .remove((err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          alert("Xóa kho thành công");
-        }
-      });
-  };
+  // const onDelete = (id) => {
+  //   firebaseDB
+  //     .database()
+  //     .ref()
+  //     .child(`Warehouse/${id}`)
+  //     .remove((err) => {
+  //       if (err) {
+  //         console.log(err);
+  //       } else {
+  //         alert("Xóa kho thành công");
+  //       }
+  //     });
+  // };
 
   // Dialog Detail
   function ViewDialog({ propsId, propsData }) {
@@ -426,13 +426,13 @@ function Warehouse() {
                           <ViewDialogEdit propsId={id} propsData={data} />
                         </Grid>
                         <Grid item>
-                          <IconButton
+                          {/* <IconButton
                             onClick={() => {
                               onDelete(id);
                             }}
                           >
                             <DeleteIcon />
-                          </IconButton>
+                          </IconButton> */}
                         </Grid>
                       </Grid>
                     </TableCell>

@@ -267,7 +267,9 @@ export default function Report() {
   return (
     <SectionTemplate>
       <CardShadow>
-        <Typography align="center" variant="h6">Phiếu tồn kho</Typography>{" "}
+        <Typography align="center" variant="h6">
+          Phiếu tồn kho
+        </Typography>{" "}
       </CardShadow>
       <CardShadow>
         <GridContainer>
@@ -439,7 +441,7 @@ export default function Report() {
                   color="success"
                   onClick={handleSubmit}
                 >
-                  Submit
+                  Gửi phiếu
                 </Button>
               </Box>
             </div>
@@ -452,18 +454,15 @@ export default function Report() {
                 </a>
               </CardAvatar>
               <CardBody profile>
-                <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
-                <h4 className={classes.cardTitle}>Alec Thompson</h4>
+                <h6 className={classes.cardCategory}>Nhân viên</h6>
+                <h4 className={classes.cardTitle}>SNACK HOUSE</h4>
                 <p className={classes.description}>
                   Don{"'"}t be scared of the truth because we need to restart
                   the human foundation in truth And I love you like Kanye loves
                   Kanye I love Rick Owens’ bed design but the back is...
                 </p>
-                <Button color="success" round>
-                  Follow
-                </Button>
                 <Button round component={Link} to="/login">
-                  Logout
+                  Đăng xuất
                 </Button>
               </CardBody>
             </Card>

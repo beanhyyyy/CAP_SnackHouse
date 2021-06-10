@@ -8,7 +8,6 @@ import {
 import React from "react";
 import green from "@material-ui/core/colors/green";
 
-
 const colorGreen = green[50];
 //Custom components
 const BoxStatusActive = withStyles(
@@ -60,7 +59,7 @@ export const rowsAccount = [
   createData(
     {
       name: "Warehouser",
-      email: "wahouser@gmail.com",
+      email: "warehouser@gmail.com",
     },
     { password: "123456q" },
     { position: "Warehouser" },

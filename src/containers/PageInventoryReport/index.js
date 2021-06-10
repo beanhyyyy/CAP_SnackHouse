@@ -3,26 +3,20 @@ import React, { useEffect, useState } from "react";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
 import {
-  Box,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
   IconButton,
-  InputAdornment,
   TextField,
   Typography,
   Button,
 } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import { Autocomplete } from "@material-ui/lab";
 
 import firebaseDB from "../../firebase";
 
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
-
-const options = [{ title: "Chọn" }];
 
 function PageInventoryReport() {
   // View
@@ -170,59 +164,8 @@ function PageInventoryReport() {
       <CardShadow>
         <b>Quản lý phiếu báo cáo</b>
       </CardShadow>
-
       <CardShadow>
         <div>
-          <Box mb={2}>
-            <Grid container spacing={3}>
-              <Grid item lg={6} md={6} sm={12} xs={12}>
-                <TextField
-                  id="input-with-icon-textfield"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  label="Search"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item lg={3} md={3} sm={6} xs={6}>
-                <Autocomplete
-                  options={options}
-                  getOptionLabel={(option) => option.title}
-                  fullWidth
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Chi nhánh"
-                      variant="outlined"
-                      size="small"
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item lg={3} md={3} sm={6} xs={6}>
-                <Autocomplete
-                  options={options}
-                  getOptionLabel={(option) => option.title}
-                  fullWidth
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Chức vụ"
-                      variant="outlined"
-                      size="small"
-                    />
-                  )}
-                />
-              </Grid>
-            </Grid>
-          </Box>
           <Typography variant="h6">Danh sách phiếu</Typography>
           <br />
           <Grid container spacing={2}>
