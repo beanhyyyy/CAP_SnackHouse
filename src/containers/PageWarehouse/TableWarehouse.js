@@ -296,19 +296,6 @@ function Warehouse() {
                   onChange={handleChangeEdit}
                 />
               </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  label="Tên người tạo"
-                  defaultValue={obj1?.createName}
-                  fullWidth
-                  variant="outlined"
-                  size="small"
-                  name="createName"
-                  onChange={handleChangeEdit}
-                />
-              </Grid>
-
               <Grid item xs={12}>
                 <TextField
                   label="Địa chỉ kho"
