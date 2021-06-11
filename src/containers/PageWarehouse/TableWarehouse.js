@@ -386,7 +386,6 @@ function Warehouse() {
               <TableCell align="right">Mã kho</TableCell>
               <TableCell align="right">Tên kho</TableCell>
               <TableCell align="right">Địa chỉ</TableCell>
-              <TableCell align="right">Người tạo</TableCell>
               <TableCell align="right">Chức năng</TableCell>
             </TableRow>
           </TableHead>
@@ -416,7 +415,6 @@ function Warehouse() {
                     <TableCell align="right">
                       {data[id].warehouseAddress}
                     </TableCell>
-                    <TableCell align="right">{data[id].createName}</TableCell>
                     <TableCell>
                       <Grid container justify="flex-end">
                         <Grid item>
