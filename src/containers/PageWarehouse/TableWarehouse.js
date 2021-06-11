@@ -308,6 +308,18 @@ function Warehouse() {
                   onChange={handleChangeEdit}
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  label="Địa chỉ kho"
+                  defaultValue={obj1?.warehouseAddress}
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  name="createName"
+                  onChange={handleChangeEdit}
+                />
+              </Grid>
             </Grid>
           </DialogContent>
           <DialogActions>
