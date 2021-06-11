@@ -88,7 +88,7 @@ const dashboardRoutes = [
   },
   {
     path: "/InventoryReport",
-    name: "Báo cáo tồn kho",
+    name: "Quản lý báo cáo",
     rtlName: "إخطارات",
     icon: Notifications,
     component: PageInventoryReport,

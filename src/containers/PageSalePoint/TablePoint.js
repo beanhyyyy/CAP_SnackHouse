@@ -395,8 +395,8 @@ export default function CreatePoint() {
             <TableRow>
               <TableCell>STT</TableCell>
               <TableCell>Hình ảnh </TableCell>
-              <TableCell align="right">Tên</TableCell>
               <TableCell align="right">Mã </TableCell>
+              <TableCell align="right">Tên</TableCell>
               <TableCell align="right">Địa chỉ</TableCell>
               <TableCell align="right">Chức năng</TableCell>
             </TableRow>

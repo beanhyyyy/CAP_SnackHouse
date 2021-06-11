@@ -85,7 +85,7 @@ export default function Login() {
         history.push("/admin");
       }
       if (emailRef.current.value === "warehouser@gmail.com") {
-        history.push("/warehouser");
+        history.push("/adminWarehouser/PageWarehouse");
       } else {
         history.push("/report");
       }
