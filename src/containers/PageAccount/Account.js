@@ -21,7 +21,7 @@ function Account() {
               variant="outlined"
               size="small"
               fullWidth
-              label="Search"
+              label="Tìm kiếm"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
