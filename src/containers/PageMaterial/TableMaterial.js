@@ -331,7 +331,7 @@ export default function TableMaterial() {
               variant="outlined"
               size="small"
               fullWidth
-              label="Tìm kiếm theo mã"
+              label="Tìm kiếm theo mã, tên nguyên liệu"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

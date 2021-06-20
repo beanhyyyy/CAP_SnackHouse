@@ -376,7 +376,7 @@ export default function CreatePoint() {
               variant="outlined"
               size="small"
               fullWidth
-              label="Tìm kiếm theo mã"
+              label="Tìm kiếm theo mã, tên chi nhánh"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

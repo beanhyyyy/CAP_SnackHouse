@@ -192,7 +192,7 @@ function InputWarehouse() {
               variant="outlined"
               size="small"
               fullWidth
-              label="Tìm kiếm theo mã"
+              label="Tìm kiếm theo mã, tên người tạo"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
