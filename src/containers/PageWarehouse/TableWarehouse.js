@@ -1,9 +1,7 @@
 import {
-  Box,
   CardMedia,
   Grid,
   IconButton,
-  InputAdornment,
   Paper,
   Table,
   TableBody,
@@ -15,8 +13,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
-import SearchIcon from "@material-ui/icons/Search";
-import { Autocomplete } from "@material-ui/lab";
 
 import firebaseDB from "../../firebase";
 
@@ -393,5 +389,3 @@ function Warehouse() {
   );
 }
 export default Warehouse;
-
-const options = [{ title: "Chọn" }];
