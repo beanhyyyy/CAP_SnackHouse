@@ -314,7 +314,10 @@ export default function TableMaterial() {
   useEffect(() => {
     var dataTableFilter = Object.keys(data)
       .reverse()
-      .filter((id) => data[id].materialId === filter);
+      .filter(
+        (id) =>
+          data[id].materialId === filter || data[id].materialName === filter
+      );
     setCheck(dataTableFilter);
   }, [filter]);
 

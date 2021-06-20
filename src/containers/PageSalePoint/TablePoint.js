@@ -360,7 +360,9 @@ export default function CreatePoint() {
   useEffect(() => {
     var dataTableFilter = Object.keys(data)
       .reverse()
-      .filter((id) => data[id].pointId === filter);
+      .filter(
+        (id) => data[id].pointId === filter || data[id].pointName === filter
+      );
     setCheck(dataTableFilter);
   }, [filter]);
 

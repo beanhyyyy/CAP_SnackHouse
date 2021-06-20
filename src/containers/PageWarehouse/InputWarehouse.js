@@ -178,7 +178,7 @@ function InputWarehouse() {
   useEffect(() => {
     var dataTableFilter = Object.keys(data)
       .reverse()
-      .filter((id) => id === filter);
+      .filter((id) => id === filter || data[id].createName === filter);
     setCheck(dataTableFilter);
   }, [filter]);
 
