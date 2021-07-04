@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemText } from "@material-ui/core";
+import { Box, List, ListItem, ListItemText } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import CardShadow from "../../components/Card/CardShadow";
 import SectionTemplate from "../../components/templates/SectionTemplate";
@@ -17,6 +17,7 @@ import {
 import firebaseDB from "../../firebase";
 
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
+import _slice from "lodash/slice";
 
 function PageInventoryReport() {
   // View
@@ -159,6 +160,23 @@ function PageInventoryReport() {
     );
   }
 
+  // TABLE
+
+  const dataTable = Object.keys(dataInput).reverse();
+  const dataTable1 = Object.keys(dataOutput).reverse();
+  const dataTable2 = Object.keys(dataInventory).reverse();
+
+  const [limit, setLimit] = useState(5);
+  const [offset, setOffset] = useState(0);
+
+  var dataTableSlice = _slice(dataTable, offset, limit);
+  var dataTableSlice1 = _slice(dataTable1, offset, limit);
+  var dataTableSlice2 = _slice(dataTable2, offset, limit);
+
+  const handleLoadMore = () => {
+    setLimit(limit + 5);
+  };
+
   return (
     <SectionTemplate>
       <CardShadow>
@@ -166,77 +184,71 @@ function PageInventoryReport() {
       </CardShadow>
       <CardShadow>
         <div>
-          <Typography variant="h6">Danh sách phiếu</Typography>
-          <br />
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
               <Typography align="center">
                 <b>Phiếu nhập kho</b>
               </Typography>
-              {Object.keys(dataInput)
-                .reverse()
-                .map((id, index) => {
-                  const key = index;
-                  return (
-                    <List key={key}>
-                      <ListItem button>
-                        <ListItemText
-                          primary={`Mã phiếu : ${id}`}
-                          secondary={`Thời gian tạo phiếu : ${dataInput[id].dateCreate}`}
-                        ></ListItemText>
-                        <ViewDialogInput propsId={id} propsData={dataInput} />
-                      </ListItem>
-                    </List>
-                  );
-                })}
+              {dataTableSlice.map((id, index) => {
+                const key = index;
+                return (
+                  <List key={key}>
+                    <ListItem button>
+                      <ListItemText
+                        primary={`Mã phiếu : ${id}`}
+                        secondary={`Thời gian tạo phiếu : ${dataInput[id].dateCreate}`}
+                      ></ListItemText>
+                      <ViewDialogInput propsId={id} propsData={dataInput} />
+                    </ListItem>
+                  </List>
+                );
+              })}
             </Grid>
             <Grid item xs={12} md={4}>
               <Typography align="center">
                 <b>Phiếu xuất kho</b>
               </Typography>
-              {Object.keys(dataOutput)
-                .reverse()
-                .map((id, index) => {
-                  const key = index;
-                  return (
-                    <List key={key}>
-                      <ListItem button>
-                        <ListItemText
-                          primary={`Mã phiếu : ${id}`}
-                          secondary={`Thời gian tạo phiếu : ${dataOutput[id].dateCreate}`}
-                        ></ListItemText>
-                        <ViewDialogInput propsId={id} propsData={dataOutput} />
-                      </ListItem>
-                    </List>
-                  );
-                })}
+              {dataTableSlice1.map((id, index) => {
+                const key = index;
+                return (
+                  <List key={key}>
+                    <ListItem button>
+                      <ListItemText
+                        primary={`Mã phiếu : ${id}`}
+                        secondary={`Thời gian tạo phiếu : ${dataOutput[id].dateCreate}`}
+                      ></ListItemText>
+                      <ViewDialogInput propsId={id} propsData={dataOutput} />
+                    </ListItem>
+                  </List>
+                );
+              })}
             </Grid>
             <Grid item xs={12} md={4}>
               <Typography align="center">
                 <b>Phiếu tồn kho</b>
               </Typography>
-              {Object.keys(dataInventory)
-                .reverse()
-                .map((id, index) => {
-                  const key = index;
-                  return (
-                    <List key={key}>
-                      <ListItem button>
-                        <ListItemText
-                          primary={`Mã phiếu : ${id}`}
-                          secondary={`Thời gian tạo phiếu : ${dataInventory[id].dateCreate}`}
-                        ></ListItemText>
-                        <ViewDialogInput
-                          propsId={id}
-                          propsData={dataInventory}
-                        />
-                      </ListItem>
-                    </List>
-                  );
-                })}
+              {dataTableSlice2.map((id, index) => {
+                const key = index;
+                return (
+                  <List key={key}>
+                    <ListItem button>
+                      <ListItemText
+                        primary={`Mã phiếu : ${id}`}
+                        secondary={`Thời gian tạo phiếu : ${dataInventory[id].dateCreate}`}
+                      ></ListItemText>
+                      <ViewDialogInput propsId={id} propsData={dataInventory} />
+                    </ListItem>
+                  </List>
+                );
+              })}
             </Grid>
           </Grid>
         </div>
+        <Box m={2} display="flex" justifyContent="center">
+          <Button variant="outlined" color="primary" onClick={handleLoadMore}>
+            Xem thêm
+          </Button>
+        </Box>
       </CardShadow>
     </SectionTemplate>
   );
