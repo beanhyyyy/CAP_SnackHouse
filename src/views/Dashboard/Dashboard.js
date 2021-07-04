@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // react plugin for creating charts
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
@@ -6,27 +6,124 @@ import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Store from "@material-ui/icons/Store";
 import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
 import Update from "@material-ui/icons/Update";
 import Accessibility from "@material-ui/icons/Accessibility";
 // core components
 import GridItem from "../../components/Grid/GridItem.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
-import Table from "../../components/Table/Table.js";
 import Danger from "../../components/Typography/Danger.js";
 import Card from "../../components/Card/Card.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardIcon from "../../components/Card/CardIcon.js";
-import CardBody from "../../components/Card/CardBody.js";
 import CardFooter from "../../components/Card/CardFooter.js";
-
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 import styles from "../../assets/jss/material-dashboard-react/views/dashboardStyle.js";
+
+import firebaseDB from "../../firebase";
+import MuseumIcon from "@material-ui/icons/Museum";
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   const classes = useStyles();
+
+  // Kho
+  // View
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Warehouse")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setData({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
+  // Nguyen lieu
+  const [dataMaterial, setDataMaterial] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Material")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setDataMaterial({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
+  // Chi nhanh
+  const [dataPoint, setDataPoint] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("Point")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setDataPoint({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
+  // Phieu nhap
+  const [dataInput, setDataInput] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("WarehouseInput")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setDataInput({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
+  // Phieu xuat
+  const [dataOutput, setDataOutput] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("WarehouseOutput")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setDataOutput({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
+  // Phieu ton
+  const [dataInventory, setDataInventory] = useState({});
+
+  useEffect(() => {
+    firebaseDB
+      .database()
+      .ref()
+      .child("WarehouseInventory")
+      .on("value", (snapshot) => {
+        if (snapshot.val() != null)
+          setDataInventory({
+            ...snapshot.val(),
+          });
+      });
+  }, []);
+
   return (
     <div>
       <GridContainer>
@@ -34,11 +131,11 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-                <Icon>content_copy</Icon>
+                <Store />
               </CardIcon>
-              <p className={classes.cardCategory}>Used Space</p>
+              <p className={classes.cardCategory}>Số lượng kho</p>
               <h3 className={classes.cardTitle}>
-                49/50 <small>GB</small>
+                {Object.keys(data).length} <small>KHO</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -46,26 +143,7 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
-                  Get more space
-                </a>
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="success" stats icon>
-              <CardIcon color="success">
-                <Store />
-              </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <DateRange />
-                Last 24 Hours
+                Vừa mới nhập nhật
               </div>
             </CardFooter>
           </Card>
@@ -76,13 +154,38 @@ export default function Dashboard() {
               <CardIcon color="danger">
                 <Icon>info_outline</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
-              <h3 className={classes.cardTitle}>75</h3>
+              <p className={classes.cardCategory}>Số lượng chi nhánh</p>
+              <h3 className={classes.cardTitle}>
+                {Object.keys(dataPoint).length} <small>CHI NHÁNH</small>
+              </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <LocalOffer />
-                Tracked from Github
+                <Danger>
+                  <Warning />
+                </Danger>
+                Vừa mới nhập nhật
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="success" stats icon>
+              <CardIcon color="success">
+                <MuseumIcon />
+              </CardIcon>
+              <p className={classes.cardCategory}>Số lượng nguyên liệu</p>
+              <h3 className={classes.cardTitle}>
+                {Object.keys(dataMaterial).length} <small>NGUYÊN LIỆU</small>
+              </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Danger>
+                  <Warning />
+                </Danger>
+                Vừa mới nhập nhật
               </div>
             </CardFooter>
           </Card>
@@ -93,42 +196,98 @@ export default function Dashboard() {
               <CardIcon color="info">
                 <Accessibility />
               </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
+              <p className={classes.cardCategory}>Số lượng nhân viên</p>
               <h3 className={classes.cardTitle}>+245</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <Update />
-                Just Updated
+                Vừa mới nhập nhật
               </div>
             </CardFooter>
           </Card>
         </GridItem>
-      </GridContainer>
-       <GridContainer>
-        <GridItem xs={12} sm={12} md={6}>
-          
-        </GridItem>
-        <GridItem xs={12} sm={12} md={6}>
+
+        <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <CardHeader color="warning">
-              <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-              <p className={classes.cardCategoryWhite}>
-                New employees on 15th September, 2016
-              </p>
+            <CardHeader color="info" stats icon>
+              <CardIcon color="info">
+                <FileCopyIcon />
+              </CardIcon>
+              <p className={classes.cardCategory}>Tổng số phiếu</p>
+              <h3 className={classes.cardTitle}>
+                {Object.keys(dataInventory).length +
+                  Object.keys(dataInput).length +
+                  Object.keys(dataOutput).length}
+                <small>PHIẾU</small>
+              </h3>
             </CardHeader>
-            <CardBody>
-              <Table
-                tableHeaderColor="warning"
-                tableHead={["ID", "Name", "Salary", "Country"]}
-                tableData={[
-                  ["1", "Dakota Rice", "$36,738", "Niger"],
-                  ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                  ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                  ["4", "Philip Chaney", "$38,735", "Korea, South"]
-                ]}
-              />
-            </CardBody>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Vừa mới nhập nhật
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="info" stats icon>
+              <CardIcon color="info">
+                <FileCopyIcon />
+              </CardIcon>
+              <p className={classes.cardCategory}>Số lượng phiếu nhập</p>
+              <h3 className={classes.cardTitle}>
+                {Object.keys(dataInput).length} <small>PHIẾU</small>
+              </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Vừa mới nhập nhật
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="info" stats icon>
+              <CardIcon color="info">
+                <FileCopyIcon />
+              </CardIcon>
+              <p className={classes.cardCategory}>Số lượng phiếu xuất</p>
+              <h3 className={classes.cardTitle}>
+                {Object.keys(dataOutput).length} <small>PHIẾU</small>
+              </h3>{" "}
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Vừa mới nhập nhật
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="info" stats icon>
+              <CardIcon color="info">
+                <FileCopyIcon />
+              </CardIcon>
+              <p className={classes.cardCategory}>Số lượng phiếu tồn</p>
+              <h3 className={classes.cardTitle}>
+                {Object.keys(dataInventory).length} <small>PHIẾU</small>
+              </h3>{" "}
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Vừa mới nhập nhật
+              </div>
+            </CardFooter>
           </Card>
         </GridItem>
       </GridContainer>
