@@ -137,7 +137,9 @@ function CreateInput() {
 
   const handleInputChange = (event) => {
     const dataTagetValue = +event.target.value;
-    data[event.target.name] = firstData[event.target.name] ? firstData[event.target.name] + dataTagetValue : dataTagetValue;
+    data[event.target.name] = firstData[event.target.name]
+      ? firstData[event.target.name] + dataTagetValue
+      : dataTagetValue;
 
     setData(data);
 

@@ -10,6 +10,7 @@ import {
   Card,
   Divider,
   MenuItem,
+  FormHelperText,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
@@ -159,7 +160,21 @@ function CreateOutput() {
 
   const handleInputChange = (event) => {
     const dataTagetValue = +event.target.value;
-    data[event.target.name] = firstData[event.target.name] ? firstData[event.target.name] - dataTagetValue : 0;
+
+    if (firstData[event.target.name]) {
+      if (firstData[event.target.name] > dataTagetValue) {
+        data[event.target.name] = firstData[event.target.name]
+          ? firstData[event.target.name] - dataTagetValue
+          : 0;
+      } else {
+        alert(
+          `Nguyên liệu ${
+            firstData[event.target.name]
+          } xuất ra nhiều hơn trong kho`
+        );
+        event.target.value = 0;
+      }
+    }
 
     setData(data);
     // console.log(data, "data");
@@ -219,21 +234,26 @@ function CreateOutput() {
 
   // Submit
   const handleSubmit = (e) => {
-    const warehouseMaterial = [];
-    const keys = Object.keys(data);
-    const valuesIn = Object.values(data);
-    for (let i = 0; i < keys.length; i++) {
-      const obj = {};
-      obj[keys[i]] = valuesIn[i];
-      warehouseMaterial.push(obj);
-    }
+    if (!point || !values.createName) {
+      alert("Các thông tin chưa hợp lệ.");
+    } else {
+      const warehouseMaterial = [];
+      const keys = Object.keys(data);
+      const valuesIn = Object.values(data);
+      for (let i = 0; i < keys.length; i++) {
+        const obj = {};
+        obj[keys[i]] = valuesIn[i];
+        warehouseMaterial.push(obj);
+      }
 
-    addOrEdit({ ...values, warehouseMaterial });
-    addTest(values);
+      addOrEdit({ ...values, warehouseMaterial });
+      addTest(values);
+    }
   };
 
   return (
     <div>
+      {console.log("pointpointpointpointpointpointpointpoint", point)}
       <Typography variant="h6">Tạo phiếu xuất kho</Typography>
       <Box mt={2}>
         <Grid container spacing={2}>
@@ -249,6 +269,15 @@ function CreateOutput() {
                   value={dataImage}
                   disabled
                 />
+                {dataImage ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <Card variant="outlined">
@@ -284,6 +313,15 @@ function CreateOutput() {
                   value={dataId}
                   disabled
                 />
+                {dataId ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -296,6 +334,15 @@ function CreateOutput() {
                   value={dataName}
                   disabled
                 />
+                {dataName ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -308,6 +355,15 @@ function CreateOutput() {
                   value={dataAddress}
                   disabled
                 />
+                {dataAddress ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <Divider />
@@ -337,6 +393,15 @@ function CreateOutput() {
                             </MenuItem>
                           ))}
                       </TextField>
+                      {point ? (
+                        ""
+                      ) : (
+                        <FormHelperText>
+                          <Typography variant="inherit" color="error">
+                            Lưu ý: Chọn chi nhánh của bạn
+                          </Typography>
+                        </FormHelperText>
+                      )}
                     </Grid>
                     <Grid item sm={6} xs={12}>
                       <TextField
@@ -349,7 +414,17 @@ function CreateOutput() {
                         value={values.createName}
                         onChange={handleInputChangeCreate}
                       />
+                      {values.createName ? (
+                        ""
+                      ) : (
+                        <FormHelperText>
+                          <Typography variant="inherit" color="error">
+                            Thông tin nhập không hợp lệ
+                          </Typography>
+                        </FormHelperText>
+                      )}
                     </Grid>
+
                     <Grid item xs={12}>
                       <Typography variant="h6">Nguyên liệu</Typography>
                     </Grid>

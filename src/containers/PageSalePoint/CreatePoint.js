@@ -50,9 +50,9 @@ export default function CreatePoint() {
 
   const handleSubmit = (e) => {
     if (
-      values.pointImage !== "" &&
-      values.pointAddress !== "" &&
-      values.pointId !== "" &&
+      values.pointImage !== "" ||
+      values.pointAddress !== "" ||
+      values.pointId !== "" ||
       values.pointName !== ""
     ) {
       addTest(values);

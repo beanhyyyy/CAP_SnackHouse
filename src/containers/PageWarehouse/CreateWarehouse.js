@@ -107,10 +107,10 @@ export default function CreateWarehouse() {
 
   const handleSubmit = (e) => {
     if (
-      values.warehouseImage !== "" &&
-      values.warehouseAddress !== "" &&
-      values.warehouseId !== "" &&
-      values.warehouseMaterial !== "" &&
+      values.warehouseImage !== "" ||
+      values.warehouseAddress !== "" ||
+      values.warehouseId !== "" ||
+      values.warehouseMaterial !== "" ||
       values.warehouseName !== ""
     ) {
       addTest(values);
@@ -235,7 +235,7 @@ export default function CreateWarehouse() {
                   value={point}
                   onChange={handleChangePoint}
                 >
-                  {dataPoint &&
+                  {dataPoint ||
                     dataPoint.map((option) => (
                       <MenuItem value={option} key={option}>
                         {option}

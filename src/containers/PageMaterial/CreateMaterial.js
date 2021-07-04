@@ -53,8 +53,8 @@ export default function CreateMaterial() {
       values.materialName = "Nguyên Liệu: " + values.materialName;
     }
     if (
-      values.materialName !== "" &&
-      values.materialImage !== "" &&
+      values.materialName !== "" ||
+      values.materialImage !== "" ||
       values.materialId !== ""
     ) {
       addTest(values);
