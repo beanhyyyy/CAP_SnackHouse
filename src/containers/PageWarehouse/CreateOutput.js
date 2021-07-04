@@ -253,7 +253,6 @@ function CreateOutput() {
 
   return (
     <div>
-      {console.log("pointpointpointpointpointpointpointpoint", point)}
       <Typography variant="h6">Tạo phiếu xuất kho</Typography>
       <Box mt={2}>
         <Grid container spacing={2}>

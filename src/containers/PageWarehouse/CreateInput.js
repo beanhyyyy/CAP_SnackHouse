@@ -9,6 +9,7 @@ import {
   CardMedia,
   Card,
   Divider,
+  FormHelperText,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
@@ -190,17 +191,21 @@ function CreateInput() {
 
   // Submit
   const handleSubmit = (e) => {
-    const warehouseMaterial = [];
-    const keys = Object.keys(data);
-    const valuesIn = Object.values(data);
-    for (let i = 0; i < keys.length; i++) {
-      const obj = {};
-      obj[keys[i]] = valuesIn[i];
-      warehouseMaterial.push(obj);
-    }
+    if (!values.createName) {
+      alert("Các thông tin chưa hợp lệ.");
+    } else {
+      const warehouseMaterial = [];
+      const keys = Object.keys(data);
+      const valuesIn = Object.values(data);
+      for (let i = 0; i < keys.length; i++) {
+        const obj = {};
+        obj[keys[i]] = valuesIn[i];
+        warehouseMaterial.push(obj);
+      }
 
-    addOrEdit({ ...values, warehouseMaterial });
-    addTest(values);
+      addOrEdit({ ...values, warehouseMaterial });
+      addTest(values);
+    }
   };
 
   return (
@@ -320,6 +325,15 @@ function CreateInput() {
                         value={values.createName}
                         onChange={handleInputChangeCreate}
                       />
+                      {values.createName ? (
+                        ""
+                      ) : (
+                        <FormHelperText>
+                          <Typography variant="inherit" color="error">
+                            Thông tin nhập không hợp lệ
+                          </Typography>
+                        </FormHelperText>
+                      )}
                     </Grid>
                     <Grid item xs={12}>
                       <Typography variant="h6">Nguyên liệu</Typography>
