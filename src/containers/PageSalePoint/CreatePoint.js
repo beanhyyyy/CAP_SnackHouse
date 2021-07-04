@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  FormHelperText,
   Grid,
   IconButton,
   TextField,
@@ -48,7 +49,16 @@ export default function CreatePoint() {
   };
 
   const handleSubmit = (e) => {
-    addTest(values);
+    if (
+      values.pointImage !== "" &&
+      values.pointAddress !== "" &&
+      values.pointId !== "" &&
+      values.pointName !== ""
+    ) {
+      addTest(values);
+    } else {
+      alert("Các thông tin chưa hợp lệ.");
+    }
   };
 
   return (
@@ -69,6 +79,15 @@ export default function CreatePoint() {
                   value={values.pointImage}
                   onChange={handleInputChange}
                 />
+                {values.pointImage ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <Card variant="outlined">
@@ -107,6 +126,15 @@ export default function CreatePoint() {
                   value={values.pointName}
                   onChange={handleInputChange}
                 />
+                {values.pointName ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -119,6 +147,15 @@ export default function CreatePoint() {
                   value={values.pointId}
                   onChange={handleInputChange}
                 />
+                {values.pointId ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -131,6 +168,15 @@ export default function CreatePoint() {
                   value={values.pointAddress}
                   onChange={handleInputChange}
                 />
+                {values.pointAddress ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
             </Grid>
           </Grid>
