@@ -4,8 +4,7 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Checkbox,
-  FormControlLabel,
+  FormHelperText,
   Grid,
   IconButton,
   TextField,
@@ -21,14 +20,6 @@ import { useHistory } from "react-router";
 
 export default function CreateMaterial() {
   let history = useHistory();
-
-  const [state, setState] = React.useState({
-    checkedB: true,
-  });
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
 
   // Create
   const addTest = (obj) => {
@@ -61,7 +52,15 @@ export default function CreateMaterial() {
     if (values.materialName) {
       values.materialName = "Nguyên Liệu: " + values.materialName;
     }
-    addTest(values);
+    if (
+      values.materialName !== "" &&
+      values.materialImage !== "" &&
+      values.materialId !== ""
+    ) {
+      addTest(values);
+    } else {
+      alert("Các thông tin chưa hợp lệ.");
+    }
   };
   return (
     <div>
@@ -81,6 +80,15 @@ export default function CreateMaterial() {
                   value={values.materialImage}
                   onChange={handleInputChange}
                 />
+                {values.materialImage ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <Card variant="outlined">
@@ -98,7 +106,10 @@ export default function CreateMaterial() {
                       </>
                     ) : (
                       <CardContent>
-                        <CardMedia component="img" image={values.materialImage} />
+                        <CardMedia
+                          component="img"
+                          image={values.materialImage}
+                        />
                       </CardContent>
                     )}
                   </CardContent>
@@ -119,6 +130,15 @@ export default function CreateMaterial() {
                   value={values.materialName}
                   onChange={handleInputChange}
                 />
+                {values.materialName ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -131,22 +151,15 @@ export default function CreateMaterial() {
                   value={values.materialId}
                   onChange={handleInputChange}
                 />
-              </Grid>
-              <Grid item xs={12}>
-                <Typography>
-                  <b>Kho được phép bán</b>
-                </Typography>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.checkedB}
-                      onChange={handleChange}
-                      name="checkedB"
-                      color="primary"
-                    />
-                  }
-                  label="Tất cả các kho"
-                />
+                {values.materialId ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
             </Grid>
           </Grid>
