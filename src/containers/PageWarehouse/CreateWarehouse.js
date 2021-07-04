@@ -8,6 +8,7 @@ import {
   CardMedia,
   IconButton,
   Card,
+  FormHelperText,
   // MenuItem,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
@@ -81,7 +82,7 @@ export default function CreateWarehouse() {
   // useEffect(() => {
   //   setValues({ ...values, namePoint: point });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [point]);
 
   // Create
@@ -105,15 +106,23 @@ export default function CreateWarehouse() {
   };
 
   const handleSubmit = (e) => {
-    addTest(values);
+    if (
+      values.warehouseImage !== "" &&
+      values.warehouseAddress !== "" &&
+      values.warehouseId !== "" &&
+      values.warehouseMaterial !== "" &&
+      values.warehouseName !== ""
+    ) {
+      addTest(values);
+    } else {
+      alert("Các thông tin chưa hợp lệ.");
+    }
   };
 
   // Handle Select Point
   // const handleChangePoint = (event) => {
   //   setPoint(event.target.value);
   // };
-
-  console.log(values);
 
   return (
     <div>
@@ -133,6 +142,15 @@ export default function CreateWarehouse() {
                   value={values.warehouseImage}
                   onChange={handleInputChange}
                 />
+                {values.pointImage ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <Card variant="outlined">
@@ -174,6 +192,15 @@ export default function CreateWarehouse() {
                   value={values.warehouseId}
                   onChange={handleInputChange}
                 />
+                {values.warehouseId ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -186,6 +213,15 @@ export default function CreateWarehouse() {
                   value={values.warehouseName}
                   onChange={handleInputChange}
                 />
+                {values.warehouseName ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               {/* <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -218,6 +254,15 @@ export default function CreateWarehouse() {
                   value={values.warehouseAddress}
                   onChange={handleInputChange}
                 />
+                {values.warehouseAddress ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item md={4} sm={6} xs={12}>
                 <TextField
@@ -230,6 +275,15 @@ export default function CreateWarehouse() {
                   value={values.createName}
                   onChange={handleInputChange}
                 />
+                {values.createName ? (
+                  ""
+                ) : (
+                  <FormHelperText>
+                    <Typography variant="inherit" color="error">
+                      Thông tin nhập không hợp lệ
+                    </Typography>
+                  </FormHelperText>
+                )}
               </Grid>
             </Grid>
           </Grid>
