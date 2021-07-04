@@ -50,14 +50,14 @@ export default function CreatePoint() {
 
   const handleSubmit = (e) => {
     if (
-      values.pointImage !== "" ||
-      values.pointAddress !== "" ||
-      values.pointId !== "" ||
-      values.pointName !== ""
+      !values.pointImage ||
+      !values.pointAddress ||
+      !values.pointId ||
+      !values.pointName
     ) {
-      addTest(values);
-    } else {
       alert("Các thông tin chưa hợp lệ.");
+    } else {
+      addTest(values);
     }
   };
 

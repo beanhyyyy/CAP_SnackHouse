@@ -107,15 +107,15 @@ export default function CreateWarehouse() {
 
   const handleSubmit = (e) => {
     if (
-      values.warehouseImage !== "" ||
-      values.warehouseAddress !== "" ||
-      values.warehouseId !== "" ||
-      values.warehouseMaterial !== "" ||
-      values.warehouseName !== ""
+      !values.warehouseImage ||
+      !values.warehouseAddress ||
+      !values.warehouseId ||
+      !values.warehouseMaterial ||
+      !values.warehouseName
     ) {
-      addTest(values);
-    } else {
       alert("Các thông tin chưa hợp lệ.");
+    } else {
+      addTest(values);
     }
   };
 

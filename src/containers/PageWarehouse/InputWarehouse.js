@@ -63,6 +63,17 @@ function InputWarehouse() {
       });
   };
 
+  function testConfirmDialog(id) {
+    // eslint-disable-next-line no-restricted-globals
+    var result = confirm("Bạn có muốn thực hiện thao tác này?");
+
+    if (result) {
+      onDelete(id);
+    } else {
+      alert("Đã hủy!");
+    }
+  }
+
   // Dialog
 
   function ViewDialog({ propsId, propsData }) {
@@ -304,7 +315,7 @@ function InputWarehouse() {
                           <Grid item>
                             <IconButton
                               onClick={() => {
-                                onDelete(id);
+                                testConfirmDialog(id);
                               }}
                             >
                               <DeleteIcon />

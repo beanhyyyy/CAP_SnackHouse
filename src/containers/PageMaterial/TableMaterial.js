@@ -63,6 +63,17 @@ export default function TableMaterial() {
       });
   };
 
+  function testConfirmDialog(id) {
+    // eslint-disable-next-line no-restricted-globals
+    var result = confirm("Bạn có muốn thực hiện thao tác này?");
+
+    if (result) {
+      onDelete(id);
+    } else {
+      alert("Đã hủy!");
+    }
+  }
+
   // Dialog Detail
   function ViewDialog({ propsId, propsData }) {
     const [open, setOpen] = React.useState(false);
@@ -430,7 +441,7 @@ export default function TableMaterial() {
                           <Grid item>
                             <IconButton
                               onClick={() => {
-                                onDelete(id);
+                                testConfirmDialog(id);
                               }}
                             >
                               <DeleteIcon />

@@ -52,14 +52,10 @@ export default function CreateMaterial() {
     if (values.materialName) {
       values.materialName = "Nguyên Liệu: " + values.materialName;
     }
-    if (
-      values.materialName !== "" ||
-      values.materialImage !== "" ||
-      values.materialId !== ""
-    ) {
-      addTest(values);
-    } else {
+    if (!values.materialName || !values.materialImage || !values.materialId) {
       alert("Các thông tin chưa hợp lệ.");
+    } else {
+      addTest(values);
     }
   };
   return (
